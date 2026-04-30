@@ -484,6 +484,13 @@
 
       footer { flex-direction:column; }
     }
+    .step {
+  display: none;
+}
+
+.step.active {
+  display: block;
+}
   </style>
 </head>
 
@@ -541,148 +548,120 @@
           Choose what fits best. You are not locking yourself into anything — this just helps me understand the project.
         </p>
 
-        <form action="https://formspree.io/f/xwvykbeg" method="POST" id="funnel-form">
-          <input type="hidden" name="_subject" value="New Vista Venture Co Funnel Inquiry">
+      <form action="https://formspree.io/f/xwvykbeg" method="POST" id="funnel-form">
+<input type="hidden" name="_subject" value="New Vista Venture Co Funnel Inquiry">
 
-          <div class="step-block">
-            <div class="step-head">
-              <strong>01</strong>
-              <h3>What are you looking for?</h3>
-            </div>
+<!-- STEP 1 -->
+<div class="step active" data-step="1">
+  <h3>What are you looking for?</h3>
 
-            <div class="option-grid">
-              <label class="option">
-                <input type="radio" name="Project Type" value="Real Estate Media">
-                <span><b>Real Estate</b>Listings, drone, 360 walkthroughs, property media.</span>
-              </label>
+  <div class="option-grid">
+    <label class="option">
+      <input type="radio" name="Project Type" value="Real Estate">
+      <span>Real Estate</span>
+    </label>
 
-              <label class="option">
-                <input type="radio" name="Project Type" value="Website Design">
-                <span><b>Website Design</b>A modern site for a business, restaurant, service, or brand.</span>
-              </label>
+    <label class="option">
+      <input type="radio" name="Project Type" value="Web Design">
+      <span>Web Design</span>
+    </label>
 
-              <label class="option">
-                <input type="radio" name="Project Type" value="Business Content">
-                <span><b>Business Content</b>Photo, video, food, brand, or marketing visuals.</span>
-              </label>
+    <label class="option">
+      <input type="radio" name="Project Type" value="Business Content">
+      <span>Business Content</span>
+    </label>
 
-              <label class="option">
-                <input type="radio" name="Project Type" value="Event Coverage">
-                <span><b>Events</b>Coverage for a private, public, corporate, or brand event.</span>
-              </label>
+    <label class="option">
+      <input type="radio" name="Project Type" value="Event">
+      <span>Event</span>
+    </label>
 
-              <label class="option">
-                <input type="radio" name="Project Type" value="Vehicle Media">
-                <span><b>Vehicles</b>360 tours, dealership content, or listing visuals.</span>
-              </label>
+    <label class="option">
+      <input type="radio" name="Project Type" value="Vehicle">
+      <span>Vehicle</span>
+    </label>
 
-              <label class="option">
-                <input type="radio" name="Project Type" value="Not Sure Yet">
-                <span><b>Not Sure Yet</b>You know the goal, but not the exact service.</span>
-              </label>
-            </div>
-          </div>
+    <label class="option">
+      <input type="radio" name="Project Type" value="Not Sure">
+      <span>Not Sure Yet</span>
+    </label>
+  </div>
 
-          <div class="step-block">
-            <div class="step-head">
-              <strong>02</strong>
-              <h3>What is the goal?</h3>
-            </div>
+  <button type="button" class="btn gold next">Next</button>
+</div>
 
-            <div class="option-grid">
-              <label class="option">
-                <input type="radio" name="Main Goal" value="Look more professional">
-                <span><b>Look More Professional</b>Make the business or listing feel more established.</span>
-              </label>
+<!-- STEP 2 -->
+<div class="step" data-step="2">
+  <h3>What is the goal?</h3>
 
-              <label class="option">
-                <input type="radio" name="Main Goal" value="Get more interest">
-                <span><b>Get More Interest</b>Improve presentation so more people pay attention.</span>
-              </label>
+  <div class="option-grid">
+    <label class="option">
+      <input type="radio" name="Goal" value="Look Professional">
+      <span>Look more professional</span>
+    </label>
 
-              <label class="option">
-                <input type="radio" name="Main Goal" value="Sell or rent something">
-                <span><b>Sell / Rent</b>Support a listing, property, vehicle, product, or space.</span>
-              </label>
+    <label class="option">
+      <input type="radio" name="Goal" value="More Interest">
+      <span>Get more interest</span>
+    </label>
 
-              <label class="option">
-                <input type="radio" name="Main Goal" value="Build trust online">
-                <span><b>Build Trust</b>Make your online presence feel stronger and more credible.</span>
-              </label>
-            </div>
-          </div>
+    <label class="option">
+      <input type="radio" name="Goal" value="Sell">
+      <span>Sell something</span>
+    </label>
 
-          <div class="step-block">
-            <div class="step-head">
-              <strong>03</strong>
-              <h3>Project details.</h3>
-            </div>
+    <label class="option">
+      <input type="radio" name="Goal" value="Build Trust">
+      <span>Build trust online</span>
+    </label>
+  </div>
 
-            <div class="field-grid">
-              <div>
-                <label class="field-label" for="timeline">Timeline</label>
-                <select id="timeline" name="Timeline">
-                  <option>As soon as possible</option>
-                  <option>This week</option>
-                  <option>This month</option>
-                  <option>Flexible</option>
-                  <option>Just gathering info</option>
-                </select>
-              </div>
+  <div class="btns">
+    <button type="button" class="btn outline prev">Back</button>
+    <button type="button" class="btn gold next">Next</button>
+  </div>
+</div>
 
-              <div>
-                <label class="field-label" for="location">Location</label>
-                <input id="location" name="Project Location" type="text" placeholder="City / area / address if relevant">
-              </div>
-            </div>
+<!-- STEP 3 -->
+<div class="step" data-step="3">
+  <h3>Project details</h3>
 
-            <div style="margin-top:16px;">
-              <label class="field-label" for="details">Tell me what you’re trying to do</label>
-              <textarea id="details" name="Project Details" placeholder="Tell me about the project, what you need, what success looks like, and anything I should know."></textarea>
-            </div>
-          </div>
+  <label class="field-label">Timeline</label>
+  <select name="Timeline">
+    <option>ASAP</option>
+    <option>This week</option>
+    <option>This month</option>
+    <option>Flexible</option>
+  </select>
 
-          <div class="step-block">
-            <div class="step-head">
-              <strong>04</strong>
-              <h3>Contact info.</h3>
-            </div>
+  <label class="field-label">Details</label>
+  <textarea name="Details"></textarea>
 
-            <div class="field-grid">
-              <div>
-                <label class="field-label" for="name">Your Name</label>
-                <input id="name" name="Name" type="text" placeholder="Your name" required>
-              </div>
+  <div class="btns">
+    <button type="button" class="btn outline prev">Back</button>
+    <button type="button" class="btn gold next">Next</button>
+  </div>
+</div>
 
-              <div>
-                <label class="field-label" for="business">Business / Project</label>
-                <input id="business" name="Business or Project" type="text" placeholder="Business, listing, event, etc.">
-              </div>
-            </div>
+<!-- STEP 4 -->
+<div class="step" data-step="4">
+  <h3>Your info</h3>
 
-            <div class="field-grid" style="margin-top:16px;">
-              <div>
-                <label class="field-label" for="email">Email</label>
-                <input id="email" name="Email" type="email" placeholder="you@email.com" required>
-              </div>
+  <input type="text" name="Name" placeholder="Name" required>
+  <input type="email" name="Email" placeholder="Email" required>
+  <input type="tel" name="Phone" placeholder="Phone">
 
-              <div>
-                <label class="field-label" for="phone">Phone</label>
-                <input id="phone" name="Phone" type="tel" placeholder="Best number to reach you">
-              </div>
-            </div>
-          </div>
+  <div class="btns">
+    <button type="button" class="btn outline prev">Back</button>
+    <button class="btn gold" type="submit">Send Request</button>
+  </div>
+</div>
 
-          <button class="btn gold" type="submit">Send Project Request</button>
+<div id="form-success" class="success">
+  Your project request has been sent. I’ll get back to you shortly.
+</div>
 
-          <div class="submit-note">
-            You’ll get a response quickly. If it’s urgent, call or text 479-326-8775.
-          </div>
-
-          <div id="form-success" class="success">
-            Your project request has been sent. I’ll get back to you shortly.
-          </div>
-        </form>
+</form>
       </div>
 
     </div>
@@ -757,6 +736,53 @@
       }
     });
   </script>
+<script>
+const steps = document.querySelectorAll(".step");
+let current = 0;
 
+function showStep(index){
+  steps.forEach((s,i)=> {
+    s.classList.toggle("active", i === index);
+  });
+}
+
+document.querySelectorAll(".next").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    current++;
+    showStep(current);
+  });
+});
+
+document.querySelectorAll(".prev").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    current--;
+    showStep(current);
+  });
+});
+
+showStep(0);
+
+const form = document.getElementById("funnel-form");
+
+form.addEventListener("submit", async function(e){
+  e.preventDefault();
+
+  const data = new FormData(form);
+
+  const response = await fetch(form.action, {
+    method: form.method,
+    body: data,
+    headers: { "Accept": "application/json" }
+  });
+
+  if(response.ok){
+    form.reset();
+    document.getElementById("form-success").style.display = "block";
+    showStep(0);
+  } else {
+    alert("Something went wrong.");
+  }
+});
+</script>
 </body>
 </html>
