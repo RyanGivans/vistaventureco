@@ -606,6 +606,56 @@
   .full-package {
     padding:26px;
   }
+}.snow-heading .swap-letter {
+  display:inline-block;
+  position:relative;
+  color:var(--gold);
+  animation:letterSwap 7s infinite;
+}
+
+@keyframes letterSwap {
+  0%, 58% {
+    transform:rotate(0deg) scale(1);
+  }
+
+  62% {
+    transform:rotate(-12deg) scale(1.15);
+  }
+
+  68%, 88% {
+    transform:rotate(0deg) scale(1);
+  }
+
+  92%, 100% {
+    transform:rotate(0deg) scale(1);
+  }
+}
+
+.snow-heading .swap-letter::after {
+  content:"h";
+  animation:textSwap 7s infinite;
+}
+
+.snow-heading .swap-letter {
+  font-size:0;
+}
+
+.snow-heading .swap-letter::after {
+  font-size:inherit;
+}
+
+@keyframes textSwap {
+  0%, 60% {
+    content:"h";
+  }
+
+  68%, 88% {
+    content:"n";
+  }
+
+  92%, 100% {
+    content:"h";
+  }
 }
   </style>
 </head>
@@ -829,8 +879,9 @@
   <section class="cta">
     <div class="reveal">
       <div class="eyebrow">Ready to Upgrade a Listing?</div>
-      <h2>Make it stand out before the showing.</h2>
-      <p>
+<h2 class="snow-heading">
+  Make it stand out before the s<span class="swap-letter" data-alt="n">h</span>owing.
+</h2>      <p>
         Add drone, 360 walkthroughs, or a complete media package to help buyers understand the property faster.
       </p>
 
