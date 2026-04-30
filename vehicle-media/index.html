@@ -518,6 +518,128 @@
 
       footer { flex-direction:column; }
     }
+    .vehicle-tour {
+  background:
+    radial-gradient(circle at top left, rgba(194,161,90,.16), transparent 34%),
+    #080808;
+}
+
+.tour-wrap {
+  max-width:1320px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:.75fr 1.25fr;
+  gap:34px;
+  align-items:center;
+}
+
+.tour-copy h2 {
+  font-size:clamp(42px,7vw,86px);
+  line-height:.88;
+  letter-spacing:-4px;
+  text-transform:uppercase;
+  margin-bottom:24px;
+}
+
+.tour-copy p {
+  color:rgba(245,245,243,.72);
+  font-size:18px;
+  line-height:1.65;
+  margin-bottom:18px;
+}
+
+.tour-embed {
+  background:#111;
+  border:1px solid rgba(194,161,90,.25);
+  border-radius:32px;
+  overflow:hidden;
+  min-height:560px;
+  box-shadow:0 35px 90px rgba(0,0,0,.45);
+}
+
+.tour-embed iframe,
+.tour-embed div {
+  width:100%;
+}
+
+.dealer-special {
+  max-width:1220px;
+  margin:0 auto 30px;
+  border:1px solid rgba(194,161,90,.38);
+  border-radius:34px;
+  padding:38px;
+  background:
+    radial-gradient(circle at top right, rgba(194,161,90,.18), transparent 34%),
+    linear-gradient(145deg, rgba(31,61,43,.88), rgba(8,8,8,.96));
+  box-shadow:0 35px 90px rgba(0,0,0,.32);
+}
+
+.dealer-special h3 {
+  font-size:clamp(38px,6vw,76px);
+  line-height:.88;
+  letter-spacing:-3px;
+  text-transform:uppercase;
+  margin-bottom:18px;
+}
+
+.dealer-special p {
+  color:rgba(245,245,243,.72);
+  font-size:18px;
+  line-height:1.6;
+  max-width:850px;
+}
+
+.dealer-rates {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+  margin:28px 0 18px;
+}
+
+.dealer-rate {
+  border:1px solid rgba(245,245,243,.14);
+  background:rgba(255,255,255,.045);
+  border-radius:26px;
+  padding:26px;
+  min-height:210px;
+}
+
+.dealer-rate strong {
+  display:block;
+  color:var(--gold);
+  font-size:58px;
+  letter-spacing:-2px;
+  line-height:.9;
+  margin-bottom:16px;
+}
+
+.dealer-rate span {
+  color:rgba(245,245,243,.74);
+  line-height:1.55;
+  font-size:16px;
+}
+
+.dealer-note {
+  border:1px solid rgba(194,161,90,.28);
+  background:rgba(194,161,90,.10);
+  border-radius:22px;
+  padding:20px;
+}
+
+@media (max-width:980px) {
+  .tour-wrap,
+  .dealer-rates {
+    grid-template-columns:1fr;
+  }
+
+  .tour-embed {
+    min-height:420px;
+  }
+
+  .dealer-special {
+    padding:26px;
+  }
+}
   </style>
 </head>
 
@@ -630,7 +752,49 @@
         Simple options for vehicle listings, dealerships, and specialty inventory. Pricing can be adjusted for volume or ongoing work.
       </p>
     </div>
+<section class="vehicle-tour">
+  <div class="tour-wrap reveal">
+    <div class="tour-copy">
+      <div class="eyebrow">Vehicle 360 Example</div>
+      <h2>Let buyers explore before they arrive.</h2>
+      <p>
+        A 360 vehicle walkthrough helps buyers understand the interior, layout, condition, and details before they ever visit in person.
+      </p>
+    </div>
 
+    <div class="tour-embed">
+      <div id="phE4sYEanMEzJ">
+        <script type="text/javascript" async data-short="phE4sYEanMEzJ" data-path="tours" data-is-self-hosted="false" width="100%" height="500px" src="https://app.cloudpano.com/public/shareScript.js"></script>
+      </div>
+    </div>
+  </div>
+</section>
+    <div class="dealer-special reveal">
+  <div>
+    <div class="eyebrow">Dealership / Inventory Pricing</div>
+    <h3>Built for ongoing inventory.</h3>
+    <p>
+      For dealerships, marine inventory, RV lots, and businesses with multiple vehicles,
+      pricing can be structured around volume so every listing has a consistent, professional presentation.
+    </p>
+  </div>
+
+  <div class="dealer-rates">
+    <div class="dealer-rate">
+      <strong>$52</strong>
+      <span>per vehicle for interior + exterior 360 images when photographing current inventory in volume.</span>
+    </div>
+
+    <div class="dealer-rate">
+      <strong>Custom</strong>
+      <span>pricing available for photos, drone, recurring visits, larger inventory, RVs, boats, or specialty vehicles.</span>
+    </div>
+  </div>
+
+  <p class="dealer-note">
+    This is especially useful for dealers who want a cleaner digital showroom without paying full single-vehicle pricing on every unit.
+  </p>
+</div>
     <div class="price-grid reveal">
       <div class="price-card">
         <div>
