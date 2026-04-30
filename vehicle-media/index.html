@@ -1,1 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <title>Vehicle Media | Vista Venture Co.</title>
+
+  <style>
+    :root {
+      --black:#050505;
+      --green:#1F3D2B;
+      --gold:#C2A15A;
+      --cream:#F5F5F3;
+      --muted:rgba(245,245,243,.68);
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+      background:var(--black);
+      color:var(--cream);
+      font-family:Arial, Helvetica, sans-serif;
+      overflow-x:hidden;
+    }
+
+    a { color:inherit; text-decoration:none; }
+    img { width:100%; display:block; }
+
+    .nav {
+      position:fixed;
+      top:0;
+      width:100%;
+      z-index:1000;
+      padding:22px 5vw;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      background:rgba(5,5,5,.70);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+
+    .logo {
+      font-size:13px;
+      font-weight:900;
+      letter-spacing:3px;
+      text-transform:uppercase;
+    }
+
+    .nav-links {
+      display:flex;
+      gap:26px;
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:1.5px;
+      text-transform:uppercase;
+      color:rgba(245,245,243,.72);
+    }
+
+    .nav-links a:hover { color:var(--gold); }
+
+    .hero {
+      min-height:94vh;
+      padding:140px 5vw 80px;
+      display:flex;
+      align-items:end;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero::before {
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(90deg, rgba(5,5,5,.94), rgba(5,5,5,.42), rgba(5,5,5,.90)),
+        linear-gradient(180deg, rgba(5,5,5,.12), rgba(5,5,5,.96)),
+        url("https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/DSC05783_1776649504.jpg?width=2400&optimize=medium");
+      background-size:cover;
+      background-position:center;
+      transform:scale(1.02);
+      z-index:-2;
+    }
+
+    .hero::after {
+      content:"";
+      position:absolute;
+      inset:0;
+      background-image:radial-gradient(rgba(255,255,255,.08) 1px, transparent 1px);
+      background-size:4px 4px;
+      opacity:.10;
+      z-index:-1;
+      pointer-events:none;
+    }
+
+    .eyebrow {
+      color:var(--gold);
+      text-transform:uppercase;
+      letter-spacing:3px;
+      font-size:12px;
+      font-weight:900;
+      margin-bottom:18px;
+    }
+
+    h1 {
+      font-size:clamp(54px,10vw,138px);
+      line-height:.82;
+      letter-spacing:-7px;
+      text-transform:uppercase;
+      max-width:1180px;
+    }
+
+    .hero p {
+      margin-top:28px;
+      max-width:760px;
+      color:rgba(245,245,243,.80);
+      font-size:clamp(18px,2vw,24px);
+      line-height:1.5;
+    }
+
+    .btns {
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-top:30px;
+    }
+
+    .btn {
+      display:inline-flex;
+      justify-content:center;
+      align-items:center;
+      padding:15px 24px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:1.5px;
+      transition:.3s ease;
+      white-space:nowrap;
+    }
+
+    .btn.gold {
+      background:var(--gold);
+      color:#080808;
+    }
+
+    .btn.outline {
+      border:1px solid rgba(245,245,243,.38);
+      color:var(--cream);
+    }
+
+    .btn:hover { transform:translateY(-3px); }
+
+    section {
+      padding:105px 5vw;
+    }
+
+    .section-head {
+      max-width:1220px;
+      margin:0 auto 54px;
+      display:grid;
+      grid-template-columns:1fr .8fr;
+      gap:40px;
+      align-items:end;
+    }
+
+    .section-head h2 {
+      font-size:clamp(42px,7vw,94px);
+      line-height:.88;
+      letter-spacing:-4px;
+      text-transform:uppercase;
+    }
+
+    .section-head p {
+      color:var(--muted);
+      font-size:18px;
+      line-height:1.65;
+    }
+
+    .visual-grid {
+      max-width:1320px;
+      margin:auto;
+      display:grid;
+      grid-template-columns:1.1fr .9fr 1fr;
+      grid-auto-rows:280px;
+      gap:16px;
+    }
+
+    .shot {
+      position:relative;
+      overflow:hidden;
+      border-radius:28px;
+      border:1px solid rgba(194,161,90,.18);
+      background:#111;
+      transition:.45s ease;
+    }
+
+    .shot.large { grid-row:span 2; }
+    .shot.wide { grid-column:span 2; }
+
+    .shot:hover {
+      transform:translateY(-7px);
+      border-color:var(--gold);
+      box-shadow:0 30px 80px rgba(0,0,0,.5);
+    }
+
+    .shot img {
+      height:100%;
+      object-fit:cover;
+      opacity:.84;
+      transition:.9s ease;
+    }
+
+    .shot:hover img {
+      transform:scale(1.08);
+      opacity:1;
+    }
+
+    .shot::after {
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, transparent, rgba(0,0,0,.78));
+    }
+
+    .shot-content {
+      position:absolute;
+      left:22px;
+      right:22px;
+      bottom:20px;
+      z-index:2;
+    }
+
+    .shot-label {
+      color:var(--gold);
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:2px;
+      text-transform:uppercase;
+      margin-bottom:7px;
+    }
+
+    .shot h3 {
+      font-size:clamp(22px,2.4vw,38px);
+      line-height:.95;
+      letter-spacing:-1.2px;
+      text-transform:uppercase;
+    }
+
+    .dealer {
+      background:var(--cream);
+      color:#080808;
+    }
+
+    .dealer-wrap {
+      max-width:1220px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:.85fr 1.15fr;
+      gap:38px;
+      align-items:center;
+    }
+
+    .dealer h2 {
+      color:var(--green);
+      font-size:clamp(42px,7vw,94px);
+      line-height:.88;
+      letter-spacing:-4px;
+      text-transform:uppercase;
+    }
+
+    .dealer p {
+      color:#444;
+      font-size:18px;
+      line-height:1.7;
+      margin-bottom:18px;
+    }
+
+    .dealer-box {
+      background:#080808;
+      color:var(--cream);
+      border-radius:34px;
+      padding:38px;
+      min-height:430px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      box-shadow:0 35px 90px rgba(0,0,0,.22);
+    }
+
+    .dealer-box strong {
+      font-size:76px;
+      color:var(--gold);
+      letter-spacing:-4px;
+      line-height:.9;
+    }
+
+    .dealer-box span {
+      color:rgba(245,245,243,.72);
+      line-height:1.6;
+      font-size:18px;
+    }
+
+    .pricing {
+      background:
+        radial-gradient(circle at top right, rgba(194,161,90,.14), transparent 34%),
+        #080808;
+    }
+
+    .price-grid {
+      max-width:1220px;
+      margin:auto;
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+
+    .price-card {
+      border:1px solid rgba(194,161,90,.22);
+      border-radius:30px;
+      padding:34px;
+      background:rgba(255,255,255,.035);
+      min-height:360px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      transition:.35s ease;
+    }
+
+    .price-card:hover {
+      transform:translateY(-6px);
+      border-color:var(--gold);
+      box-shadow:0 25px 70px rgba(0,0,0,.38);
+    }
+
+    .price-card.feature {
+      background:linear-gradient(145deg, var(--green), #0a0a0a);
+      border-color:rgba(194,161,90,.42);
+    }
+
+    .price-card h3 {
+      font-size:32px;
+      line-height:.95;
+      text-transform:uppercase;
+      letter-spacing:-1.4px;
+      margin-bottom:14px;
+    }
+
+    .price {
+      font-size:54px;
+      color:var(--gold);
+      font-weight:900;
+      letter-spacing:-2px;
+      margin:18px 0;
+    }
+
+    .price-card p {
+      color:rgba(245,245,243,.7);
+      line-height:1.6;
+      font-size:16px;
+    }
+
+    .pill-row {
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:24px;
+    }
+
+    .pill {
+      border:1px solid rgba(245,245,243,.18);
+      border-radius:999px;
+      padding:9px 12px;
+      color:rgba(245,245,243,.72);
+      font-size:12px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:1px;
+    }
+
+    .process {
+      background:#050505;
+    }
+
+    .process-grid {
+      max-width:1220px;
+      margin:auto;
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:16px;
+    }
+
+    .process-card {
+      border:1px solid rgba(194,161,90,.22);
+      border-radius:28px;
+      padding:28px;
+      background:rgba(255,255,255,.035);
+      min-height:260px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      transition:.35s ease;
+    }
+
+    .process-card:hover {
+      transform:translateY(-6px);
+      border-color:var(--gold);
+      box-shadow:0 25px 70px rgba(0,0,0,.38);
+    }
+
+    .process-card strong {
+      display:block;
+      color:var(--gold);
+      font-size:42px;
+      letter-spacing:-2px;
+    }
+
+    .process-card h3 {
+      font-size:25px;
+      line-height:.95;
+      text-transform:uppercase;
+      letter-spacing:-1px;
+      margin:18px 0 14px;
+    }
+
+    .process-card p {
+      color:rgba(245,245,243,.68);
+      line-height:1.55;
+    }
+
+    .cta {
+      min-height:78vh;
+      display:grid;
+      place-items:center;
+      text-align:center;
+      background:
+        linear-gradient(rgba(0,0,0,.68), rgba(0,0,0,.92)),
+        url("https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/DSC05783_1776649504.jpg?width=2400&optimize=medium");
+      background-size:cover;
+      background-position:center;
+    }
+
+    .cta h2 {
+      font-size:clamp(52px,9vw,124px);
+      line-height:.82;
+      letter-spacing:-6px;
+      text-transform:uppercase;
+      margin-bottom:26px;
+    }
+
+    .cta p {
+      color:rgba(245,245,243,.74);
+      font-size:20px;
+      max-width:720px;
+      margin:0 auto 32px;
+      line-height:1.55;
+    }
+
+    footer {
+      padding:34px 5vw;
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      color:rgba(245,245,243,.45);
+      font-size:13px;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+
+    .reveal {
+      opacity:0;
+      transform:translateY(34px);
+      transition:1s ease;
+    }
+
+    .reveal.visible {
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    @media (max-width:980px) {
+      .nav-links { display:none; }
+
+      .hero {
+        min-height:auto;
+        padding:130px 5vw 70px;
+      }
+
+      h1,
+      .cta h2 {
+        letter-spacing:-3px;
+      }
+
+      .section-head,
+      .dealer-wrap {
+        grid-template-columns:1fr;
+      }
+
+      .visual-grid {
+        grid-template-columns:1fr;
+        grid-auto-rows:320px;
+      }
+
+      .shot.large,
+      .shot.wide {
+        grid-column:span 1;
+        grid-row:span 1;
+      }
+
+      .price-grid,
+      .process-grid {
+        grid-template-columns:1fr;
+      }
+
+      section {
+        padding:80px 5vw;
+      }
+
+      footer { flex-direction:column; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="nav">
+    <a class="logo" href="../">Vista Venture Co.</a>
+
+    <div class="nav-links">
+      <a href="../services/">Services</a>
+      <a href="../gallery/">Gallery</a>
+      <a href="../web-design/">Web Design</a>
+      <a href="../about/">About</a>
+      <a href="../contact/">Contact</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div>
+      <div class="eyebrow">Vehicle Media</div>
+      <h1>Turn listings into a digital showroom.</h1>
+      <p>
+        Vehicle photos, 360 views, and listing media built to help buyers see more, trust more,
+        and feel more confident before they ever visit.
+      </p>
+
+      <div class="btns">
+        <a class="btn gold" href="../start/">Start a Vehicle Project</a>
+        <a class="btn outline" href="../gallery/">View Gallery</a>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <div class="section-head reveal">
+      <h2>Better vehicle media builds buyer confidence.</h2>
+      <p>
+        Buyers want to understand what they are looking at before they show up.
+        Clean photos and interactive 360 media help a listing feel more complete, transparent, and worth pursuing.
+      </p>
+    </div>
+
+    <div class="visual-grid reveal">
+      <div class="shot large">
+        <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/DSC05783_1776649504.jpg?width=2400&optimize=medium" alt="Vehicle media exterior">
+        <div class="shot-content">
+          <div class="shot-label">Exterior</div>
+          <h3>Clean listing visuals</h3>
+        </div>
+      </div>
+
+      <div class="shot">
+        <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/DSC05783_1776649504.jpg?width=1200&optimize=medium" alt="Vehicle exterior detail">
+        <div class="shot-content">
+          <div class="shot-label">Detail</div>
+          <h3>Show condition clearly</h3>
+        </div>
+      </div>
+
+      <div class="shot large">
+        <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/DSC05783_1776649504.jpg?width=1800&optimize=medium" alt="Vehicle media">
+        <div class="shot-content">
+          <div class="shot-label">Showroom</div>
+          <h3>More trust before the visit</h3>
+        </div>
+      </div>
+
+      <div class="shot wide">
+        <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/DSC05783_1776649504.jpg?width=2400&optimize=medium" alt="Vehicle listing media">
+        <div class="shot-content">
+          <div class="shot-label">Listing Media</div>
+          <h3>Make the listing feel complete</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dealer">
+    <div class="dealer-wrap reveal">
+      <div>
+        <div class="eyebrow">For Dealers + Private Sellers</div>
+        <h2>Show more before the buyer ever arrives.</h2>
+      </div>
+
+      <div>
+        <p>
+          Vehicle listings often rely on a few basic photos. That can leave buyers guessing about condition,
+          layout, interior space, and details that matter.
+        </p>
+
+        <p>
+          Better media helps the vehicle feel more transparent. For dealerships, it also creates a more consistent
+          inventory presentation across your website, marketplace listings, and social media.
+        </p>
+
+        <div class="dealer-box">
+          <strong>360</strong>
+          <span>
+            Interior and exterior 360 views can give buyers a stronger sense of the vehicle before they ever step on the lot.
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing">
+    <div class="section-head reveal">
+      <h2>Transparent starting points.</h2>
+      <p>
+        Simple options for vehicle listings, dealerships, and specialty inventory. Pricing can be adjusted for volume or ongoing work.
+      </p>
+    </div>
+
+    <div class="price-grid reveal">
+      <div class="price-card">
+        <div>
+          <div class="eyebrow">Single Vehicle</div>
+          <h3>Basic Listing Media</h3>
+          <div class="price">$100+</div>
+          <p>Clean vehicle photos for listings that need a stronger first impression.</p>
+        </div>
+
+        <div class="pill-row">
+          <span class="pill">Exterior</span>
+          <span class="pill">Interior</span>
+          <span class="pill">Edited Images</span>
+        </div>
+      </div>
+
+      <div class="price-card feature">
+        <div>
+          <div class="eyebrow">Best Presentation</div>
+          <h3>360 Vehicle Media</h3>
+          <div class="price">$150+</div>
+          <p>Interactive 360-style media to help buyers explore and understand the vehicle more clearly.</p>
+        </div>
+
+        <div class="pill-row">
+          <span class="pill">360 Views</span>
+          <span class="pill">Buyer Trust</span>
+          <span class="pill">Digital Showroom</span>
+        </div>
+      </div>
+
+      <div class="price-card">
+        <div>
+          <div class="eyebrow">Dealership / Volume</div>
+          <h3>Inventory Media</h3>
+          <div class="price">Custom</div>
+          <p>Ongoing vehicle media for dealers, marine inventory, RVs, specialty vehicles, and stock updates.</p>
+        </div>
+
+        <div class="pill-row">
+          <span class="pill">Volume Pricing</span>
+          <span class="pill">Consistent Look</span>
+          <span class="pill">Ongoing</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="process">
+    <div class="section-head reveal">
+      <h2>Built to make the listing easier to trust.</h2>
+      <p>
+        The goal is not just to take more photos. The goal is to remove uncertainty and make the buyer feel like they understand what they are seeing.
+      </p>
+    </div>
+
+    <div class="process-grid reveal">
+      <div class="process-card">
+        <strong>01</strong>
+        <div>
+          <h3>Capture</h3>
+          <p>Exterior, interior, key details, and the visual information buyers care about.</p>
+        </div>
+      </div>
+
+      <div class="process-card">
+        <strong>02</strong>
+        <div>
+          <h3>Show</h3>
+          <p>Photos and 360 media help the listing feel more complete online.</p>
+        </div>
+      </div>
+
+      <div class="process-card">
+        <strong>03</strong>
+        <div>
+          <h3>Use</h3>
+          <p>Media can support websites, listings, marketplace pages, ads, and social content.</p>
+        </div>
+      </div>
+
+      <div class="process-card">
+        <strong>04</strong>
+        <div>
+          <h3>Repeat</h3>
+          <p>For dealers, consistent inventory media creates a better overall brand presentation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="reveal">
+      <div class="eyebrow">Ready to Upgrade Your Listings?</div>
+      <h2>Make the vehicle feel worth seeing.</h2>
+      <p>
+        Better vehicle media helps buyers understand condition, presentation, and value before they visit.
+      </p>
+
+      <div class="btns" style="justify-content:center;">
+        <a class="btn gold" href="../start/">Start Here</a>
+        <a class="btn outline" href="tel:4793268775">Call 479-326-8775</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div>© 2026 Vista Venture Co. · Northwest Arkansas</div>
+    <div>Vehicle Media · 360 · Listings · Dealerships</div>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.16 });
+
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
