@@ -571,6 +571,54 @@
   letter-spacing:1.5px;
   text-transform:uppercase;
 }
+    .proof {
+  margin-top:20px;
+  color:rgba(245,245,243,.75);
+  font-size:16px;
+  max-width:700px;
+}
+
+.quick-paths {
+  display:flex;
+  gap:12px;
+  margin-top:26px;
+  flex-wrap:wrap;
+}
+
+.path {
+  border:1px solid rgba(245,245,245,.2);
+  padding:14px 18px;
+  border-radius:999px;
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  transition:.3s ease;
+}
+
+.path:hover {
+  border-color:var(--gold);
+  transform:translateY(-2px);
+}
+
+.path strong {
+  color:var(--gold);
+}
+
+.path span {
+  color:rgba(245,245,245,.6);
+  font-size:11px;
+}
+
+.trust-line {
+  margin-top:22px;
+  font-size:13px;
+  color:rgba(245,245,245,.5);
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
   </style>
 </head>
 
@@ -602,6 +650,36 @@ Transparent pricing. Built for local businesses. If you’re serious, we’ll ma
         </p>
 
         <div class="btns">
+          <div class="btns">
+  <!-- your buttons -->
+</div>
+
+<!-- 🔥 ADD THIS RIGHT HERE -->
+
+<p class="proof">
+  Real estate. Restaurants. Vehicles. Events. Built to help businesses present better and get chosen faster.
+</p>
+
+<div class="quick-paths">
+  <a href="/real-estate/" class="path">
+    <strong>Real Estate</strong>
+    <span>Listings, drone, 360 walkthroughs</span>
+  </a>
+
+  <a href="/services/" class="path">
+    <strong>All Services</strong>
+    <span>See everything offered</span>
+  </a>
+
+  <a href="/web-design/" class="path">
+    <strong>Web Design</strong>
+    <span>Websites that convert</span>
+  </a>
+</div>
+
+<div class="trust-line">
+  Built for real businesses that need to look professional, not average.
+</div>
           <a class="btn gold" href="services/">View Services</a>
           <a class="btn outline" href="gallery/">View Work</a>
         </div>
