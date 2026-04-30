@@ -1,963 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Vista Venture Co. | Cinematic Media & Website Design</title>
-
-  <style>
-    :root {
-      --black: #050505;
-      --charcoal: #0d0d0d;
-      --green: #1F3D2B;
-      --gold: #C2A15A;
-      --cream: #F5F5F3;
-      --muted: rgba(245,245,243,.68);
-      --line: rgba(194,161,90,.22);
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background: var(--black);
-      color: var(--cream);
-      font-family: Arial, Helvetica, sans-serif;
-      overflow-x: hidden;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      display: block;
-      width: 100%;
-    }
-
-    .nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 100;
-      padding: 22px 5vw;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      backdrop-filter: blur(18px);
-      background: rgba(5,5,5,.42);
-      border-bottom: 1px solid rgba(255,255,255,.06);
-    }
-
-    .logo {
-      font-size: 14px;
-      letter-spacing: 3px;
-      font-weight: 900;
-      color: var(--cream);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 28px;
-      font-size: 12px;
-      letter-spacing: 1.6px;
-      text-transform: uppercase;
-      color: rgba(245,245,243,.74);
-    }
-
-    .nav-links a:hover {
-      color: var(--gold);
-    }
-
-    .hero {
-      min-height: 100vh;
-      position: relative;
-      display: grid;
-      align-items: end;
-      padding: 120px 5vw 70px;
-      overflow: hidden;
-    }
-
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(90deg, rgba(5,5,5,.92), rgba(5,5,5,.35), rgba(5,5,5,.9)),
-        linear-gradient(180deg, rgba(5,5,5,.1), rgba(5,5,5,.94)),
-        url("https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/dji_fly_20250110_114758_700_1736531724454_aeb-HDR_1777017055.jpg?width=2400&optimize=medium");
-      background-size: cover;
-      background-position: center;
-      transform: scale(1.04);
-      animation: heroMove 16s ease-in-out infinite alternate;
-      z-index: -2;
-    }
-
-    .grain {
-      position: absolute;
-      inset: 0;
-      background-image:
-        radial-gradient(rgba(255,255,255,.08) 1px, transparent 1px);
-      background-size: 4px 4px;
-      opacity: .12;
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    @keyframes heroMove {
-      from { transform: scale(1.04) translateX(0); }
-      to { transform: scale(1.1) translateX(-18px); }
-    }
-
-    .eyebrow {
-      color: var(--gold);
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      font-size: 12px;
-      font-weight: 900;
-      margin-bottom: 18px;
-    }
-
-    .hero h1 {
-      font-size: clamp(56px, 10vw, 156px);
-      line-height: .82;
-      letter-spacing: -7px;
-      max-width: 1200px;
-      text-transform: uppercase;
-    }
-
-    .hero-row {
-      margin-top: 34px;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 40px;
-      align-items: end;
-      max-width: 1160px;
-    }
-
-    .hero p {
-      max-width: 660px;
-      color: rgba(245,245,243,.78);
-      font-size: clamp(18px, 2vw, 24px);
-      line-height: 1.5;
-    }
-
-    .btns {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 15px 23px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      transition: .3s ease;
-      white-space: nowrap;
-    }
-
-    .btn.gold {
-      background: var(--gold);
-      color: #080808;
-    }
-
-    .btn.dark {
-      border: 1px solid rgba(245,245,243,.34);
-      color: var(--cream);
-    }
-
-    .btn:hover {
-      transform: translateY(-3px);
-    }
-
-    .ticker {
-      border-top: 1px solid rgba(255,255,255,.08);
-      border-bottom: 1px solid rgba(255,255,255,.08);
-      overflow: hidden;
-      background: #080808;
-    }
-
-    .ticker-track {
-      display: flex;
-      width: max-content;
-      animation: ticker 28s linear infinite;
-    }
-
-    .ticker span {
-      padding: 18px 34px;
-      color: rgba(245,245,243,.72);
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      white-space: nowrap;
-    }
-
-    .ticker b {
-      color: var(--gold);
-    }
-
-    @keyframes ticker {
-      to { transform: translateX(-50%); }
-    }
-
-    section {
-      padding: 110px 5vw;
-    }
-
-    .section-head {
-      max-width: 1100px;
-      margin: 0 auto 52px;
-      display: grid;
-      grid-template-columns: 1fr .8fr;
-      gap: 40px;
-      align-items: end;
-    }
-
-    .section-head h2 {
-      font-size: clamp(42px, 7vw, 94px);
-      line-height: .88;
-      letter-spacing: -4px;
-      text-transform: uppercase;
-    }
-
-    .section-head p {
-      color: var(--muted);
-      font-size: 18px;
-      line-height: 1.65;
-    }
-
-    .portfolio {
-      background: var(--black);
-    }
-
-    .gallery-grid {
-      max-width: 1380px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: 1.25fr .75fr 1fr;
-      grid-auto-rows: 250px;
-      gap: 16px;
-    }
-
-    .shot {
-      position: relative;
-      overflow: hidden;
-      border-radius: 28px;
-      background: #111;
-      border: 1px solid rgba(255,255,255,.08);
-    }
-
-    .shot.large {
-      grid-row: span 2;
-    }
-
-    .shot.wide {
-      grid-column: span 2;
-    }
-
-    .shot img {
-      height: 100%;
-      object-fit: cover;
-      opacity: .84;
-      transition: 1s ease;
-    }
-
-    .shot:hover img {
-      transform: scale(1.08);
-      opacity: 1;
-    }
-
-    .shot::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, transparent, rgba(0,0,0,.72));
-    }
-
-    .shot span {
-      position: absolute;
-      left: 22px;
-      bottom: 20px;
-      z-index: 2;
-      color: var(--cream);
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-weight: 900;
-    }
-
-    .services {
-      background:
-        radial-gradient(circle at top right, rgba(194,161,90,.13), transparent 34%),
-        linear-gradient(180deg, #050505, #0b0b0b);
-    }
-
-    .service-wall {
-      max-width: 1320px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-    }
-
-    .service-card {
-      min-height: 360px;
-      border: 1px solid rgba(194,161,90,.18);
-      border-radius: 28px;
-      padding: 26px;
-      position: relative;
-      overflow: hidden;
-      background: #101010;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: .45s ease;
-    }
-
-    .service-card.feature {
-      grid-column: span 2;
-      background:
-        linear-gradient(rgba(0,0,0,.42), rgba(0,0,0,.86)),
-        url("https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/house%20front_1777017044.jpg?width=1200");
-      background-size: cover;
-      background-position: center;
-    }
-
-    .service-card:hover {
-      transform: translateY(-8px);
-      border-color: var(--gold);
-      box-shadow: 0 30px 80px rgba(0,0,0,.45);
-    }
-
-    .service-num {
-      color: var(--gold);
-      font-size: 12px;
-      font-weight: 900;
-      letter-spacing: 2px;
-    }
-
-    .service-card h3 {
-      font-size: clamp(26px, 3vw, 44px);
-      line-height: .95;
-      text-transform: uppercase;
-      letter-spacing: -1.5px;
-      margin-bottom: 14px;
-    }
-
-    .service-card p {
-      color: rgba(245,245,243,.68);
-      line-height: 1.55;
-      font-size: 15px;
-    }
-
-    .service-card small {
-      color: var(--gold);
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      font-weight: 900;
-    }
-
-    .web {
-      background: var(--cream);
-      color: #080808;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .web::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 15% 20%, rgba(194,161,90,.28), transparent 26%),
-        radial-gradient(circle at 80% 80%, rgba(31,61,43,.22), transparent 30%);
-      pointer-events: none;
-    }
-
-    .web-inner {
-      position: relative;
-      max-width: 1220px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: .9fr 1.1fr;
-      gap: 38px;
-      align-items: center;
-    }
-
-    .browser {
-      background: #080808;
-      border-radius: 28px;
-      overflow: hidden;
-      box-shadow: 0 40px 100px rgba(0,0,0,.26);
-      border: 1px solid rgba(0,0,0,.1);
-      transform: rotate(-2deg);
-    }
-
-    .browser-top {
-      display: flex;
-      gap: 8px;
-      padding: 16px;
-      border-bottom: 1px solid rgba(255,255,255,.1);
-    }
-
-    .dot {
-      width: 11px;
-      height: 11px;
-      border-radius: 50%;
-      background: var(--gold);
-      opacity: .8;
-    }
-
-    .browser-screen {
-      min-height: 420px;
-      background:
-        linear-gradient(rgba(0,0,0,.28), rgba(0,0,0,.88)),
-        url("https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/zzfood_1777017040.jpg?width=2400&optimize=medium");
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      align-items: end;
-      padding: 34px;
-    }
-
-    .browser-screen h3 {
-      color: white;
-      font-size: 46px;
-      line-height: .9;
-      letter-spacing: -2px;
-      text-transform: uppercase;
-    }
-
-    .web h2 {
-      font-size: clamp(46px, 7vw, 88px);
-      line-height: .88;
-      letter-spacing: -4px;
-      text-transform: uppercase;
-      margin-bottom: 22px;
-    }
-
-    .web p {
-      color: #4c4c4c;
-      font-size: 18px;
-      line-height: 1.65;
-      margin-bottom: 28px;
-    }
-
-    .pricing {
-      background:
-        linear-gradient(180deg, #080808, #111);
-    }
-
-    .price-grid {
-      max-width: 1220px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-    }
-
-    .price-card {
-      background: rgba(255,255,255,.035);
-      border: 1px solid rgba(194,161,90,.2);
-      border-radius: 26px;
-      padding: 26px;
-      min-height: 260px;
-    }
-
-    .price-card h3 {
-      color: var(--gold);
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      font-size: 13px;
-      margin-bottom: 18px;
-    }
-
-    .price-card strong {
-      display: block;
-      font-size: 42px;
-      margin-bottom: 12px;
-      letter-spacing: -1px;
-    }
-
-    .price-card p {
-      color: rgba(245,245,243,.66);
-      line-height: 1.55;
-      font-size: 15px;
-    }
-
-    .about {
-      background: var(--cream);
-      color: #080808;
-    }
-
-    .about-wrap {
-      max-width: 1200px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: .8fr 1.2fr;
-      gap: 46px;
-      align-items: start;
-    }
-
-    .about-card {
-      position: sticky;
-      top: 100px;
-      background: linear-gradient(145deg, #080808, var(--green));
-      color: var(--cream);
-      border-radius: 34px;
-      padding: 36px;
-      min-height: 460px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      box-shadow: 0 30px 80px rgba(0,0,0,.16);
-    }
-
-    .about-card h2 {
-      font-size: 58px;
-      line-height: .9;
-      letter-spacing: -3px;
-      text-transform: uppercase;
-    }
-
-    .about-text h3 {
-      font-size: clamp(42px, 6vw, 82px);
-      line-height: .9;
-      letter-spacing: -4px;
-      text-transform: uppercase;
-      color: var(--green);
-      margin-bottom: 24px;
-    }
-
-    .about-text p {
-      font-size: 18px;
-      line-height: 1.7;
-      color: #4f4f4f;
-      margin-bottom: 18px;
-    }
-
-    .cta-final {
-      min-height: 82vh;
-      display: grid;
-      place-items: center;
-      text-align: center;
-      background:
-        linear-gradient(rgba(0,0,0,.68), rgba(0,0,0,.9)),
-        url("https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/2FE078A20D0C4561EDE113B33CCD5864_1777017079.jpg?width=2400&optimize=medium");
-      background-size: cover;
-      background-position: center;
-    }
-
-    .cta-final h2 {
-      font-size: clamp(52px, 9vw, 126px);
-      line-height: .82;
-      letter-spacing: -6px;
-      text-transform: uppercase;
-      margin-bottom: 28px;
-    }
-
-    .cta-final p {
-      color: rgba(245,245,243,.74);
-      font-size: 20px;
-      max-width: 720px;
-      margin: 0 auto 34px;
-      line-height: 1.55;
-    }
-
-    footer {
-      padding: 34px 5vw;
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      color: rgba(245,245,243,.45);
-      font-size: 13px;
-      border-top: 1px solid rgba(255,255,255,.08);
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(34px);
-      transition: 1s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @media (max-width: 980px) {
-      .nav-links {
-        display: none;
-      }
-
-      .hero-row,
-      .section-head,
-      .web-inner,
-      .about-wrap {
-        grid-template-columns: 1fr;
-      }
-
-      .gallery-grid {
-        grid-template-columns: 1fr;
-        grid-auto-rows: 320px;
-      }
-
-      .shot.large,
-      .shot.wide {
-        grid-column: span 1;
-        grid-row: span 1;
-      }
-
-      .service-wall,
-      .price-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .service-card.feature {
-        grid-column: span 1;
-      }
-
-      .hero h1,
-      .cta-final h2 {
-        letter-spacing: -3px;
-      }
-
-      section {
-        padding: 80px 5vw;
-      }
-
-      footer {
-        flex-direction: column;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vista Venture Co. | Media That Sells</title>
+
+<style>
+body {
+  margin:0;
+  font-family: Arial, sans-serif;
+  background:#0a0a0a;
+  color:white;
+}
+
+.container {
+  max-width:1100px;
+  margin:auto;
+  padding:80px 20px;
+}
+
+h1 {
+  font-size:clamp(48px,8vw,90px);
+  line-height:.9;
+  margin-bottom:20px;
+}
+
+h2 {
+  font-size:clamp(32px,5vw,60px);
+  margin-bottom:20px;
+}
+
+p {
+  color:#aaa;
+  font-size:18px;
+  line-height:1.6;
+}
+
+.btn {
+  display:inline-block;
+  padding:16px 26px;
+  border-radius:999px;
+  font-weight:bold;
+  text-decoration:none;
+  margin-top:20px;
+}
+
+.btn-primary {
+  background:#C2A15A;
+  color:black;
+}
+
+.btn-secondary {
+  border:1px solid #555;
+  color:white;
+}
+
+/* HERO */
+.hero {
+  padding:120px 20px 80px;
+  text-align:center;
+  border-bottom:1px solid #222;
+}
+
+.hero p {
+  max-width:600px;
+  margin:auto;
+}
+
+/* PROOF STRIP */
+.proof {
+  background:#111;
+  padding:30px 20px;
+  text-align:center;
+  font-size:14px;
+  letter-spacing:1px;
+  color:#bbb;
+}
+
+/* SERVICES */
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
+
+.card {
+  background:#111;
+  padding:24px;
+  border-radius:16px;
+  border:1px solid #222;
+}
+
+.card h3 {
+  margin-bottom:10px;
+}
+
+/* PRICING */
+.pricing {
+  background:#111;
+  border-radius:20px;
+  padding:30px;
+}
+
+.price {
+  font-size:36px;
+  color:#C2A15A;
+  margin-bottom:10px;
+}
+
+/* CTA */
+.cta {
+  text-align:center;
+  padding:100px 20px;
+  background:#050505;
+  border-top:1px solid #222;
+}
+</style>
 </head>
 
 <body>
 
-  <nav class="nav">
-    <a class="logo" href="#">VISTA VENTURE CO.</a>
-    <div class="nav-links">
-      <a href="#work">Work</a>
-      <a href="#services">Services</a>
-      <a href="#websites">Websites</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#contact">Contact</a>
+<!-- HERO -->
+<section class="hero">
+  <h1>Make your business look like it’s worth choosing.</h1>
+  <p>
+    Professional photo, video, drone, 360 tours, and websites built to help listings, businesses, and brands stand out and convert.
+  </p>
+
+  <a href="#contact" class="btn btn-primary">Get a Quote</a>
+  <a href="#services" class="btn btn-secondary">See Services</a>
+</section>
+
+<!-- PROOF -->
+<div class="proof">
+  Real Estate • Vehicles • Restaurants • Events • Construction • Land • Portraits • Web Design
+</div>
+
+<!-- SERVICES -->
+<section class="container" id="services">
+  <h2>Everything you need to show your business properly.</h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3>Real Estate Media</h3>
+      <p>Photos, drone, and walkthroughs that make listings stand out and sell faster.</p>
     </div>
-  </nav>
 
-  <header class="hero">
-    <div class="hero-bg"></div>
-    <div class="grain"></div>
-
-    <div>
-      <div class="eyebrow">Northwest Arkansas Visual Media + Web Design</div>
-
-      <h1>Make them stop scrolling.</h1>
-
-      <div class="hero-row">
-        <p>
-          Cinematic photo, video, drone, 360 content, and custom websites for businesses,
-          listings, vehicles, projects, and spaces that need to look impossible to ignore.
-        </p>
-
-        <div class="btns">
-          <a class="btn gold" href="#contact">Start a Project</a>
-          <a class="btn dark" href="#work">View the Work</a>
-        </div>
-      </div>
+    <div class="card">
+      <h3>Vehicle Media</h3>
+      <p>360 tours and visuals that turn listings into a digital showroom.</p>
     </div>
-  </header>
 
-  <div class="ticker">
-    <div class="ticker-track">
-      <span><b>Real Estate</b></span>
-      <span>Drone</span>
-      <span>360 Walkthroughs</span>
-      <span><b>Vehicle Media</b></span>
-      <span>Restaurants</span>
-      <span>Construction</span>
-      <span><b>Web Design</b></span>
-      <span>Events</span>
-      <span>Portraits</span>
+    <div class="card">
+      <h3>Business Content</h3>
+      <p>Restaurants, brands, and local businesses that need better marketing visuals.</p>
+    </div>
 
-      <span><b>Real Estate</b></span>
-      <span>Drone</span>
-      <span>360 Walkthroughs</span>
-      <span><b>Vehicle Media</b></span>
-      <span>Restaurants</span>
-      <span>Construction</span>
-      <span><b>Web Design</b></span>
-      <span>Events</span>
-      <span>Portraits</span>
+    <div class="card">
+      <h3>Events</h3>
+      <p>Capture key moments and create content you can use long after.</p>
+    </div>
+
+    <div class="card">
+      <h3>Land & Acreage</h3>
+      <p>Aerial visuals that clearly show layout, access, and value.</p>
+    </div>
+
+    <div class="card">
+      <h3>Construction</h3>
+      <p>Progress tracking and project documentation made simple.</p>
+    </div>
+
+    <div class="card">
+      <h3>Portraits</h3>
+      <p>Clean, natural, professional images for personal or business use.</p>
+    </div>
+
+    <div class="card">
+      <h3>Website Design</h3>
+      <p>Modern websites that make your business look established and ready.</p>
     </div>
   </div>
+</section>
 
-  <section id="work" class="portfolio">
-    <div class="section-head reveal">
-      <h2>Proof first. Pitch second.</h2>
-      <p>
-        Your site should immediately show what you can do. Vista Venture Co. creates visuals that help people understand the space, feel the quality, and take the next step.
-      </p>
+<!-- PRICING -->
+<section class="container">
+  <h2>Clear starting points.</h2>
+
+  <div class="grid">
+    <div class="pricing">
+      <div class="price">$150+</div>
+      <p>Real Estate Packages</p>
     </div>
 
-    <div class="gallery-grid reveal">
-      <div class="shot large">
-        <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/house%20front_1777017044.jpg?width=1200" alt="">
-        <span>Real Estate</span>
-      </div>
-
-      <div class="shot">
-        <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/DSC05783_1776649504.jpg?width=2400&optimize=medium" alt="">
-        <span>Vehicle Media</span>
-      </div>
-
-      <div class="shot large">
-        <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/zzzc1_1777066364.jpg?width=2400&optimize=medium" alt="">
-        <span>Construction</span>
-      </div>
-
-      <div class="shot">
-        <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/zzfood_1777017040.jpg?width=2400&optimize=medium" alt="">
-        <span>Business Content</span>
-      </div>
-
-      <div class="shot wide">
-        <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/Crowd%204_1777017095.jpg?width=2400&optimize=medium" alt="">
-        <span>Events</span>
-      </div>
-
-      <div class="shot">
-        <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/mattie_1777072975.jpg?width=2400&optimize=medium" alt="">
-        <span>Portraits</span>
-      </div>
-    </div>
-  </section>
-
-  <section id="services" class="services">
-    <div class="section-head reveal">
-      <h2>Eight ways to make your business look better.</h2>
-      <p>
-        No one-size-fits-all package. Every service is built around presentation, clarity, and giving people a better reason to choose you.
-      </p>
+    <div class="pricing">
+      <div class="price">$100+</div>
+      <p>Vehicle Media</p>
     </div>
 
-    <div class="service-wall reveal">
-      <a class="service-card feature" href="#">
-        <div class="service-num">01 / REAL ESTATE</div>
-        <div>
-          <h3>Listings that feel worth seeing.</h3>
-          <p>HDR photos, drone coverage, video, and 360 walkthroughs for stronger property presentation.</p>
-        </div>
-        <small>View packages →</small>
-      </a>
-
-      <a class="service-card" href="#">
-        <div class="service-num">02 / VEHICLES</div>
-        <div>
-          <h3>Digital showroom.</h3>
-          <p>Interior and exterior media that makes vehicle listings more transparent and easier to trust.</p>
-        </div>
-        <small>View service →</small>
-      </a>
-
-      <a class="service-card" href="#">
-        <div class="service-num">03 / LAND</div>
-        <div>
-          <h3>Show the full scale.</h3>
-          <p>Aerial visuals for acreage, access, layout, boundaries, and surroundings.</p>
-        </div>
-        <small>View service →</small>
-      </a>
-
-      <a class="service-card" href="#">
-        <div class="service-num">04 / CONSTRUCTION</div>
-        <div>
-          <h3>Progress, documented.</h3>
-          <p>Repeatable aerial and ground coverage for updates, accountability, and marketing.</p>
-        </div>
-        <small>View service →</small>
-      </a>
-
-      <a class="service-card" href="#">
-        <div class="service-num">05 / BUSINESS</div>
-        <div>
-          <h3>Content for brands.</h3>
-          <p>Restaurants, products, spaces, and local businesses that need better content online.</p>
-        </div>
-        <small>View service →</small>
-      </a>
-
-      <a class="service-card" href="#">
-        <div class="service-num">06 / EVENTS</div>
-        <div>
-          <h3>Capture the energy.</h3>
-          <p>Photo, video, drone, and coverage that turns a moment into usable content.</p>
-        </div>
-        <small>View service →</small>
-      </a>
-
-      <a class="service-card" href="#">
-        <div class="service-num">07 / PORTRAITS</div>
-        <div>
-          <h3>Clean. Natural. Confident.</h3>
-          <p>Portraits and personal branding that feel polished without feeling forced.</p>
-        </div>
-        <small>View service →</small>
-      </a>
-
-      <a class="service-card" href="#websites">
-        <div class="service-num">08 / WEB DESIGN</div>
-        <div>
-          <h3>Sites with actual presence.</h3>
-          <p>Custom websites for businesses that want to look legitimate, premium, and ready to book.</p>
-        </div>
-        <small>Ask about websites →</small>
-      </a>
-    </div>
-  </section>
-
-  <section id="websites" class="web">
-    <div class="web-inner reveal">
-      <div>
-        <div class="eyebrow">Website Design Service</div>
-        <h2>This site is the sample.</h2>
-        <p>
-          Vista Venture Co. now builds clean, cinematic websites for restaurants, real estate, service businesses, and local brands that need something stronger than a basic template.
-        </p>
-        <p>
-          If your business needs photo, video, and a website that actually works together, this is the full package: visuals, copy, layout, and launch.
-        </p>
-
-        <div class="btns">
-          <a class="btn gold" href="#contact">Ask About a Website</a>
-          <a class="btn dark" style="color:#080808;border-color:#080808;" href="#pricing">See Starting Points</a>
-        </div>
-      </div>
-
-      <div class="browser">
-        <div class="browser-top">
-          <span class="dot"></span>
-          <span class="dot"></span>
-          <span class="dot"></span>
-        </div>
-        <div class="browser-screen">
-          <h3>Built to look expensive.</h3>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="pricing" class="pricing">
-    <div class="section-head reveal">
-      <h2>Transparent starting points.</h2>
-      <p>
-        Pricing depends on the project, but you should never have to guess where things start.
-      </p>
+    <div class="pricing">
+      <div class="price">$400+</div>
+      <p>Event Coverage</p>
     </div>
 
-    <div class="price-grid reveal">
-      <div class="price-card">
-        <h3>Real Estate</h3>
-        <strong>$150+</strong>
-        <p>Listing media packages with photo, drone, and walkthrough options.</p>
-      </div>
-
-      <div class="price-card">
-        <h3>Vehicle Media</h3>
-        <strong>$100+</strong>
-        <p>Basic vehicle listing media, 360 options, and dealership monthly pricing.</p>
-      </div>
-
-      <div class="price-card">
-        <h3>Events</h3>
-        <strong>$400+</strong>
-        <p>Half-day, full-day, and multi-day coverage options.</p>
-      </div>
-
-      <div class="price-card">
-        <h3>Web Design</h3>
-        <strong>$750+</strong>
-        <p>Custom-coded business websites with premium layout and launch support.</p>
-      </div>
+    <div class="pricing">
+      <div class="price">$750+</div>
+      <p>Website Design</p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="about">
-    <div class="about-wrap reveal">
-      <div class="about-card">
-        <div>
-          <div class="eyebrow">About Vista Venture Co.</div>
-          <h2>Visual media with a practical purpose.</h2>
-        </div>
+<!-- CTA -->
+<section class="cta" id="contact">
+  <h2>Ready to get better content?</h2>
+  <p>Call, text, or email to get started.</p>
 
-        <p style="color:rgba(245,245,243,.7);line-height:1.6;">
-          Clean work. Clear communication. Media that helps people understand what they are looking at.
-        </p>
-      </div>
-
-      <div class="about-text">
-        <h3>Not just better visuals. Better understanding.</h3>
-        <p>
-          Vista Venture Co. is a Northwest Arkansas visual media company focused on clean, professional photo, video, drone, 360 content, and websites that actually work.
-        </p>
-        <p>
-          The goal is simple: help people see the full picture. Whether that means making a property stand out online, helping a buyer understand a vehicle before they visit, documenting construction progress, or giving a business useful content for marketing and social media.
-        </p>
-        <p>
-          The process is built to be clear, useful, and intentional — no overcomplication, no filler, just solid visuals and web presence delivered right.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact" class="cta-final">
-    <div class="reveal">
-      <div class="eyebrow">Now Booking</div>
-      <h2>Make it look worth choosing.</h2>
-      <p>
-        Photo, video, drone, 360 tours, business content, and websites for people who are ready to look more professional online.
-      </p>
-
-      <div class="btns" style="justify-content:center;">
-        <a class="btn gold" href="tel:4793268775">Call 479-326-8775</a>
-        <a class="btn dark" href="mailto:hello@vistaventureco.com">Email Vista Venture Co.</a>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div>© 2026 Vista Venture Co. · Northwest Arkansas</div>
-    <div>Photo · Video · Drone · 360 · Web Design</div>
-  </footer>
-
-  <script>
-    const reveals = document.querySelectorAll('.reveal');
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.16 });
-
-    reveals.forEach(el => observer.observe(el));
-  </script>
+  <a href="tel:4793268775" class="btn btn-primary">Call 479-326-8775</a>
+  <a href="mailto:hello@vistaventureco.com" class="btn btn-secondary">Email Us</a>
+</section>
 
 </body>
 </html>
