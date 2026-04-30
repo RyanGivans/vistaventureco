@@ -527,6 +527,109 @@
 
       footer { flex-direction:column; }
     }
+    .website-preview {
+  min-height:520px;
+  padding:22px;
+  background-size:cover;
+  background-position:center;
+  position:relative;
+}
+
+.website-preview::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg, rgba(0,0,0,.22), rgba(0,0,0,.9));
+}
+
+.preview-nav {
+  position:relative;
+  z-index:2;
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  color:white;
+  font-size:12px;
+  letter-spacing:1.3px;
+  text-transform:uppercase;
+  border-bottom:1px solid rgba(255,255,255,.2);
+  padding-bottom:14px;
+}
+
+.preview-nav strong {
+  color:var(--gold);
+}
+
+.preview-hero {
+  position:relative;
+  z-index:2;
+  min-height:410px;
+  display:flex;
+  align-items:end;
+}
+
+.preview-hero small {
+  color:var(--gold);
+  text-transform:uppercase;
+  letter-spacing:2px;
+  font-weight:900;
+}
+
+.preview-hero h3 {
+  font-size:clamp(34px,5vw,70px);
+  line-height:.88;
+  letter-spacing:-3px;
+  text-transform:uppercase;
+  max-width:620px;
+  margin:12px 0 14px;
+}
+
+.preview-hero p {
+  color:rgba(245,245,243,.75);
+  max-width:540px;
+  line-height:1.55;
+}
+
+.preview-hero button {
+  margin-top:18px;
+  border:none;
+  background:var(--gold);
+  color:#080808;
+  padding:13px 20px;
+  border-radius:999px;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+.restaurant-site {
+  background-image:url("https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/zzfood_1777017040.jpg?width=2400&optimize=medium");
+}
+
+.realty-site {
+  background-image:url("https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/house%20front_1777017044.jpg?width=1200");
+}
+
+.service-site {
+  background-image:url("https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/zzzc1_1777066364.jpg?width=2400&optimize=medium");
+}
+
+.small-preview {
+  min-height:251px;
+}
+
+.small-preview .preview-hero {
+  min-height:150px;
+}
+
+.small-preview .preview-hero h3 {
+  font-size:32px;
+  letter-spacing:-1.5px;
+}
+
+.small-preview .preview-nav span {
+  display:none;
+}
   </style>
 </head>
 
@@ -558,55 +661,88 @@
     </div>
   </header>
 
-  <section id="examples">
-    <div class="section-head reveal">
-      <h2>Example website directions.</h2>
-      <p>
-        These are not basic template pages. The goal is to build a website that feels like the business: visual, clear, and strong enough to make people take it seriously.
-      </p>
+ <section id="examples">
+  <div class="section-head reveal">
+    <h2>Example website directions.</h2>
+    <p>
+      These are sample website styles that can be built for restaurants, real estate, service businesses, and local brands.
+    </p>
+  </div>
+
+  <div class="mockup-grid reveal">
+
+    <div class="mockup">
+      <div class="browser-top">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      </div>
+
+      <div class="website-preview restaurant-site">
+        <div class="preview-nav">
+          <strong>EMBER & OAK</strong>
+          <span>Menu</span>
+          <span>Reservations</span>
+          <span>Contact</span>
+        </div>
+
+        <div class="preview-hero">
+          <div>
+            <small>Restaurant Website</small>
+            <h3>Wood-fired food. Warm hospitality.</h3>
+            <p>Menus, hours, location, ordering links, and a visual story that makes people want to visit.</p>
+            <button>View Menu</button>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="mockup-grid reveal">
-      <div class="mockup">
+    <div class="stack">
+      <div class="mockup side">
         <div class="browser-top">
           <span class="dot"></span><span class="dot"></span><span class="dot"></span>
         </div>
-        <div class="mock-screen restaurant">
-          <div class="mock-content">
-            <div class="eyebrow">Restaurant / Hospitality</div>
-            <h3>Food, atmosphere, and online ordering.</h3>
-            <p>A visual site for menus, hours, location, story, events, and ordering links.</p>
+
+        <div class="website-preview realty-site small-preview">
+          <div class="preview-nav">
+            <strong>MODERN LISTINGS</strong>
+            <span>Properties</span>
+            <span>Contact</span>
+          </div>
+
+          <div class="preview-hero">
+            <div>
+              <small>Real Estate Website</small>
+              <h3>Listings that feel premium.</h3>
+              <p>Agent branding, featured listings, neighborhood pages, and lead capture.</p>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="stack">
-        <div class="mockup side">
-          <div class="browser-top">
-            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-          </div>
-          <div class="mock-screen realty">
-            <div class="mock-content">
-              <div class="eyebrow">Real Estate</div>
-              <h3>Listings and trust.</h3>
-            </div>
-          </div>
+      <div class="mockup side">
+        <div class="browser-top">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
         </div>
 
-        <div class="mockup side">
-          <div class="browser-top">
-            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <div class="website-preview service-site small-preview">
+          <div class="preview-nav">
+            <strong>SUMMIT SERVICE CO.</strong>
+            <span>Services</span>
+            <span>Quote</span>
           </div>
-          <div class="mock-screen servicebiz">
-            <div class="mock-content">
-              <div class="eyebrow">Service Business</div>
-              <h3>Clear offer. Strong CTA.</h3>
+
+          <div class="preview-hero">
+            <div>
+              <small>Service Business Website</small>
+              <h3>Clear offer. Strong call to action.</h3>
+              <p>Simple pages built to explain the service and get the customer to reach out.</p>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+
+  </div>
+</section>
 
   <section class="why">
     <div class="why-wrap reveal">
@@ -683,7 +819,7 @@
         <div>
           <div class="eyebrow">Starter</div>
           <h3>Single Page Website</h3>
-          <div class="price">$750+</div>
+          <div class="price">$500+</div>
           <p>Best for a simple business presence, landing page, event page, or service overview.</p>
         </div>
 
@@ -714,8 +850,8 @@
         <div>
           <div class="eyebrow">Ongoing</div>
           <h3>Maintenance</h3>
-          <div class="price">$100/mo</div>
-          <p>Light updates, menu changes, content edits, small page changes, and general upkeep.</p>
+          <div class="price">$100/mo<br><span style="font-size:22px;color:rgba(245,245,243,.7);">or $1,000/yr</span></div>
+<p>Light updates, menu changes, content edits, small page changes, and general upkeep. Or $1,000/year paid upfront.</p>
         </div>
 
         <div class="pill-row">
