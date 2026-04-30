@@ -1,3 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Real Estate Media | Vista Venture Co.</title>
+
+  <style>
+    :root {
+      --black:#050505;
+      --gold:#C2A15A;
+      --cream:#F5F5F3;
+      --muted:rgba(245,245,243,.68);
+      --green:#1F3D2B;
+      --line:rgba(194,161,90,.22);
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+      background:var(--black);
+      color:var(--cream);
+      font-family:Arial, Helvetica, sans-serif;
+      overflow-x:hidden;
+    }
+
+    a { color:inherit; text-decoration:none; }
+
+    img {
+      width:100%;
+      display:block;
+    }
+
+    .nav {
+      position:fixed;
+      top:0;
+      width:100%;
+      z-index:1000;
+      padding:22px 5vw;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      background:rgba(5,5,5,.62);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+
+    .logo {
+      font-size:13px;
+      font-weight:900;
+      letter-spacing:3px;
+      text-transform:uppercase;
+    }
+
+    .nav-links {
+      display:flex;
+      gap:26px;
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:1.5px;
+      text-transform:uppercase;
+      color:rgba(245,245,243,.72);
+    }
+
+    .nav-links a:hover { color:var(--gold); }
+
+    .hero {
+      min-height:95vh;
+      padding:140px 5vw 70px;
+      display:flex;
+      align-items:end;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero::before {
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(90deg, rgba(5,5,5,.94), rgba(5,5,5,.38), rgba(5,5,5,.9)),
+        linear-gradient(180deg, rgba(5,5,5,.1), rgba(5,5,5,.96)),
+        url("https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/house%20front_1777017044.jpg?width=2400&optimize=medium");
+      background-size:cover;
+      background-position:center;
+      transform:scale(1.06);
+      animation:heroMove 18s ease-in-out infinite alternate;
+      z-index:-2;
+    }
+
+    .hero::after {
+      content:"";
+      position:absolute;
+      inset:0;
+      background-image:radial-gradient(rgba(255,255,255,.08) 1px, transparent 1px);
+      background-size:4px 4px;
+      opacity:.12;
+      z-index:-1;
+    }
+
+    @keyframes heroMove {
+      from { transform:scale(1.06) translateX(0); }
+      to { transform:scale(1.12) translateX(-20px); }
+    }
+
+    .eyebrow {
+      color:var(--gold);
+      text-transform:uppercase;
+      letter-spacing:3px;
+      font-size:12px;
+      font-weight:900;
+      margin-bottom:18px;
+    }
+
+    h1 {
+      font-size:clamp(58px,10vw,148px);
+      line-height:.82;
+      letter-spacing:-7px;
+      text-transform:uppercase;
+      max-width:1200px;
+    }
+
+    .hero p {
+      margin-top:28px;
+      max-width:720px;
+      color:rgba(245,245,243,.78);
+      font-size:clamp(18px,2vw,23px);
+      line-height:1.5;
+    }
+
+    .btns {
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-top:30px;
+    }
+
+    .btn {
+      display:inline-flex;
+      justify-content:center;
+      align-items:center;
+      padding:15px 24px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:1.5px;
+      transition:.3s ease;
+      white-space:nowrap;
+    }
+
+    .btn.gold {
+      background:var(--gold);
+      color:#080808;
+    }
+
+    .btn.outline {
+      border:1px solid rgba(245,245,243,.38);
+      color:var(--cream);
+    }
+
+    .btn:hover { transform:translateY(-3px); }
+
+    section {
+      padding:100px 5vw;
+    }
+
+    .section-head {
+      max-width:1220px;
+      margin:0 auto 54px;
+      display:grid;
+      grid-template-columns:1fr .8fr;
+      gap:40px;
+      align-items:end;
+    }
+
+    .section-head h2 {
+      font-size:clamp(42px,7vw,94px);
+      line-height:.88;
+      letter-spacing:-4px;
+      text-transform:uppercase;
+    }
+
+    .section-head p {
+      color:var(--muted);
+      font-size:18px;
+      line-height:1.65;
+    }
+
+    .visual-grid {
+      max-width:1320px;
+      margin:auto;
+      display:grid;
+      grid-template-columns:1.2fr .8fr 1fr;
+      grid-auto-rows:260px;
+      gap:16px;
+    }
+
+    .shot {
+      position:relative;
+      overflow:hidden;
+      border-radius:28px;
+      border:1px solid rgba(194,161,90,.18);
+      background:#111;
+      transition:.45s ease;
+    }
+
+    .shot.large { grid-row:span 2; }
+    .shot.wide { grid-column:span 2; }
+
+    .shot:hover {
+      transform:translateY(-7px);
+      border-color:var(--gold);
+      box-shadow:0 30px 80px rgba(0,0,0,.5);
+    }
+
+    .shot img {
+      height:100%;
+      object-fit:cover;
+      opacity:.84;
+      transition:.9s ease;
+    }
+
+    .shot:hover img {
+      transform:scale(1.08);
+      opacity:1;
+    }
+
+    .shot::after {
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, transparent, rgba(0,0,0,.78));
+    }
+
+    .shot-content {
+      position:absolute;
+      left:22px;
+      right:22px;
+      bottom:20px;
+      z-index:2;
+    }
+
+    .shot-label {
+      color:var(--gold);
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:2px;
+      text-transform:uppercase;
+      margin-bottom:7px;
+    }
+
+    .shot h3 {
+      font-size:clamp(22px,2.4vw,38px);
+      line-height:.95;
+      letter-spacing:-1.2px;
+      text-transform:uppercase;
+    }
+
+    .pricing {
+      background:
+        radial-gradient(circle at top right, rgba(194,161,90,.14), transparent 34%),
+        #080808;
+    }
+
+    .price-grid {
+      max-width:1220px;
+      margin:auto;
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+
+    .price-card {
+      border:1px solid rgba(194,161,90,.22);
+      border-radius:30px;
+      padding:34px;
+      background:rgba(255,255,255,.035);
+      min-height:330px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      transition:.35s ease;
+    }
+
+    .price-card:hover {
+      transform:translateY(-6px);
+      border-color:var(--gold);
+      box-shadow:0 25px 70px rgba(0,0,0,.38);
+    }
+
+    .price-card.feature {
+      background:linear-gradient(145deg, var(--green), #0a0a0a);
+      border-color:rgba(194,161,90,.42);
+    }
+
+    .price-card h3 {
+      font-size:32px;
+      line-height:.95;
+      text-transform:uppercase;
+      letter-spacing:-1.4px;
+      margin-bottom:14px;
+    }
+
+    .price {
+      font-size:54px;
+      color:var(--gold);
+      font-weight:900;
+      letter-spacing:-2px;
+      margin:18px 0;
+    }
+
+    .price-card p {
+      color:rgba(245,245,243,.7);
+      line-height:1.6;
+      font-size:16px;
+    }
+
+    .pill-row {
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:24px;
+    }
+
+    .pill {
+      border:1px solid rgba(245,245,243,.18);
+      border-radius:999px;
+      padding:9px 12px;
+      color:rgba(245,245,243,.72);
+      font-size:12px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:1px;
+    }
+
+    .why {
+      background:var(--cream);
+      color:#080808;
+    }
+
+    .why-wrap {
+      max-width:1220px;
+      margin:auto;
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:38px;
+      align-items:center;
+    }
+
+    .why h2 {
+      font-size:clamp(44px,7vw,94px);
+      line-height:.88;
+      letter-spacing:-4px;
+      text-transform:uppercase;
+      color:var(--green);
+    }
+
+    .why p {
+      color:#444;
+      font-size:18px;
+      line-height:1.65;
+      margin-bottom:22px;
+    }
+
+    .stat-box {
+      background:#080808;
+      color:var(--cream);
+      border-radius:34px;
+      padding:38px;
+      min-height:420px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      box-shadow:0 35px 90px rgba(0,0,0,.22);
+    }
+
+    .stat-box strong {
+      font-size:84px;
+      color:var(--gold);
+      letter-spacing:-4px;
+      line-height:.9;
+    }
+
+    .stat-box span {
+      color:rgba(245,245,243,.72);
+      line-height:1.6;
+      font-size:18px;
+    }
+
+    .cta {
+      min-height:78vh;
+      display:grid;
+      place-items:center;
+      text-align:center;
+      background:
+        linear-gradient(rgba(0,0,0,.68), rgba(0,0,0,.92)),
+        url("https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/dji_fly_20250110_114758_700_1736531724454_aeb-HDR_1777017055.jpg?width=2400&optimize=medium");
+      background-size:cover;
+      background-position:center;
+    }
+
+    .cta h2 {
+      font-size:clamp(52px,9vw,124px);
+      line-height:.82;
+      letter-spacing:-6px;
+      text-transform:uppercase;
+      margin-bottom:26px;
+    }
+
+    .cta p {
+      color:rgba(245,245,243,.74);
+      font-size:20px;
+      max-width:720px;
+      margin:0 auto 32px;
+      line-height:1.55;
+    }
+
+    footer {
+      padding:34px 5vw;
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      color:rgba(245,245,243,.45);
+      font-size:13px;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+
+    .reveal {
+      opacity:0;
+      transform:translateY(34px);
+      transition:1s ease;
+    }
+
+    .reveal.visible {
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    @media (max-width:980px) {
+      .nav-links { display:none; }
+
+      h1, .cta h2 { letter-spacing:-3px; }
+
+      .section-head,
+      .why-wrap {
+        grid-template-columns:1fr;
+      }
+
+      .visual-grid {
+        grid-template-columns:1fr;
+        grid-auto-rows:320px;
+      }
+
+      .shot.large,
+      .shot.wide {
+        grid-column:span 1;
+        grid-row:span 1;
+      }
+
+      .price-grid {
+        grid-template-columns:1fr;
+      }
+
+      footer { flex-direction:column; }
+    }
+    .tour-feature {
+  background:
+    radial-gradient(circle at top left, rgba(194,161,90,.16), transparent 34%),
+    #080808;
+}
+
+.tour-wrap {
+  max-width:1320px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:.75fr 1.25fr;
+  gap:34px;
+  align-items:center;
+}
+
+.tour-copy h2 {
+  font-size:clamp(42px,7vw,86px);
+  line-height:.88;
+  letter-spacing:-4px;
+  text-transform:uppercase;
+  margin-bottom:24px;
+}
+
+.tour-copy p {
+  color:rgba(245,245,243,.72);
+  font-size:18px;
+  line-height:1.65;
+  margin-bottom:18px;
+}
+
+.tour-embed {
+  background:#111;
+  border:1px solid rgba(194,161,90,.25);
+  border-radius:32px;
+  overflow:hidden;
+  min-height:560px;
+  box-shadow:0 35px 90px rgba(0,0,0,.45);
+}
+
+.tour-embed iframe,
+.tour-embed div {
+  width:100%;
+}
+
+@media (max-width:980px) {
+  .tour-wrap {
+    grid-template-columns:1fr;
+  }
+
+  .tour-embed {
+    min-height:420px;
+  }
+}
+  </style>
+</head>
+
+<body>
+
+  <nav class="nav">
+    <a class="logo" href="../">Vista Venture Co.</a>
+    <div class="nav-links">
+      <a href="../services/">Services</a>
+      <a href="../gallery/">Gallery</a>
+      <a href="../web-design/">Web Design</a>
+      <a href="../about/">About</a>
+      <a href="../contact/">Contact</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div>
+      <div class="eyebrow">Real Estate Media</div>
+      <h1>Listings that feel worth seeing.</h1>
+      <p>
+        Clean HDR photography, drone coverage, and 360 walkthroughs that help buyers understand the property before they ever step inside.
+      </p>
+
+      <div class="btns">
+        <a class="btn gold" href="https://book.squareup.com/appointments/suqqvuvxmoeprs/location/LDK49TFBJ1HJH/services">Book Real Estate Media</a>
+        <a class="btn outline" href="../gallery/">View Gallery</a>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <div class="section-head reveal">
+      <h2>Show the space before they step inside.</h2>
+      <p>
+        Most listings do not show enough. Better visuals create clarity. Clarity builds confidence.
+        And confidence gets buyers to take the next step.
+      </p>
+    </div>
+
+    <div class="visual-grid reveal">
+      <div class="shot large">
+        <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/house%20front_1777017044.jpg?width=1200" alt="Real estate exterior">
+        <div class="shot-content">
+          <div class="shot-label">Exterior</div>
+          <h3>Strong first impression</h3>
+        </div>
+      </div>
+
+      <div class="shot">
+        <img src="https://www.open-homes.com/app/media/image5-1800x1200.jpg" alt="Interior real estate photography">
+        <div class="shot-content">
+          <div class="shot-label">Interior</div>
+          <h3>Clean HDR spaces</h3>
+        </div>
+      </div>
+
+      <div class="shot large">
+        <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/dji_fly_20250110_114758_700_1736531724454_aeb-HDR_1777017055.jpg?width=2400&optimize=medium" alt="Drone real estate photo">
+        <div class="shot-content">
+          <div class="shot-label">Drone</div>
+          <h3>Context from above</h3>
+        </div>
+      </div>
+
+      <div class="shot wide">
+        <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/2FE078A20D0C4561EDE113B33CCD5864_1777017079.jpg?width=2400&optimize=medium" alt="Property media">
+        <div class="shot-content">
+          <div class="shot-label">Presentation</div>
+          <h3>Make the listing feel complete</h3>
+        </div>
+      </div>
+    </div>
+  </section>
 <section class="tour-feature">
   <div class="tour-wrap reveal">
     <div class="tour-copy">
@@ -28,3 +622,122 @@
     </div>
   </div>
 </section>
+  <section class="pricing">
+    <div class="section-head reveal">
+      <h2>Transparent pricing.</h2>
+      <p>
+        Simple options for agents and sellers who want better presentation without having to hunt for the numbers.
+      </p>
+    </div>
+
+    <div class="price-grid reveal">
+      <div class="price-card">
+        <div>
+          <div class="eyebrow">Add-On</div>
+          <h3>Drone Coverage</h3>
+          <div class="price">$100</div>
+          <p>Aerial photos that show the property, lot, surrounding area, and setting from above.</p>
+        </div>
+
+        <div class="pill-row">
+          <span class="pill">Aerial Photos</span>
+          <span class="pill">Property Context</span>
+          <span class="pill">Listing Ready</span>
+        </div>
+      </div>
+
+      <div class="price-card">
+        <div>
+          <div class="eyebrow">Add-On</div>
+          <h3>360 Walkthrough</h3>
+          <div class="price">$100</div>
+          <p>Interactive walkthrough media that lets buyers move through the home and understand the layout at their own pace.</p>
+        </div>
+
+        <div class="pill-row">
+          <span class="pill">Interactive Tour</span>
+          <span class="pill">Layout Clarity</span>
+          <span class="pill">Buyer Confidence</span>
+        </div>
+      </div>
+
+      <div class="price-card feature">
+        <div>
+          <div class="eyebrow">Best Value</div>
+          <h3>Drone + 360 Bundle</h3>
+          <div class="price">$175</div>
+          <p>Best when you want both aerial context and a clearer buyer experience inside the property.</p>
+        </div>
+
+        <div class="pill-row">
+          <span class="pill">Save $25</span>
+          <span class="pill">Drone</span>
+          <span class="pill">360 Walkthrough</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="why">
+    <div class="why-wrap reveal">
+      <div class="stat-box">
+        <div class="eyebrow">Why It Works</div>
+        <strong>01</strong>
+        <span>
+          Buyers make fast decisions online. The stronger the listing feels, the better chance it has of earning attention.
+        </span>
+      </div>
+
+      <div>
+        <h2>Better presentation creates better interest.</h2>
+        <p>
+          Photos give buyers a glimpse. Drone coverage shows setting and scale. A 360 walkthrough helps them understand the flow of the home before they schedule a showing.
+        </p>
+        <p>
+          Together, those visuals make the property feel more complete, more transparent, and more worth seeing in person.
+        </p>
+
+        <div class="btns">
+          <a class="btn gold" href="https://book.squareup.com/appointments/suqqvuvxmoeprs/location/LDK49TFBJ1HJH/services">Book Real Estate Media</a>
+          <a class="btn outline" style="color:#080808;border-color:#080808;" href="../contact/">Ask a Question</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="reveal">
+      <div class="eyebrow">Ready to Upgrade a Listing?</div>
+      <h2>Make it stand out before the showing.</h2>
+      <p>
+        Add drone, 360 walkthroughs, or a complete media package to help buyers understand the property faster.
+      </p>
+
+      <div class="btns" style="justify-content:center;">
+        <a class="btn gold" href="https://book.squareup.com/appointments/suqqvuvxmoeprs/location/LDK49TFBJ1HJH/services">Book Now</a>
+        <a class="btn outline" href="tel:4793268775">Call 479-326-8775</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div>© 2026 Vista Venture Co. · Northwest Arkansas</div>
+    <div>Real Estate · Drone · 360 · Photo · Video</div>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.16 });
+
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
