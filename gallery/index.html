@@ -1,1 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <title>Gallery | Vista Venture Co.</title>
+
+  <style>
+    :root {
+      --black:#050505;
+      --gold:#C2A15A;
+      --cream:#F5F5F3;
+      --muted:rgba(245,245,243,.68);
+      --line:rgba(194,161,90,.22);
+      --green:#1F3D2B;
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+      background:var(--black);
+      color:var(--cream);
+      font-family:Arial, Helvetica, sans-serif;
+      overflow-x:hidden;
+    }
+
+    a { color:inherit; text-decoration:none; }
+
+    img {
+      width:100%;
+      display:block;
+    }
+
+    .nav {
+      position:fixed;
+      top:0;
+      width:100%;
+      z-index:1000;
+      padding:22px 5vw;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      background:rgba(5,5,5,.62);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+
+    .logo {
+      font-size:13px;
+      font-weight:900;
+      letter-spacing:3px;
+      text-transform:uppercase;
+    }
+
+    .nav-links {
+      display:flex;
+      gap:26px;
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:1.5px;
+      text-transform:uppercase;
+      color:rgba(245,245,243,.72);
+    }
+
+    .nav-links a:hover { color:var(--gold); }
+
+    .hero {
+      min-height:75vh;
+      padding:140px 5vw 70px;
+      display:flex;
+      align-items:end;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero::before {
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(90deg, rgba(5,5,5,.94), rgba(5,5,5,.45), rgba(5,5,5,.88)),
+        linear-gradient(180deg, rgba(5,5,5,.12), rgba(5,5,5,.96)),
+        url("https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/2FE078A20D0C4561EDE113B33CCD5864_1777017079.jpg?width=2400&optimize=medium");
+      background-size:cover;
+      background-position:center;
+      transform:scale(1.06);
+      animation:heroMove 18s ease-in-out infinite alternate;
+      z-index:-2;
+    }
+
+    .hero::after {
+      content:"";
+      position:absolute;
+      inset:0;
+      background-image:radial-gradient(rgba(255,255,255,.08) 1px, transparent 1px);
+      background-size:4px 4px;
+      opacity:.12;
+      z-index:-1;
+    }
+
+    @keyframes heroMove {
+      from { transform:scale(1.06) translateX(0); }
+      to { transform:scale(1.12) translateX(-20px); }
+    }
+
+    .eyebrow {
+      color:var(--gold);
+      text-transform:uppercase;
+      letter-spacing:3px;
+      font-size:12px;
+      font-weight:900;
+      margin-bottom:18px;
+    }
+
+    h1 {
+      font-size:clamp(58px, 10vw, 150px);
+      line-height:.82;
+      letter-spacing:-7px;
+      text-transform:uppercase;
+      max-width:1200px;
+    }
+
+    .hero p {
+      margin-top:28px;
+      max-width:720px;
+      color:rgba(245,245,243,.76);
+      font-size:clamp(18px,2vw,23px);
+      line-height:1.5;
+    }
+
+    .section {
+      padding:90px 5vw;
+    }
+
+    .filters {
+      max-width:1320px;
+      margin:0 auto 34px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .filter {
+      border:1px solid rgba(245,245,243,.18);
+      color:rgba(245,245,243,.72);
+      padding:11px 16px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:900;
+      letter-spacing:1.4px;
+      text-transform:uppercase;
+      background:rgba(255,255,255,.035);
+    }
+
+    .filter.gold {
+      background:var(--gold);
+      color:#080808;
+      border-color:var(--gold);
+    }
+
+    .gallery {
+      max-width:1320px;
+      margin:auto;
+      display:grid;
+      grid-template-columns:repeat(4, 1fr);
+      grid-auto-rows:260px;
+      gap:16px;
+    }
+
+    .shot {
+      position:relative;
+      overflow:hidden;
+      border-radius:28px;
+      border:1px solid rgba(194,161,90,.18);
+      background:#111;
+      transition:.45s ease;
+    }
+
+    .shot:hover {
+      transform:translateY(-7px);
+      border-color:var(--gold);
+      box-shadow:0 30px 80px rgba(0,0,0,.5);
+    }
+
+    .shot img {
+      height:100%;
+      object-fit:cover;
+      opacity:.82;
+      transition:.9s ease;
+    }
+
+    .shot:hover img {
+      transform:scale(1.08);
+      opacity:1;
+    }
+
+    .shot::after {
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, transparent, rgba(0,0,0,.78));
+    }
+
+    .shot-content {
+      position:absolute;
+      left:22px;
+      right:22px;
+      bottom:20px;
+      z-index:2;
+    }
+
+    .shot-label {
+      color:var(--gold);
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:2px;
+      text-transform:uppercase;
+      margin-bottom:7px;
+    }
+
+    .shot h3 {
+      font-size:clamp(22px,2.4vw,38px);
+      line-height:.95;
+      letter-spacing:-1.2px;
+      text-transform:uppercase;
+    }
+
+    .shot.large {
+      grid-column:span 2;
+      grid-row:span 2;
+    }
+
+    .shot.wide {
+      grid-column:span 2;
+    }
+
+    .shot.tall {
+      grid-row:span 2;
+    }
+
+    .cta {
+      padding:110px 5vw;
+      text-align:center;
+      background:
+        radial-gradient(circle at center, rgba(194,161,90,.18), transparent 35%),
+        #080808;
+    }
+
+    .cta h2 {
+      font-size:clamp(48px,8vw,110px);
+      line-height:.84;
+      letter-spacing:-5px;
+      text-transform:uppercase;
+      margin-bottom:24px;
+    }
+
+    .cta p {
+      color:var(--muted);
+      max-width:680px;
+      margin:0 auto 30px;
+      font-size:19px;
+      line-height:1.55;
+    }
+
+    .btn {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:15px 24px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:1.5px;
+      transition:.3s ease;
+      background:var(--gold);
+      color:#080808;
+    }
+
+    .btn:hover { transform:translateY(-3px); }
+
+    footer {
+      padding:34px 5vw;
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      color:rgba(245,245,243,.45);
+      font-size:13px;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+
+    .reveal {
+      opacity:0;
+      transform:translateY(34px);
+      transition:1s ease;
+    }
+
+    .reveal.visible {
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    @media (max-width:980px) {
+      .nav-links { display:none; }
+
+      h1 { letter-spacing:-3px; }
+
+      .gallery {
+        grid-template-columns:1fr;
+        grid-auto-rows:320px;
+      }
+
+      .shot.large,
+      .shot.wide,
+      .shot.tall {
+        grid-column:span 1;
+        grid-row:span 1;
+      }
+
+      footer { flex-direction:column; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="nav">
+    <a class="logo" href="../">Vista Venture Co.</a>
+    <div class="nav-links">
+      <a href="../services/">Services</a>
+      <a href="../gallery/">Gallery</a>
+      <a href="../web-design/">Web Design</a>
+      <a href="../about/">About</a>
+      <a href="../contact/">Contact</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div>
+      <div class="eyebrow">Portfolio Gallery</div>
+      <h1>Visual proof.</h1>
+      <p>
+        A mix of real estate, drone, vehicle, business, event, land, construction, and portrait work — built to show the space, the product, the energy, and the story clearly.
+      </p>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="filters reveal">
+      <span class="filter gold">Featured Work</span>
+      <span class="filter">Real Estate</span>
+      <span class="filter">Vehicles</span>
+      <span class="filter">Food & Business</span>
+      <span class="filter">Events</span>
+      <span class="filter">Construction</span>
+      <span class="filter">Portraits</span>
+    </div>
+
+    <div class="gallery reveal">
+
+      <div class="shot large">
+        <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/house%20front_1777017044.jpg?width=1200" alt="Real estate exterior photography">
+        <div class="shot-content">
+          <div class="shot-label">Real Estate</div>
+          <h3>Listing presence</h3>
+        </div>
+      </div>
+
+      <div class="shot tall">
+        <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/DSC05783_1776649504.jpg?width=2400&optimize=medium" alt="Vehicle media photography">
+        <div class="shot-content">
+          <div class="shot-label">Vehicles</div>
+          <h3>Digital showroom</h3>
+        </div>
+      </div>
+
+      <div class="shot">
+        <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/zzfood_1777017040.jpg?width=2400&optimize=medium" alt="Food photography">
+        <div class="shot-content">
+          <div class="shot-label">Business</div>
+          <h3>Food detail</h3>
+        </div>
+      </div>
+
+      <div class="shot">
+        <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/zzzc1_1777066364.jpg?width=2400&optimize=medium" alt="Construction aerial media">
+        <div class="shot-content">
+          <div class="shot-label">Construction</div>
+          <h3>Site progress</h3>
+        </div>
+      </div>
+
+      <div class="shot wide">
+        <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/Crowd%204_1777017095.jpg?width=2400&optimize=medium" alt="Event photography">
+        <div class="shot-content">
+          <div class="shot-label">Events</div>
+          <h3>Crowd & energy</h3>
+        </div>
+      </div>
+
+      <div class="shot">
+        <img src="https://cdn.myportfolio.com/6548b179-e775-4fd6-82d3-1c416ff2f000/b7b5bc59-eaed-46dc-955b-ede949e3b546_rw_1920.jpg?h=cef9277274ba929657b63af996dfe13b" alt="Land aerial photography">
+        <div class="shot-content">
+          <div class="shot-label">Land</div>
+          <h3>Scale from above</h3>
+        </div>
+      </div>
+
+      <div class="shot">
+        <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/mattie_1777072975.jpg?width=2400&optimize=medium" alt="Portrait photography">
+        <div class="shot-content">
+          <div class="shot-label">Portraits</div>
+          <h3>Natural confidence</h3>
+        </div>
+      </div>
+
+      <div class="shot wide">
+        <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/Alyssa%207_1777017092.jpg?width=2400&optimize=medium" alt="Event key moment photography">
+        <div class="shot-content">
+          <div class="shot-label">Events</div>
+          <h3>Key moments</h3>
+        </div>
+      </div>
+
+      <div class="shot">
+        <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/_DSC0627_1777017433.jpg?width=2400&optimize=medium" alt="Atmosphere photography">
+        <div class="shot-content">
+          <div class="shot-label">Atmosphere</div>
+          <h3>Feel of the room</h3>
+        </div>
+      </div>
+
+      <div class="shot">
+        <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/property_boundary_clean_final_1777064127.png?width=2400&optimize=medium" alt="Property boundary overlay">
+        <div class="shot-content">
+          <div class="shot-label">Land</div>
+          <h3>Clear boundaries</h3>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="cta">
+    <h2>Need your business to look this strong?</h2>
+    <p>
+      Let’s build the visuals, website, or full presentation system that helps people understand what you offer and why it is worth choosing.
+    </p>
+    <a class="btn" href="../contact/">Start a Project</a>
+  </section>
+
+  <footer>
+    <div>© 2026 Vista Venture Co. · Northwest Arkansas</div>
+    <div>Photo · Video · Drone · 360 · Web Design</div>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.16 });
+
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
