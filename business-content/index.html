@@ -1,1 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <title>Business Content | Vista Venture Co.</title>
+
+  <style>
+    :root {
+      --black:#050505;
+      --green:#1F3D2B;
+      --gold:#C2A15A;
+      --cream:#F5F5F3;
+      --muted:rgba(245,245,243,.68);
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+      background:var(--black);
+      color:var(--cream);
+      font-family:Arial, Helvetica, sans-serif;
+      overflow-x:hidden;
+    }
+
+    a { color:inherit; text-decoration:none; }
+    img { width:100%; display:block; }
+
+    .nav {
+      position:fixed;
+      top:0;
+      width:100%;
+      z-index:1000;
+      padding:22px 5vw;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      background:rgba(5,5,5,.70);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+
+    .logo {
+      font-size:13px;
+      font-weight:900;
+      letter-spacing:3px;
+      text-transform:uppercase;
+    }
+
+    .nav-links {
+      display:flex;
+      gap:26px;
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:1.5px;
+      text-transform:uppercase;
+      color:rgba(245,245,243,.72);
+    }
+
+    .nav-links a:hover { color:var(--gold); }
+
+    .hero {
+      min-height:94vh;
+      padding:140px 5vw 80px;
+      display:flex;
+      align-items:end;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero::before {
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(90deg, rgba(5,5,5,.94), rgba(5,5,5,.42), rgba(5,5,5,.90)),
+        linear-gradient(180deg, rgba(5,5,5,.12), rgba(5,5,5,.96)),
+        url("https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/zzfood_1777017040.jpg?width=2400&optimize=medium");
+      background-size:cover;
+      background-position:center;
+      transform:scale(1.02);
+      z-index:-2;
+    }
+
+    .hero::after {
+      content:"";
+      position:absolute;
+      inset:0;
+      background-image:radial-gradient(rgba(255,255,255,.08) 1px, transparent 1px);
+      background-size:4px 4px;
+      opacity:.10;
+      z-index:-1;
+      pointer-events:none;
+    }
+
+    .eyebrow {
+      color:var(--gold);
+      text-transform:uppercase;
+      letter-spacing:3px;
+      font-size:12px;
+      font-weight:900;
+      margin-bottom:18px;
+    }
+
+    h1 {
+      font-size:clamp(54px,10vw,138px);
+      line-height:.82;
+      letter-spacing:-7px;
+      text-transform:uppercase;
+      max-width:1180px;
+    }
+
+    .hero p {
+      margin-top:28px;
+      max-width:760px;
+      color:rgba(245,245,243,.80);
+      font-size:clamp(18px,2vw,24px);
+      line-height:1.5;
+    }
+
+    .btns {
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-top:30px;
+    }
+
+    .btn {
+      display:inline-flex;
+      justify-content:center;
+      align-items:center;
+      padding:15px 24px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:1.5px;
+      transition:.3s ease;
+      white-space:nowrap;
+    }
+
+    .btn.gold {
+      background:var(--gold);
+      color:#080808;
+    }
+
+    .btn.outline {
+      border:1px solid rgba(245,245,243,.38);
+      color:var(--cream);
+    }
+
+    .btn:hover { transform:translateY(-3px); }
+
+    section {
+      padding:105px 5vw;
+    }
+
+    .section-head {
+      max-width:1220px;
+      margin:0 auto 54px;
+      display:grid;
+      grid-template-columns:1fr .8fr;
+      gap:40px;
+      align-items:end;
+    }
+
+    .section-head h2 {
+      font-size:clamp(42px,7vw,94px);
+      line-height:.88;
+      letter-spacing:-4px;
+      text-transform:uppercase;
+    }
+
+    .section-head p {
+      color:var(--muted);
+      font-size:18px;
+      line-height:1.65;
+    }
+
+    .visual-grid {
+      max-width:1320px;
+      margin:auto;
+      display:grid;
+      grid-template-columns:1.15fr .85fr 1fr;
+      grid-auto-rows:280px;
+      gap:16px;
+    }
+
+    .shot {
+      position:relative;
+      overflow:hidden;
+      border-radius:28px;
+      border:1px solid rgba(194,161,90,.18);
+      background:#111;
+      transition:.45s ease;
+    }
+
+    .shot.large { grid-row:span 2; }
+    .shot.wide { grid-column:span 2; }
+
+    .shot:hover {
+      transform:translateY(-7px);
+      border-color:var(--gold);
+      box-shadow:0 30px 80px rgba(0,0,0,.5);
+    }
+
+    .shot img {
+      height:100%;
+      object-fit:cover;
+      opacity:.84;
+      transition:.9s ease;
+    }
+
+    .shot:hover img {
+      transform:scale(1.08);
+      opacity:1;
+    }
+
+    .shot::after {
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, transparent, rgba(0,0,0,.78));
+    }
+
+    .shot-content {
+      position:absolute;
+      left:22px;
+      right:22px;
+      bottom:20px;
+      z-index:2;
+    }
+
+    .shot-label {
+      color:var(--gold);
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:2px;
+      text-transform:uppercase;
+      margin-bottom:7px;
+    }
+
+    .shot h3 {
+      font-size:clamp(22px,2.4vw,38px);
+      line-height:.95;
+      letter-spacing:-1.2px;
+      text-transform:uppercase;
+    }
+
+    .restaurant-proof {
+      background:var(--cream);
+      color:#080808;
+    }
+
+    .restaurant-wrap {
+      max-width:1220px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:.85fr 1.15fr;
+      gap:38px;
+      align-items:center;
+    }
+
+    .restaurant-proof h2 {
+      color:var(--green);
+      font-size:clamp(42px,7vw,94px);
+      line-height:.88;
+      letter-spacing:-4px;
+      text-transform:uppercase;
+    }
+
+    .restaurant-proof p {
+      color:#444;
+      font-size:18px;
+      line-height:1.7;
+      margin-bottom:18px;
+    }
+
+    .chef-box {
+      background:#080808;
+      color:var(--cream);
+      border-radius:34px;
+      padding:38px;
+      min-height:430px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      box-shadow:0 35px 90px rgba(0,0,0,.22);
+    }
+
+    .chef-box strong {
+      font-size:76px;
+      color:var(--gold);
+      letter-spacing:-4px;
+      line-height:.9;
+    }
+
+    .chef-box span {
+      color:rgba(245,245,243,.72);
+      line-height:1.6;
+      font-size:18px;
+    }
+
+    .offer {
+      background:#080808;
+    }
+
+    .offer-grid {
+      max-width:1220px;
+      margin:auto;
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:16px;
+    }
+
+    .offer-card {
+      border:1px solid rgba(194,161,90,.22);
+      border-radius:28px;
+      padding:28px;
+      background:rgba(255,255,255,.035);
+      min-height:280px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      transition:.35s ease;
+    }
+
+    .offer-card:hover {
+      transform:translateY(-6px);
+      border-color:var(--gold);
+      box-shadow:0 25px 70px rgba(0,0,0,.38);
+    }
+
+    .offer-card strong {
+      display:block;
+      color:var(--gold);
+      font-size:42px;
+      letter-spacing:-2px;
+    }
+
+    .offer-card h3 {
+      font-size:25px;
+      line-height:.95;
+      text-transform:uppercase;
+      letter-spacing:-1px;
+      margin:18px 0 14px;
+    }
+
+    .offer-card p {
+      color:rgba(245,245,243,.68);
+      line-height:1.55;
+    }
+
+    .pricing {
+      background:
+        radial-gradient(circle at top right, rgba(194,161,90,.14), transparent 34%),
+        #080808;
+    }
+
+    .price-grid {
+      max-width:1220px;
+      margin:auto;
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+
+    .price-card {
+      border:1px solid rgba(194,161,90,.22);
+      border-radius:30px;
+      padding:34px;
+      background:rgba(255,255,255,.035);
+      min-height:370px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      transition:.35s ease;
+    }
+
+    .price-card:hover {
+      transform:translateY(-6px);
+      border-color:var(--gold);
+      box-shadow:0 25px 70px rgba(0,0,0,.38);
+    }
+
+    .price-card.feature {
+      background:linear-gradient(145deg, var(--green), #0a0a0a);
+      border-color:rgba(194,161,90,.42);
+    }
+
+    .price-card h3 {
+      font-size:32px;
+      line-height:.95;
+      text-transform:uppercase;
+      letter-spacing:-1.4px;
+      margin-bottom:14px;
+    }
+
+    .price {
+      font-size:54px;
+      color:var(--gold);
+      font-weight:900;
+      letter-spacing:-2px;
+      margin:18px 0;
+    }
+
+    .price-card p {
+      color:rgba(245,245,243,.7);
+      line-height:1.6;
+      font-size:16px;
+    }
+
+    .pill-row {
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:24px;
+    }
+
+    .pill {
+      border:1px solid rgba(245,245,243,.18);
+      border-radius:999px;
+      padding:9px 12px;
+      color:rgba(245,245,243,.72);
+      font-size:12px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:1px;
+    }
+
+    .use-cases {
+      background:var(--cream);
+      color:#080808;
+    }
+
+    .use-wrap {
+      max-width:1220px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:34px;
+      align-items:center;
+    }
+
+    .use-wrap h2 {
+      color:var(--green);
+      font-size:clamp(42px,7vw,94px);
+      line-height:.88;
+      letter-spacing:-4px;
+      text-transform:uppercase;
+    }
+
+    .use-wrap p {
+      color:#444;
+      font-size:18px;
+      line-height:1.7;
+      margin-bottom:18px;
+    }
+
+    .use-list {
+      display:grid;
+      gap:14px;
+    }
+
+    .use-list div {
+      background:#080808;
+      color:var(--cream);
+      border-radius:24px;
+      padding:24px;
+      border:1px solid rgba(194,161,90,.25);
+      box-shadow:0 20px 50px rgba(0,0,0,.12);
+    }
+
+    .use-list strong {
+      display:block;
+      color:var(--gold);
+      text-transform:uppercase;
+      letter-spacing:1.4px;
+      font-size:13px;
+      margin-bottom:8px;
+    }
+
+    .use-list span {
+      color:rgba(245,245,243,.72);
+      line-height:1.55;
+    }
+
+    .cta {
+      min-height:78vh;
+      display:grid;
+      place-items:center;
+      text-align:center;
+      background:
+        linear-gradient(rgba(0,0,0,.68), rgba(0,0,0,.92)),
+        url("https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/zzfood_1777017040.jpg?width=2400&optimize=medium");
+      background-size:cover;
+      background-position:center;
+    }
+
+    .cta h2 {
+      font-size:clamp(52px,9vw,124px);
+      line-height:.82;
+      letter-spacing:-6px;
+      text-transform:uppercase;
+      margin-bottom:26px;
+    }
+
+    .cta p {
+      color:rgba(245,245,243,.74);
+      font-size:20px;
+      max-width:720px;
+      margin:0 auto 32px;
+      line-height:1.55;
+    }
+
+    footer {
+      padding:34px 5vw;
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      color:rgba(245,245,243,.45);
+      font-size:13px;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+
+    .reveal {
+      opacity:0;
+      transform:translateY(34px);
+      transition:1s ease;
+    }
+
+    .reveal.visible {
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    @media (max-width:980px) {
+      .nav-links { display:none; }
+
+      .hero {
+        min-height:auto;
+        padding:130px 5vw 70px;
+      }
+
+      h1,
+      .cta h2 {
+        letter-spacing:-3px;
+      }
+
+      .section-head,
+      .restaurant-wrap,
+      .use-wrap {
+        grid-template-columns:1fr;
+      }
+
+      .visual-grid {
+        grid-template-columns:1fr;
+        grid-auto-rows:320px;
+      }
+
+      .shot.large,
+      .shot.wide {
+        grid-column:span 1;
+        grid-row:span 1;
+      }
+
+      .offer-grid,
+      .price-grid {
+        grid-template-columns:1fr;
+      }
+
+      section {
+        padding:80px 5vw;
+      }
+
+      footer { flex-direction:column; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="nav">
+    <a class="logo" href="../">Vista Venture Co.</a>
+
+    <div class="nav-links">
+      <a href="../services/">Services</a>
+      <a href="../gallery/">Gallery</a>
+      <a href="../web-design/">Web Design</a>
+      <a href="../about/">About</a>
+      <a href="../contact/">Contact</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div>
+      <div class="eyebrow">Business Content</div>
+      <h1>Content that makes your business feel worth choosing.</h1>
+      <p>
+        Photo, video, food, brand, and marketing visuals for restaurants, local businesses,
+        service companies, and brands that need to show up better online.
+      </p>
+
+      <div class="btns">
+        <a class="btn gold" href="../start/">Start a Business Project</a>
+        <a class="btn outline" href="../gallery/">View Gallery</a>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <div class="section-head reveal">
+      <h2>People decide before they ever walk in.</h2>
+      <p>
+        Your photos and videos are often the first impression. Strong business content helps customers understand
+        the food, space, service, product, or experience before they choose you.
+      </p>
+    </div>
+
+    <div class="visual-grid reveal">
+      <div class="shot large">
+        <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/zzfood_1777017040.jpg?width=2400&optimize=medium" alt="Food and business content">
+        <div class="shot-content">
+          <div class="shot-label">Food</div>
+          <h3>Make people want it</h3>
+        </div>
+      </div>
+
+      <div class="shot">
+        <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/_DSC0627_1777017433.jpg?width=2400&optimize=medium" alt="Business atmosphere">
+        <div class="shot-content">
+          <div class="shot-label">Atmosphere</div>
+          <h3>Show the feeling</h3>
+        </div>
+      </div>
+
+      <div class="shot large">
+        <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/Crowd%204_1777017095.jpg?width=2400&optimize=medium" alt="Event and business content">
+        <div class="shot-content">
+          <div class="shot-label">Experience</div>
+          <h3>Capture real energy</h3>
+        </div>
+      </div>
+
+      <div class="shot wide">
+        <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/Alyssa%207_1777017092.jpg?width=2400&optimize=medium" alt="Brand and people content">
+        <div class="shot-content">
+          <div class="shot-label">Brand</div>
+          <h3>Content with a real point of view</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="restaurant-proof">
+    <div class="restaurant-wrap reveal">
+      <div>
+        <div class="eyebrow">Restaurant Experience</div>
+        <h2>Built with real industry understanding.</h2>
+      </div>
+
+      <div>
+        <p>
+          Restaurants are different. The food has to look right, the room has to feel right,
+          and the content needs to support how guests actually decide where to spend their money.
+        </p>
+
+        <p>
+          With 22 years in the restaurant industry as a chef and business owner,
+          Vista Venture Co. brings more than a camera. The work is built with an understanding of food,
+          operations, guest perception, menus, service, and what actually matters to restaurant owners.
+        </p>
+
+        <div class="chef-box">
+          <strong>22</strong>
+          <span>
+            Years of restaurant experience means food and hospitality content is approached from inside the industry —
+            not just from behind the camera.
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="offer">
+    <div class="section-head reveal">
+      <h2>Content built for how businesses actually use it.</h2>
+      <p>
+        The goal is to create useful visuals that can support your website, social media, menus,
+        ads, listings, Google profile, and sales conversations.
+      </p>
+    </div>
+
+    <div class="offer-grid reveal">
+      <div class="offer-card">
+        <strong>01</strong>
+        <div>
+          <h3>Food Photos</h3>
+          <p>Clean food images for menus, social, websites, ordering platforms, and campaigns.</p>
+        </div>
+      </div>
+
+      <div class="offer-card">
+        <strong>02</strong>
+        <div>
+          <h3>Brand Content</h3>
+          <p>Visuals that show the business, people, products, atmosphere, and customer experience.</p>
+        </div>
+      </div>
+
+      <div class="offer-card">
+        <strong>03</strong>
+        <div>
+          <h3>Short Video</h3>
+          <p>Simple motion content for social posts, reels, website sections, and promotional use.</p>
+        </div>
+      </div>
+
+      <div class="offer-card">
+        <strong>04</strong>
+        <div>
+          <h3>Web Support</h3>
+          <p>Content that works with your website so your business feels more consistent online.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing">
+    <div class="section-head reveal">
+      <h2>Transparent starting points.</h2>
+      <p>
+        Pricing depends on the size of the business, the content needed, and how the media will be used.
+        These are simple starting points for planning.
+      </p>
+    </div>
+
+    <div class="price-grid reveal">
+      <div class="price-card">
+        <div>
+          <div class="eyebrow">Starter</div>
+          <h3>Business Photo Session</h3>
+          <div class="price">$250+</div>
+          <p>Best for a small batch of updated photos for your website, social media, or business profile.</p>
+        </div>
+
+        <div class="pill-row">
+          <span class="pill">Photos</span>
+          <span class="pill">Edited Images</span>
+          <span class="pill">Local Business</span>
+        </div>
+      </div>
+
+      <div class="price-card feature">
+        <div>
+          <div class="eyebrow">Most Useful</div>
+          <h3>Content Package</h3>
+          <div class="price">$500+</div>
+          <p>Best for restaurants, brands, and businesses that need a stronger set of visuals across platforms.</p>
+        </div>
+
+        <div class="pill-row">
+          <span class="pill">Photo</span>
+          <span class="pill">Brand</span>
+          <span class="pill">Website Use</span>
+          <span class="pill">Social</span>
+        </div>
+      </div>
+
+      <div class="price-card">
+        <div>
+          <div class="eyebrow">Ongoing</div>
+          <h3>Monthly Content</h3>
+          <div class="price">Custom</div>
+          <p>Recurring content for businesses that want consistent visuals, launches, menu updates, or seasonal campaigns.</p>
+        </div>
+
+        <div class="pill-row">
+          <span class="pill">Recurring</span>
+          <span class="pill">Seasonal</span>
+          <span class="pill">Campaigns</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="use-cases">
+    <div class="use-wrap reveal">
+      <div>
+        <div class="eyebrow">Where It Can Be Used</div>
+        <h2>One shoot can support a lot of places.</h2>
+      </div>
+
+      <div class="use-list">
+        <div>
+          <strong>Website</strong>
+          <span>Hero images, service sections, menu pages, gallery pages, and business story sections.</span>
+        </div>
+
+        <div>
+          <strong>Social Media</strong>
+          <span>Posts, reels, announcements, promotions, launches, and behind-the-scenes content.</span>
+        </div>
+
+        <div>
+          <strong>Google + Listings</strong>
+          <span>Updated business profile visuals that help customers understand what to expect.</span>
+        </div>
+
+        <div>
+          <strong>Menus + Ordering</strong>
+          <span>Food, product, and menu visuals that help customers choose faster and with more confidence.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="reveal">
+      <div class="eyebrow">Ready to Show Up Better?</div>
+      <h2>Make the business feel worth choosing.</h2>
+      <p>
+        Food, brand, website, and marketing visuals for businesses that want to look more professional online.
+      </p>
+
+      <div class="btns" style="justify-content:center;">
+        <a class="btn gold" href="../start/">Start Here</a>
+        <a class="btn outline" href="tel:4793268775">Call 479-326-8775</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div>© 2026 Vista Venture Co. · Northwest Arkansas</div>
+    <div>Business Content · Food · Brand · Restaurant · Web Support</div>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.16 });
+
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
