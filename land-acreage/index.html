@@ -1,1 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <title>Land & Acreage | Vista Venture Co.</title>
+
+  <style>
+    :root {
+      --black:#050505;
+      --green:#1F3D2B;
+      --gold:#C2A15A;
+      --cream:#F5F5F3;
+      --muted:rgba(245,245,243,.68);
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+      background:var(--black);
+      color:var(--cream);
+      font-family:Arial, Helvetica, sans-serif;
+      overflow-x:hidden;
+    }
+
+    a { color:inherit; text-decoration:none; }
+    img { width:100%; display:block; }
+
+    .nav {
+      position:fixed;
+      top:0;
+      width:100%;
+      z-index:1000;
+      padding:22px 5vw;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      background:rgba(5,5,5,.70);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+
+    .logo {
+      font-size:13px;
+      font-weight:900;
+      letter-spacing:3px;
+      text-transform:uppercase;
+    }
+
+    .nav-links {
+      display:flex;
+      gap:26px;
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:1.5px;
+      text-transform:uppercase;
+      color:rgba(245,245,243,.72);
+    }
+
+    .nav-links a:hover { color:var(--gold); }
+
+    .hero {
+      min-height:94vh;
+      padding:140px 5vw 80px;
+      display:flex;
+      align-items:end;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero::before {
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(90deg, rgba(5,5,5,.94), rgba(5,5,5,.38), rgba(5,5,5,.90)),
+        linear-gradient(180deg, rgba(5,5,5,.12), rgba(5,5,5,.96)),
+        url("https://cdn.myportfolio.com/6548b179-e775-4fd6-82d3-1c416ff2f000/b7b5bc59-eaed-46dc-955b-ede949e3b546_rw_1920.jpg?h=cef9277274ba929657b63af996dfe13b");
+      background-size:cover;
+      background-position:center;
+      transform:scale(1.02);
+      z-index:-2;
+    }
+
+    .hero::after {
+      content:"";
+      position:absolute;
+      inset:0;
+      background-image:radial-gradient(rgba(255,255,255,.08) 1px, transparent 1px);
+      background-size:4px 4px;
+      opacity:.10;
+      z-index:-1;
+      pointer-events:none;
+    }
+
+    .eyebrow {
+      color:var(--gold);
+      text-transform:uppercase;
+      letter-spacing:3px;
+      font-size:12px;
+      font-weight:900;
+      margin-bottom:18px;
+    }
+
+    h1 {
+      font-size:clamp(54px,10vw,138px);
+      line-height:.82;
+      letter-spacing:-7px;
+      text-transform:uppercase;
+      max-width:1180px;
+    }
+
+    .hero p {
+      margin-top:28px;
+      max-width:760px;
+      color:rgba(245,245,243,.80);
+      font-size:clamp(18px,2vw,24px);
+      line-height:1.5;
+    }
+
+    .btns {
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-top:30px;
+    }
+
+    .btn {
+      display:inline-flex;
+      justify-content:center;
+      align-items:center;
+      padding:15px 24px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:1.5px;
+      transition:.3s ease;
+      white-space:nowrap;
+    }
+
+    .btn.gold {
+      background:var(--gold);
+      color:#080808;
+    }
+
+    .btn.outline {
+      border:1px solid rgba(245,245,243,.38);
+      color:var(--cream);
+    }
+
+    .btn:hover { transform:translateY(-3px); }
+
+    section { padding:105px 5vw; }
+
+    .section-head {
+      max-width:1220px;
+      margin:0 auto 54px;
+      display:grid;
+      grid-template-columns:1fr .8fr;
+      gap:40px;
+      align-items:end;
+    }
+
+    .section-head h2 {
+      font-size:clamp(42px,7vw,94px);
+      line-height:.88;
+      letter-spacing:-4px;
+      text-transform:uppercase;
+    }
+
+    .section-head p {
+      color:var(--muted);
+      font-size:18px;
+      line-height:1.65;
+    }
+
+    .visual-grid {
+      max-width:1320px;
+      margin:auto;
+      display:grid;
+      grid-template-columns:1.2fr .8fr 1fr;
+      grid-auto-rows:280px;
+      gap:16px;
+    }
+
+    .shot {
+      position:relative;
+      overflow:hidden;
+      border-radius:28px;
+      border:1px solid rgba(194,161,90,.18);
+      background:#111;
+      transition:.45s ease;
+    }
+
+    .shot.large { grid-row:span 2; }
+    .shot.wide { grid-column:span 2; }
+
+    .shot:hover {
+      transform:translateY(-7px);
+      border-color:var(--gold);
+      box-shadow:0 30px 80px rgba(0,0,0,.5);
+    }
+
+    .shot img {
+      height:100%;
+      object-fit:cover;
+      opacity:.84;
+      transition:.9s ease;
+    }
+
+    .shot:hover img {
+      transform:scale(1.08);
+      opacity:1;
+    }
+
+    .shot::after {
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, transparent, rgba(0,0,0,.78));
+    }
+
+    .shot-content {
+      position:absolute;
+      left:22px;
+      right:22px;
+      bottom:20px;
+      z-index:2;
+    }
+
+    .shot-label {
+      color:var(--gold);
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:2px;
+      text-transform:uppercase;
+      margin-bottom:7px;
+    }
+
+    .shot h3 {
+      font-size:clamp(22px,2.4vw,38px);
+      line-height:.95;
+      letter-spacing:-1.2px;
+      text-transform:uppercase;
+    }
+
+    .land-purpose {
+      background:var(--cream);
+      color:#080808;
+    }
+
+    .land-wrap {
+      max-width:1220px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:.85fr 1.15fr;
+      gap:38px;
+      align-items:center;
+    }
+
+    .land-purpose h2 {
+      color:var(--green);
+      font-size:clamp(42px,7vw,94px);
+      line-height:.88;
+      letter-spacing:-4px;
+      text-transform:uppercase;
+    }
+
+    .land-purpose p {
+      color:#444;
+      font-size:18px;
+      line-height:1.7;
+      margin-bottom:18px;
+    }
+
+    .land-box {
+      background:#080808;
+      color:var(--cream);
+      border-radius:34px;
+      padding:38px;
+      min-height:430px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      box-shadow:0 35px 90px rgba(0,0,0,.22);
+    }
+
+    .land-box strong {
+      font-size:76px;
+      color:var(--gold);
+      letter-spacing:-4px;
+      line-height:.9;
+    }
+
+    .land-box span {
+      color:rgba(245,245,243,.72);
+      line-height:1.6;
+      font-size:18px;
+    }
+
+    .pricing {
+      background:
+        radial-gradient(circle at top right, rgba(194,161,90,.14), transparent 34%),
+        #080808;
+    }
+
+    .price-grid {
+      max-width:1220px;
+      margin:auto;
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+
+    .price-card {
+      border:1px solid rgba(194,161,90,.22);
+      border-radius:30px;
+      padding:34px;
+      background:rgba(255,255,255,.035);
+      min-height:390px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      transition:.35s ease;
+    }
+
+    .price-card:hover {
+      transform:translateY(-6px);
+      border-color:var(--gold);
+      box-shadow:0 25px 70px rgba(0,0,0,.38);
+    }
+
+    .price-card.feature {
+      background:linear-gradient(145deg, var(--green), #0a0a0a);
+      border-color:rgba(194,161,90,.42);
+    }
+
+    .price-card h3 {
+      font-size:32px;
+      line-height:.95;
+      text-transform:uppercase;
+      letter-spacing:-1.4px;
+      margin-bottom:14px;
+    }
+
+    .price {
+      font-size:54px;
+      color:var(--gold);
+      font-weight:900;
+      letter-spacing:-2px;
+      margin:18px 0;
+    }
+
+    .price-card p {
+      color:rgba(245,245,243,.7);
+      line-height:1.6;
+      font-size:16px;
+    }
+
+    .pill-row {
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:24px;
+    }
+
+    .pill {
+      border:1px solid rgba(245,245,243,.18);
+      border-radius:999px;
+      padding:9px 12px;
+      color:rgba(245,245,243,.72);
+      font-size:12px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:1px;
+    }
+
+    .boundary-note {
+      max-width:1220px;
+      margin:28px auto 0;
+      border:1px solid rgba(194,161,90,.30);
+      border-radius:30px;
+      padding:32px;
+      background:
+        radial-gradient(circle at top left, rgba(194,161,90,.15), transparent 34%),
+        rgba(255,255,255,.035);
+    }
+
+    .boundary-note h3 {
+      font-size:clamp(30px,5vw,58px);
+      line-height:.92;
+      letter-spacing:-2px;
+      text-transform:uppercase;
+      margin-bottom:16px;
+    }
+
+    .boundary-note p {
+      color:rgba(245,245,243,.72);
+      font-size:18px;
+      line-height:1.6;
+      max-width:900px;
+    }
+
+    .process {
+      background:#050505;
+    }
+
+    .process-grid {
+      max-width:1220px;
+      margin:auto;
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:16px;
+    }
+
+    .process-card {
+      border:1px solid rgba(194,161,90,.22);
+      border-radius:28px;
+      padding:28px;
+      background:rgba(255,255,255,.035);
+      min-height:260px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      transition:.35s ease;
+    }
+
+    .process-card:hover {
+      transform:translateY(-6px);
+      border-color:var(--gold);
+      box-shadow:0 25px 70px rgba(0,0,0,.38);
+    }
+
+    .process-card strong {
+      display:block;
+      color:var(--gold);
+      font-size:42px;
+      letter-spacing:-2px;
+    }
+
+    .process-card h3 {
+      font-size:25px;
+      line-height:.95;
+      text-transform:uppercase;
+      letter-spacing:-1px;
+      margin:18px 0 14px;
+    }
+
+    .process-card p {
+      color:rgba(245,245,243,.68);
+      line-height:1.55;
+    }
+
+    .cta {
+      min-height:78vh;
+      display:grid;
+      place-items:center;
+      text-align:center;
+      background:
+        linear-gradient(rgba(0,0,0,.68), rgba(0,0,0,.92)),
+        url("https://cdn.myportfolio.com/6548b179-e775-4fd6-82d3-1c416ff2f000/b7b5bc59-eaed-46dc-955b-ede949e3b546_rw_1920.jpg?h=cef9277274ba929657b63af996dfe13b");
+      background-size:cover;
+      background-position:center;
+    }
+
+    .cta h2 {
+      font-size:clamp(52px,9vw,124px);
+      line-height:.82;
+      letter-spacing:-6px;
+      text-transform:uppercase;
+      margin-bottom:26px;
+    }
+
+    .cta p {
+      color:rgba(245,245,243,.74);
+      font-size:20px;
+      max-width:720px;
+      margin:0 auto 32px;
+      line-height:1.55;
+    }
+
+    footer {
+      padding:34px 5vw;
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      color:rgba(245,245,243,.45);
+      font-size:13px;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+
+    .reveal {
+      opacity:0;
+      transform:translateY(34px);
+      transition:1s ease;
+    }
+
+    .reveal.visible {
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    @media (max-width:980px) {
+      .nav-links { display:none; }
+
+      .hero {
+        min-height:auto;
+        padding:130px 5vw 70px;
+      }
+
+      h1,
+      .cta h2 {
+        letter-spacing:-3px;
+      }
+
+      .section-head,
+      .land-wrap {
+        grid-template-columns:1fr;
+      }
+
+      .visual-grid {
+        grid-template-columns:1fr;
+        grid-auto-rows:320px;
+      }
+
+      .shot.large,
+      .shot.wide {
+        grid-column:span 1;
+        grid-row:span 1;
+      }
+
+      .price-grid,
+      .process-grid {
+        grid-template-columns:1fr;
+      }
+
+      section {
+        padding:80px 5vw;
+      }
+
+      footer { flex-direction:column; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="nav">
+    <a class="logo" href="../">Vista Venture Co.</a>
+
+    <div class="nav-links">
+      <a href="../services/">Services</a>
+      <a href="../gallery/">Gallery</a>
+      <a href="../web-design/">Web Design</a>
+      <a href="../about/">About</a>
+      <a href="../contact/">Contact</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div>
+      <div class="eyebrow">Land & Acreage Media</div>
+      <h1>Show the full scale of the property.</h1>
+      <p>
+        Drone-focused land media that helps buyers understand layout, access, surroundings, boundaries,
+        and the overall potential of the property before they ever visit.
+      </p>
+
+      <div class="btns">
+        <a class="btn gold" href="../start/">Start a Land Project</a>
+        <a class="btn outline" href="../gallery/">View Gallery</a>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <div class="section-head reveal">
+      <h2>Land listings need more than ground-level photos.</h2>
+      <p>
+        With land, buyers need context. They need to understand size, shape, road access, nearby features,
+        tree lines, open space, and how the property sits in the surrounding area.
+      </p>
+    </div>
+
+    <div class="visual-grid reveal">
+      <div class="shot large">
+        <img src="https://cdn.myportfolio.com/6548b179-e775-4fd6-82d3-1c416ff2f000/b7b5bc59-eaed-46dc-955b-ede949e3b546_rw_1920.jpg?h=cef9277274ba929657b63af996dfe13b" alt="Land aerial media">
+        <div class="shot-content">
+          <div class="shot-label">Aerial Coverage</div>
+          <h3>Show size and setting</h3>
+        </div>
+      </div>
+
+      <div class="shot">
+        <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/property_boundary_clean_final_1777064127.png?width=2400&optimize=medium" alt="Property boundary overlay">
+        <div class="shot-content">
+          <div class="shot-label">Boundaries</div>
+          <h3>Make the layout clearer</h3>
+        </div>
+      </div>
+
+      <div class="shot large">
+        <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/dji_fly_20250110_114758_700_1736531724454_aeb-HDR_1777017055.jpg?width=2400&optimize=medium" alt="Drone land photography">
+        <div class="shot-content">
+          <div class="shot-label">Surroundings</div>
+          <h3>Show what is around it</h3>
+        </div>
+      </div>
+
+      <div class="shot wide">
+        <img src="https://cdn.myportfolio.com/6548b179-e775-4fd6-82d3-1c416ff2f000/b7b5bc59-eaed-46dc-955b-ede949e3b546_rw_1920.jpg?h=cef9277274ba929657b63af996dfe13b" alt="Acreage drone photography">
+        <div class="shot-content">
+          <div class="shot-label">Buyer Clarity</div>
+          <h3>Help people understand the property faster</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="land-purpose">
+    <div class="land-wrap reveal">
+      <div>
+        <div class="eyebrow">Why It Matters</div>
+        <h2>Land is hard to understand from a few photos.</h2>
+      </div>
+
+      <div>
+        <p>
+          Aerial media gives buyers a better sense of scale, access, terrain, and setting. It helps remove confusion
+          and gives the listing a stronger first impression online.
+        </p>
+
+        <p>
+          Boundary overlays can make the property easier to understand by showing the approximate layout in relation
+          to roads, tree lines, open areas, neighboring land, and surrounding features.
+        </p>
+
+        <div class="land-box">
+          <strong>↑</strong>
+          <span>
+            Drone coverage helps buyers see the full picture — not just a piece of the property from the ground.
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing">
+    <div class="section-head reveal">
+      <h2>Transparent land pricing.</h2>
+      <p>
+        Simple land packages built around aerial coverage, clarity, and helping buyers understand the property online.
+      </p>
+    </div>
+
+    <div class="price-grid reveal">
+      <div class="price-card">
+        <div>
+          <div class="eyebrow">Simple Coverage</div>
+          <h3>Basic Land</h3>
+          <div class="price">$150</div>
+          <p>
+            A clean aerial package for land listings that need simple, professional overhead coverage.
+          </p>
+        </div>
+
+        <div class="pill-row">
+          <span class="pill">Aerial Photos</span>
+          <span class="pill">Wide Coverage</span>
+          <span class="pill">Edited Images</span>
+        </div>
+      </div>
+
+      <div class="price-card feature">
+        <div>
+          <div class="eyebrow">Best for Most</div>
+          <h3>Enhanced Land</h3>
+          <div class="price">$225</div>
+          <p>
+            Aerial photos with boundary overlays and refined editing to help buyers better understand the property.
+          </p>
+        </div>
+
+        <div class="pill-row">
+          <span class="pill">Drone Photos</span>
+          <span class="pill">Boundary Overlay</span>
+          <span class="pill">Edited Images</span>
+        </div>
+      </div>
+
+      <div class="price-card">
+        <div>
+          <div class="eyebrow">Full Marketing</div>
+          <h3>Premium Land</h3>
+          <div class="price">$350</div>
+          <p>
+            A complete land marketing package with aerial photos, boundary overlays, and a video flyover.
+          </p>
+        </div>
+
+        <div class="pill-row">
+          <span class="pill">Aerial Photos</span>
+          <span class="pill">Boundary Overlay</span>
+          <span class="pill">Video Flyover</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="boundary-note reveal">
+      <h3>Boundary overlays help remove confusion.</h3>
+      <p>
+        Boundary overlays are designed to help buyers understand the approximate shape and layout of the property.
+        They are visual marketing aids and should not replace a survey or official property documentation.
+      </p>
+    </div>
+  </section>
+
+  <section class="process">
+    <div class="section-head reveal">
+      <h2>Built around buyer clarity.</h2>
+      <p>
+        Land buyers need to understand the property quickly. The media should make the listing easier to evaluate,
+        share, and take seriously.
+      </p>
+    </div>
+
+    <div class="process-grid reveal">
+      <div class="process-card">
+        <strong>01</strong>
+        <div>
+          <h3>Capture</h3>
+          <p>Drone coverage from multiple angles to show scale, access, surroundings, and layout.</p>
+        </div>
+      </div>
+
+      <div class="process-card">
+        <strong>02</strong>
+        <div>
+          <h3>Clarify</h3>
+          <p>Boundary overlays help show the approximate shape and location of the property.</p>
+        </div>
+      </div>
+
+      <div class="process-card">
+        <strong>03</strong>
+        <div>
+          <h3>Market</h3>
+          <p>Edited visuals can be used for listings, websites, social posts, and agent marketing.</p>
+        </div>
+      </div>
+
+      <div class="process-card">
+        <strong>04</strong>
+        <div>
+          <h3>Explain</h3>
+          <p>The goal is to help buyers understand the land before they schedule a visit.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="reveal">
+      <div class="eyebrow">Land & Acreage</div>
+      <h2>Make the property easier to understand.</h2>
+      <p>
+        Aerial visuals, boundary overlays, and video flyovers built to help land listings stand out online.
+      </p>
+
+      <div class="btns" style="justify-content:center;">
+        <a class="btn gold" href="../start/">Start Here</a>
+        <a class="btn outline" href="tel:4793268775">Call 479-326-8775</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div>© 2026 Vista Venture Co. · Northwest Arkansas</div>
+    <div>Land · Acreage · Drone · Boundary Overlays</div>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.16 });
+
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
