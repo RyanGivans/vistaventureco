@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vista Venture Co. | Photo, Video & Web Design</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f1110;
+      color: #f4f1ea;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: auto;
+    }
+
+    header {
+      padding: 24px 0;
+      position: absolute;
+      width: 100%;
+      z-index: 10;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-weight: 800;
+      letter-spacing: 1px;
+      font-size: 18px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      font-size: 14px;
+      color: #d7d0c2;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background:
+        linear-gradient(rgba(15,17,16,.72), rgba(15,17,16,.95)),
+        url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=80");
+      background-size: cover;
+      background-position: center;
+      padding-top: 80px;
+    }
+
+    .hero-content {
+      max-width: 760px;
+    }
+
+    .eyebrow {
+      color: #c8a96a;
+      text-transform: uppercase;
+      font-size: 13px;
+      letter-spacing: 2px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(44px, 7vw, 82px);
+      line-height: .95;
+      margin-bottom: 24px;
+      letter-spacing: -3px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      color: #d7d0c2;
+      max-width: 650px;
+      margin-bottom: 34px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 22px;
+      border-radius: 999px;
+      font-weight: 700;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: #c8a96a;
+      color: #101010;
+    }
+
+    .btn-secondary {
+      border: 1px solid #81765f;
+      color: #f4f1ea;
+    }
+
+    section {
+      padding: 90px 0;
+    }
+
+    .section-title {
+      font-size: clamp(32px, 4vw, 52px);
+      line-height: 1;
+      margin-bottom: 18px;
+      letter-spacing: -2px;
+    }
+
+    .section-copy {
+      color: #bdb6a8;
+      max-width: 700px;
+      margin-bottom: 44px;
+      font-size: 18px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      background: #181b19;
+      border: 1px solid #2b2f2b;
+      border-radius: 22px;
+      padding: 30px;
+    }
+
+    .card h3 {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      color: #bdb6a8;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .image-box {
+      min-height: 440px;
+      border-radius: 28px;
+      background:
+        linear-gradient(rgba(0,0,0,.1), rgba(0,0,0,.25)),
+        url("https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1200&q=80");
+      background-size: cover;
+      background-position: center;
+    }
+
+    .list {
+      display: grid;
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .list div {
+      padding-bottom: 18px;
+      border-bottom: 1px solid #2d312d;
+      color: #d7d0c2;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 22px;
+    }
+
+    .portfolio-main,
+    .portfolio-side {
+      border-radius: 26px;
+      background-size: cover;
+      background-position: center;
+      min-height: 420px;
+    }
+
+    .portfolio-main {
+      background-image: url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80");
+    }
+
+    .portfolio-side {
+      background-image: url("https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=900&q=80");
+    }
+
+    .web-service {
+      background: #f4f1ea;
+      color: #111;
+      border-radius: 34px;
+      padding: 56px;
+    }
+
+    .web-service p {
+      color: #555;
+      font-size: 18px;
+      max-width: 740px;
+      margin-bottom: 26px;
+    }
+
+    .web-service .btn-primary {
+      background: #111;
+      color: #fff;
+    }
+
+    .cta {
+      text-align: center;
+      background: #181b19;
+      border-radius: 34px;
+      padding: 70px 30px;
+    }
+
+    .cta p {
+      color: #bdb6a8;
+      margin: 18px auto 30px;
+      max-width: 620px;
+      font-size: 18px;
+    }
+
+    footer {
+      padding: 32px 0;
+      color: #8f8879;
+      font-size: 14px;
+    }
+
+    @media (max-width: 850px) {
+      .nav-links {
+        display: none;
+      }
+
+      .cards,
+      .split,
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: 85vh;
+      }
+
+      section {
+        padding: 70px 0;
+      }
+
+      .web-service {
+        padding: 34px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">VISTA VENTURE CO.</div>
+        <div class="nav-links">
+          <a href="#services">Services</a>
+          <a href="#work">Work</a>
+          <a href="#websites">Websites</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <div class="eyebrow">Northwest Arkansas Visual Media</div>
+          <h1>Clean visuals that help businesses stand out.</h1>
+          <p>
+            Vista Venture Co. creates professional photo, video, aerial, and web content
+            for real estate, restaurants, hospitality spaces, and small businesses.
+          </p>
+          <div class="buttons">
+            <a href="#contact" class="btn btn-primary">Start a Project</a>
+            <a href="#services" class="btn btn-secondary">View Services</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <h2 class="section-title">Built for listings, brands, and spaces that need to be seen.</h2>
+        <p class="section-copy">
+          Whether it’s a property, restaurant, business, or project, the goal is simple:
+          create visuals that feel polished, useful, and easy to market.
+        </p>
+
+        <div class="cards">
+          <div class="card">
+            <h3>Real Estate Media</h3>
+            <p>Professional photos, aerial coverage, walkthroughs, and visual content that helps properties feel clear and memorable.</p>
+          </div>
+
+          <div class="card">
+            <h3>Restaurant & Hospitality</h3>
+            <p>Photo and video content that captures atmosphere, food, service, and the details that make a space inviting.</p>
+          </div>
+
+          <div class="card">
+            <h3>Business Content</h3>
+            <p>Clean, consistent marketing content for websites, social media, ads, menus, listings, and local brand awareness.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container split">
+        <div>
+          <h2 class="section-title">More than pretty pictures.</h2>
+          <p class="section-copy">
+            Good visuals should do something. They should build trust, explain the space,
+            create interest, and give people a reason to take the next step.
+          </p>
+
+          <div class="list">
+            <div>Drone coverage for properties, land, businesses, and projects</div>
+            <div>Ground photography that feels clean, bright, and professional</div>
+            <div>Content that can be used across websites, listings, and social media</div>
+            <div>Simple, polished presentation for small businesses that need to look established</div>
+          </div>
+        </div>
+
+        <div class="image-box"></div>
+      </div>
+    </section>
+
+    <section id="work">
+      <div class="container">
+        <h2 class="section-title">Visual work with a polished, professional feel.</h2>
+        <p class="section-copy">
+          From real estate to restaurants, Vista Venture Co. focuses on clean composition,
+          useful angles, and content that helps the viewer understand the space.
+        </p>
+
+        <div class="portfolio-grid">
+          <div class="portfolio-main"></div>
+          <div class="portfolio-side"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="websites">
+      <div class="container">
+        <div class="web-service">
+          <div class="eyebrow">New Service</div>
+          <h2 class="section-title">Website design for restaurants, real estate, and local businesses.</h2>
+          <p>
+            Vista Venture Co. now offers clean, modern website builds for businesses that need
+            a better online presence without the bloated agency process. Great for restaurants,
+            service businesses, real estate professionals, and small brands that need a site
+            that looks sharp and works.
+          </p>
+
+          <div class="buttons">
+            <a href="#contact" class="btn btn-primary">Ask About a Website</a>
+            <a href="#services" class="btn btn-secondary" style="color:#111;border-color:#111;">See Visual Services</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="cta">
+          <h2 class="section-title">Let’s make your business look the part.</h2>
+          <p>
+            Need photo, video, drone work, or a clean website? Reach out and tell me what you’re working on.
+          </p>
+
+          <div class="buttons" style="justify-content:center;">
+            <a href="tel:4793268775" class="btn btn-primary">Call 479-326-8775</a>
+            <a href="mailto:hello@vistaventureco.com" class="btn btn-secondary">Email Vista Venture Co.</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      © 2026 Vista Venture Co. | Northwest Arkansas
+    </div>
+  </footer>
+
+</body>
+</html>
