@@ -3,63 +3,81 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vista Venture Co. | Media That Sells</title>
+<title>Vista Venture Co.</title>
 
 <style>
 body {
   margin:0;
   font-family: Arial, sans-serif;
-  background:#0a0a0a;
+  background:#050505;
   color:white;
+}
+
+section {
+  padding:80px 20px;
 }
 
 .container {
   max-width:1100px;
   margin:auto;
-  padding:80px 20px;
 }
 
 h1 {
-  font-size:clamp(48px,8vw,90px);
+  font-size:clamp(50px,8vw,100px);
   line-height:.9;
   margin-bottom:20px;
 }
 
 h2 {
-  font-size:clamp(32px,5vw,60px);
+  font-size:clamp(30px,5vw,60px);
   margin-bottom:20px;
 }
 
 p {
-  color:#aaa;
+  color:#bbb;
   font-size:18px;
   line-height:1.6;
 }
 
 .btn {
   display:inline-block;
-  padding:16px 26px;
+  padding:14px 24px;
   border-radius:999px;
   font-weight:bold;
   text-decoration:none;
   margin-top:20px;
 }
 
-.btn-primary {
+.gold {
   background:#C2A15A;
   color:black;
 }
 
-.btn-secondary {
-  border:1px solid #555;
+.outline {
+  border:1px solid #666;
   color:white;
 }
 
 /* HERO */
 .hero {
-  padding:120px 20px 80px;
+  height:100vh;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   text-align:center;
-  border-bottom:1px solid #222;
+}
+
+.hero::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.9)),
+    url("https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/dji_fly_20250110_114758_700_1736531724454_aeb-HDR_1777017055.jpg?width=2400");
+  background-size:cover;
+  background-position:center;
+  z-index:-1;
 }
 
 .hero p {
@@ -67,18 +85,27 @@ p {
   margin:auto;
 }
 
-/* PROOF STRIP */
-.proof {
-  background:#111;
-  padding:30px 20px;
-  text-align:center;
-  font-size:14px;
-  letter-spacing:1px;
-  color:#bbb;
+/* PORTFOLIO */
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:15px;
+}
+
+.grid img {
+  width:100%;
+  height:250px;
+  object-fit:cover;
+  border-radius:12px;
+  transition:.4s;
+}
+
+.grid img:hover {
+  transform:scale(1.05);
 }
 
 /* SERVICES */
-.grid {
+.cards {
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
   gap:20px;
@@ -91,29 +118,10 @@ p {
   border:1px solid #222;
 }
 
-.card h3 {
-  margin-bottom:10px;
-}
-
-/* PRICING */
-.pricing {
-  background:#111;
-  border-radius:20px;
-  padding:30px;
-}
-
-.price {
-  font-size:36px;
-  color:#C2A15A;
-  margin-bottom:10px;
-}
-
 /* CTA */
 .cta {
   text-align:center;
-  padding:100px 20px;
-  background:#050505;
-  border-top:1px solid #222;
+  background:#0a0a0a;
 }
 </style>
 </head>
@@ -122,90 +130,43 @@ p {
 
 <!-- HERO -->
 <section class="hero">
-  <h1>Make your business look like it’s worth choosing.</h1>
-  <p>
-    Professional photo, video, drone, 360 tours, and websites built to help listings, businesses, and brands stand out and convert.
-  </p>
+  <div>
+    <h1>Make your business impossible to ignore.</h1>
+    <p>Photo, video, drone, 360 tours, and websites built to make your business stand out and get chosen.</p>
 
-  <a href="#contact" class="btn btn-primary">Get a Quote</a>
-  <a href="#services" class="btn btn-secondary">See Services</a>
+    <a href="#contact" class="btn gold">Get a Quote</a>
+    <a href="#portfolio" class="btn outline">View Work</a>
+  </div>
 </section>
 
-<!-- PROOF -->
-<div class="proof">
-  Real Estate • Vehicles • Restaurants • Events • Construction • Land • Portraits • Web Design
-</div>
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="container">
+    <h2>See the difference.</h2>
 
-<!-- SERVICES -->
-<section class="container" id="services">
-  <h2>Everything you need to show your business properly.</h2>
-
-  <div class="grid">
-    <div class="card">
-      <h3>Real Estate Media</h3>
-      <p>Photos, drone, and walkthroughs that make listings stand out and sell faster.</p>
-    </div>
-
-    <div class="card">
-      <h3>Vehicle Media</h3>
-      <p>360 tours and visuals that turn listings into a digital showroom.</p>
-    </div>
-
-    <div class="card">
-      <h3>Business Content</h3>
-      <p>Restaurants, brands, and local businesses that need better marketing visuals.</p>
-    </div>
-
-    <div class="card">
-      <h3>Events</h3>
-      <p>Capture key moments and create content you can use long after.</p>
-    </div>
-
-    <div class="card">
-      <h3>Land & Acreage</h3>
-      <p>Aerial visuals that clearly show layout, access, and value.</p>
-    </div>
-
-    <div class="card">
-      <h3>Construction</h3>
-      <p>Progress tracking and project documentation made simple.</p>
-    </div>
-
-    <div class="card">
-      <h3>Portraits</h3>
-      <p>Clean, natural, professional images for personal or business use.</p>
-    </div>
-
-    <div class="card">
-      <h3>Website Design</h3>
-      <p>Modern websites that make your business look established and ready.</p>
+    <div class="grid">
+      <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/house%20front_1777017044.jpg?width=1200">
+      <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/DSC05783_1776649504.jpg?width=2400">
+      <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/zzfood_1777017040.jpg?width=2400">
+      <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/Crowd%204_1777017095.jpg?width=2400">
     </div>
   </div>
 </section>
 
-<!-- PRICING -->
-<section class="container">
-  <h2>Clear starting points.</h2>
+<!-- SERVICES -->
+<section>
+  <div class="container">
+    <h2>Built for different types of business.</h2>
 
-  <div class="grid">
-    <div class="pricing">
-      <div class="price">$150+</div>
-      <p>Real Estate Packages</p>
-    </div>
-
-    <div class="pricing">
-      <div class="price">$100+</div>
-      <p>Vehicle Media</p>
-    </div>
-
-    <div class="pricing">
-      <div class="price">$400+</div>
-      <p>Event Coverage</p>
-    </div>
-
-    <div class="pricing">
-      <div class="price">$750+</div>
-      <p>Website Design</p>
+    <div class="cards">
+      <div class="card"><h3>Real Estate</h3><p>Listings that stand out.</p></div>
+      <div class="card"><h3>Vehicles</h3><p>Digital showroom media.</p></div>
+      <div class="card"><h3>Business Content</h3><p>Marketing visuals that work.</p></div>
+      <div class="card"><h3>Events</h3><p>Capture moments and energy.</p></div>
+      <div class="card"><h3>Land</h3><p>Show full property value.</p></div>
+      <div class="card"><h3>Construction</h3><p>Track and present progress.</p></div>
+      <div class="card"><h3>Portraits</h3><p>Clean professional images.</p></div>
+      <div class="card"><h3>Web Design</h3><p>Make your business look legit.</p></div>
     </div>
   </div>
 </section>
@@ -213,10 +174,9 @@ p {
 <!-- CTA -->
 <section class="cta" id="contact">
   <h2>Ready to get better content?</h2>
-  <p>Call, text, or email to get started.</p>
+  <p>Call or email to get started.</p>
 
-  <a href="tel:4793268775" class="btn btn-primary">Call 479-326-8775</a>
-  <a href="mailto:hello@vistaventureco.com" class="btn btn-secondary">Email Us</a>
+  <a href="tel:4793268775" class="btn gold">Call Now</a>
 </section>
 
 </body>
