@@ -60,7 +60,7 @@
     .nav-links a:hover { color:var(--gold); }
 
     .hero {
-      min-height:90vh;
+      min-height:80vh;
       padding:140px 5vw 80px;
       display:flex;
       align-items:end;
@@ -177,10 +177,12 @@
     }
 
     .form-card {
-      border:1px solid rgba(194,161,90,.20);
+      border:1px solid rgba(194,161,90,.24);
       border-radius:34px;
       padding:36px;
-      background:rgba(255,255,255,.035);
+      background:
+        radial-gradient(circle at top right, rgba(194,161,90,.10), transparent 34%),
+        rgba(255,255,255,.035);
       box-shadow:0 35px 90px rgba(0,0,0,.28);
     }
 
@@ -200,16 +202,56 @@
       max-width:760px;
     }
 
-    form {
-      display:grid;
-      gap:30px;
+    .progress-wrap {
+      margin:22px 0 34px;
     }
 
-    .step-block {
-      border:1px solid rgba(245,245,243,.12);
-      border-radius:28px;
-      padding:28px;
-      background:#0d0d0d;
+    .progress-top {
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      align-items:center;
+      margin-bottom:12px;
+      color:rgba(245,245,243,.6);
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:1.5px;
+      font-weight:900;
+    }
+
+    .progress-track {
+      height:10px;
+      background:rgba(255,255,255,.08);
+      border-radius:999px;
+      overflow:hidden;
+      border:1px solid rgba(245,245,243,.08);
+    }
+
+    .progress-fill {
+      height:100%;
+      width:25%;
+      background:linear-gradient(90deg, var(--gold), #e3c46d);
+      border-radius:999px;
+      transition:.35s ease;
+    }
+
+    form {
+      display:grid;
+      gap:24px;
+    }
+
+    .step {
+      display:none;
+      animation:fadeUp .35s ease;
+    }
+
+    .step.active {
+      display:block;
+    }
+
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(12px); }
+      to { opacity:1; transform:translateY(0); }
     }
 
     .step-head {
@@ -217,7 +259,7 @@
       justify-content:space-between;
       gap:20px;
       align-items:start;
-      margin-bottom:22px;
+      margin-bottom:24px;
     }
 
     .step-head strong {
@@ -228,20 +270,22 @@
     }
 
     .step-head h3 {
-      font-size:clamp(26px,4vw,46px);
+      font-size:clamp(30px,4vw,52px);
       line-height:.92;
       letter-spacing:-2px;
       text-transform:uppercase;
+      max-width:760px;
     }
 
     .option-grid {
       display:grid;
       grid-template-columns:repeat(2,1fr);
-      gap:12px;
+      gap:14px;
     }
 
     .option {
       position:relative;
+      display:block;
     }
 
     .option input {
@@ -253,29 +297,44 @@
     .option span {
       display:block;
       border:1px solid rgba(245,245,243,.16);
-      border-radius:20px;
-      padding:18px;
-      background:rgba(255,255,255,.035);
-      color:rgba(245,245,243,.75);
+      border-radius:24px;
+      padding:22px;
+      background:
+        linear-gradient(145deg, rgba(255,255,255,.055), rgba(255,255,255,.02));
+      color:rgba(245,245,243,.72);
       cursor:pointer;
       transition:.25s ease;
-      min-height:94px;
+      min-height:118px;
       line-height:1.45;
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
+    }
+
+    .option span:hover {
+      border-color:rgba(194,161,90,.5);
+      transform:translateY(-3px);
+      background:rgba(194,161,90,.07);
     }
 
     .option b {
       display:block;
       color:var(--cream);
       text-transform:uppercase;
-      letter-spacing:1px;
-      font-size:13px;
-      margin-bottom:7px;
+      letter-spacing:1.4px;
+      font-size:14px;
+      margin-bottom:8px;
     }
 
     .option input:checked + span {
       border-color:var(--gold);
-      background:rgba(194,161,90,.14);
-      box-shadow:0 0 0 3px rgba(194,161,90,.08);
+      background:
+        radial-gradient(circle at top right, rgba(194,161,90,.25), transparent 38%),
+        rgba(194,161,90,.13);
+      box-shadow:0 0 0 3px rgba(194,161,90,.08), 0 20px 50px rgba(0,0,0,.24);
+      color:rgba(245,245,243,.86);
+    }
+
+    .option input:checked + span b {
+      color:var(--gold);
     }
 
     .field-grid {
@@ -319,8 +378,15 @@
     }
 
     textarea {
-      min-height:150px;
+      min-height:160px;
       resize:vertical;
+    }
+
+    .btns {
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-top:26px;
     }
 
     .btn {
@@ -357,7 +423,7 @@
       color:rgba(245,245,243,.56);
       font-size:13px;
       line-height:1.5;
-      margin-top:-16px;
+      margin-top:14px;
     }
 
     .success {
@@ -369,6 +435,7 @@
       padding:20px;
       font-weight:900;
       line-height:1.5;
+      margin-top:18px;
     }
 
     .support-note {
@@ -484,13 +551,6 @@
 
       footer { flex-direction:column; }
     }
-    .step {
-  display: none;
-}
-
-.step.active {
-  display: block;
-}
   </style>
 </head>
 
@@ -548,120 +608,175 @@
           Choose what fits best. You are not locking yourself into anything — this just helps me understand the project.
         </p>
 
-      <form action="https://formspree.io/f/xwvykbeg" method="POST" id="funnel-form">
-<input type="hidden" name="_subject" value="New Vista Venture Co Funnel Inquiry">
+        <div class="progress-wrap">
+          <div class="progress-top">
+            <span id="step-label">Step 1 of 4</span>
+            <span id="step-title">Project Type</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" id="progress-fill"></div>
+          </div>
+        </div>
 
-<!-- STEP 1 -->
-<div class="step active" data-step="1">
-  <h3>What are you looking for?</h3>
+        <form action="https://formspree.io/f/xwvykbeg" method="POST" id="funnel-form">
+          <input type="hidden" name="_subject" value="New Vista Venture Co Funnel Inquiry">
 
-  <div class="option-grid">
-    <label class="option">
-      <input type="radio" name="Project Type" value="Real Estate">
-      <span>Real Estate</span>
-    </label>
+          <div class="step active" data-step="1" data-title="Project Type">
+            <div class="step-head">
+              <strong>01</strong>
+              <h3>What are you looking for?</h3>
+            </div>
 
-    <label class="option">
-      <input type="radio" name="Project Type" value="Web Design">
-      <span>Web Design</span>
-    </label>
+            <div class="option-grid">
+              <label class="option">
+                <input type="radio" name="Project Type" value="Real Estate Media">
+                <span><b>Real Estate</b>Listings, drone, 360 walkthroughs, property media.</span>
+              </label>
 
-    <label class="option">
-      <input type="radio" name="Project Type" value="Business Content">
-      <span>Business Content</span>
-    </label>
+              <label class="option">
+                <input type="radio" name="Project Type" value="Website Design">
+                <span><b>Web Design</b>A modern site for a business, restaurant, service, or brand.</span>
+              </label>
 
-    <label class="option">
-      <input type="radio" name="Project Type" value="Event">
-      <span>Event</span>
-    </label>
+              <label class="option">
+                <input type="radio" name="Project Type" value="Business Content">
+                <span><b>Business Content</b>Photo, video, food, brand, or marketing visuals.</span>
+              </label>
 
-    <label class="option">
-      <input type="radio" name="Project Type" value="Vehicle">
-      <span>Vehicle</span>
-    </label>
+              <label class="option">
+                <input type="radio" name="Project Type" value="Event Coverage">
+                <span><b>Event</b>Coverage for a private, public, corporate, or brand event.</span>
+              </label>
 
-    <label class="option">
-      <input type="radio" name="Project Type" value="Not Sure">
-      <span>Not Sure Yet</span>
-    </label>
-  </div>
+              <label class="option">
+                <input type="radio" name="Project Type" value="Vehicle Media">
+                <span><b>Vehicle</b>360 tours, dealership content, or listing visuals.</span>
+              </label>
 
-  <button type="button" class="btn gold next">Next</button>
-</div>
+              <label class="option">
+                <input type="radio" name="Project Type" value="Not Sure Yet">
+                <span><b>Not Sure Yet</b>You know the goal, but not the exact service.</span>
+              </label>
+            </div>
 
-<!-- STEP 2 -->
-<div class="step" data-step="2">
-  <h3>What is the goal?</h3>
+            <div class="btns">
+              <button type="button" class="btn gold next">Next</button>
+            </div>
+          </div>
 
-  <div class="option-grid">
-    <label class="option">
-      <input type="radio" name="Goal" value="Look Professional">
-      <span>Look more professional</span>
-    </label>
+          <div class="step" data-step="2" data-title="Main Goal">
+            <div class="step-head">
+              <strong>02</strong>
+              <h3>What is the goal?</h3>
+            </div>
 
-    <label class="option">
-      <input type="radio" name="Goal" value="More Interest">
-      <span>Get more interest</span>
-    </label>
+            <div class="option-grid">
+              <label class="option">
+                <input type="radio" name="Main Goal" value="Look More Professional">
+                <span><b>Look More Professional</b>Make the business or listing feel more established.</span>
+              </label>
 
-    <label class="option">
-      <input type="radio" name="Goal" value="Sell">
-      <span>Sell something</span>
-    </label>
+              <label class="option">
+                <input type="radio" name="Main Goal" value="Get More Interest">
+                <span><b>Get More Interest</b>Improve presentation so more people pay attention.</span>
+              </label>
 
-    <label class="option">
-      <input type="radio" name="Goal" value="Build Trust">
-      <span>Build trust online</span>
-    </label>
-  </div>
+              <label class="option">
+                <input type="radio" name="Main Goal" value="Sell or Rent Something">
+                <span><b>Sell / Rent</b>Support a listing, property, vehicle, product, or space.</span>
+              </label>
 
-  <div class="btns">
-    <button type="button" class="btn outline prev">Back</button>
-    <button type="button" class="btn gold next">Next</button>
-  </div>
-</div>
+              <label class="option">
+                <input type="radio" name="Main Goal" value="Build Trust Online">
+                <span><b>Build Trust</b>Make your online presence feel stronger and more credible.</span>
+              </label>
+            </div>
 
-<!-- STEP 3 -->
-<div class="step" data-step="3">
-  <h3>Project details</h3>
+            <div class="btns">
+              <button type="button" class="btn outline prev">Back</button>
+              <button type="button" class="btn gold next">Next</button>
+            </div>
+          </div>
 
-  <label class="field-label">Timeline</label>
-  <select name="Timeline">
-    <option>ASAP</option>
-    <option>This week</option>
-    <option>This month</option>
-    <option>Flexible</option>
-  </select>
+          <div class="step" data-step="3" data-title="Project Details">
+            <div class="step-head">
+              <strong>03</strong>
+              <h3>Tell me about the project.</h3>
+            </div>
 
-  <label class="field-label">Details</label>
-  <textarea name="Details"></textarea>
+            <div class="field-grid">
+              <div>
+                <label class="field-label" for="timeline">Timeline</label>
+                <select id="timeline" name="Timeline">
+                  <option>As soon as possible</option>
+                  <option>This week</option>
+                  <option>This month</option>
+                  <option>Flexible</option>
+                  <option>Just gathering info</option>
+                </select>
+              </div>
 
-  <div class="btns">
-    <button type="button" class="btn outline prev">Back</button>
-    <button type="button" class="btn gold next">Next</button>
-  </div>
-</div>
+              <div>
+                <label class="field-label" for="location">Location</label>
+                <input id="location" name="Project Location" type="text" placeholder="City / area / address if relevant">
+              </div>
+            </div>
 
-<!-- STEP 4 -->
-<div class="step" data-step="4">
-  <h3>Your info</h3>
+            <div style="margin-top:16px;">
+              <label class="field-label" for="details">Project Details</label>
+              <textarea id="details" name="Project Details" placeholder="Tell me what you are trying to do, what success looks like, and anything I should know."></textarea>
+            </div>
 
-  <input type="text" name="Name" placeholder="Name" required>
-  <input type="email" name="Email" placeholder="Email" required>
-  <input type="tel" name="Phone" placeholder="Phone">
+            <div class="btns">
+              <button type="button" class="btn outline prev">Back</button>
+              <button type="button" class="btn gold next">Next</button>
+            </div>
+          </div>
 
-  <div class="btns">
-    <button type="button" class="btn outline prev">Back</button>
-    <button class="btn gold" type="submit">Send Request</button>
-  </div>
-</div>
+          <div class="step" data-step="4" data-title="Contact Info">
+            <div class="step-head">
+              <strong>04</strong>
+              <h3>How should I reach you?</h3>
+            </div>
 
-<div id="form-success" class="success">
-  Your project request has been sent. I’ll get back to you shortly.
-</div>
+            <div class="field-grid">
+              <div>
+                <label class="field-label" for="name">Your Name</label>
+                <input id="name" name="Name" type="text" placeholder="Your name" required>
+              </div>
 
-</form>
+              <div>
+                <label class="field-label" for="business">Business / Project</label>
+                <input id="business" name="Business or Project" type="text" placeholder="Business, listing, event, etc.">
+              </div>
+            </div>
+
+            <div class="field-grid" style="margin-top:16px;">
+              <div>
+                <label class="field-label" for="email">Email</label>
+                <input id="email" name="Email" type="email" placeholder="you@email.com" required>
+              </div>
+
+              <div>
+                <label class="field-label" for="phone">Phone</label>
+                <input id="phone" name="Phone" type="tel" placeholder="Best number to reach you">
+              </div>
+            </div>
+
+            <div class="btns">
+              <button type="button" class="btn outline prev">Back</button>
+              <button class="btn gold" type="submit">Send Project Request</button>
+            </div>
+
+            <div class="submit-note">
+              You’ll get a response quickly. If it’s urgent, call or text 479-326-8775.
+            </div>
+          </div>
+
+          <div id="form-success" class="success">
+            Your project request has been sent. I’ll get back to you shortly.
+          </div>
+        </form>
       </div>
 
     </div>
@@ -713,6 +828,47 @@
 
     reveals.forEach(el => observer.observe(el));
 
+    const steps = document.querySelectorAll(".step");
+    const nextButtons = document.querySelectorAll(".next");
+    const prevButtons = document.querySelectorAll(".prev");
+    const progressFill = document.getElementById("progress-fill");
+    const stepLabel = document.getElementById("step-label");
+    const stepTitle = document.getElementById("step-title");
+    let currentStep = 0;
+
+    function showStep(index) {
+      steps.forEach((step, i) => {
+        step.classList.toggle("active", i === index);
+      });
+
+      const percent = ((index + 1) / steps.length) * 100;
+      progressFill.style.width = percent + "%";
+      stepLabel.textContent = "Step " + (index + 1) + " of " + steps.length;
+      stepTitle.textContent = steps[index].dataset.title || "";
+    }
+
+    nextButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        if (currentStep < steps.length - 1) {
+          currentStep++;
+          showStep(currentStep);
+          document.querySelector(".form-card").scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+    });
+
+    prevButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        if (currentStep > 0) {
+          currentStep--;
+          showStep(currentStep);
+          document.querySelector(".form-card").scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+    });
+
+    showStep(currentStep);
+
     const form = document.getElementById("funnel-form");
     const success = document.getElementById("form-success");
 
@@ -730,59 +886,14 @@
       if (response.ok) {
         form.reset();
         success.style.display = "block";
+        currentStep = 0;
+        showStep(currentStep);
         success.scrollIntoView({ behavior: "smooth", block: "center" });
       } else {
         alert("Something went wrong. Please try again or call/text 479-326-8775.");
       }
     });
   </script>
-<script>
-const steps = document.querySelectorAll(".step");
-let current = 0;
 
-function showStep(index){
-  steps.forEach((s,i)=> {
-    s.classList.toggle("active", i === index);
-  });
-}
-
-document.querySelectorAll(".next").forEach(btn=>{
-  btn.addEventListener("click", ()=>{
-    current++;
-    showStep(current);
-  });
-});
-
-document.querySelectorAll(".prev").forEach(btn=>{
-  btn.addEventListener("click", ()=>{
-    current--;
-    showStep(current);
-  });
-});
-
-showStep(0);
-
-const form = document.getElementById("funnel-form");
-
-form.addEventListener("submit", async function(e){
-  e.preventDefault();
-
-  const data = new FormData(form);
-
-  const response = await fetch(form.action, {
-    method: form.method,
-    body: data,
-    headers: { "Accept": "application/json" }
-  });
-
-  if(response.ok){
-    form.reset();
-    document.getElementById("form-success").style.display = "block";
-    showStep(0);
-  } else {
-    alert("Something went wrong.");
-  }
-});
-</script>
 </body>
 </html>
