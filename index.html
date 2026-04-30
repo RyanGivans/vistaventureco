@@ -54,7 +54,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(5,5,5,.58);
+      background: rgba(5,5,5,.70);
       backdrop-filter: blur(18px);
       border-bottom: 1px solid rgba(255,255,255,.08);
     }
@@ -82,9 +82,9 @@
 
     .hero {
       min-height: 100vh;
-      padding: 120px 5vw 60px;
-      display: grid;
-      align-items: end;
+      padding: 140px 5vw 70px;
+      display: flex;
+      align-items: center;
       position: relative;
       overflow: hidden;
     }
@@ -94,13 +94,12 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(90deg, rgba(5,5,5,.95), rgba(5,5,5,.35), rgba(5,5,5,.88)),
-        linear-gradient(180deg, rgba(5,5,5,.12), rgba(5,5,5,.96)),
+        linear-gradient(90deg, rgba(5,5,5,.94), rgba(5,5,5,.42), rgba(5,5,5,.88)),
+        linear-gradient(180deg, rgba(5,5,5,.10), rgba(5,5,5,.96)),
         url("https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/dji_fly_20250110_114758_700_1736531724454_aeb-HDR_1777017055.jpg?width=2400&optimize=medium");
       background-size: cover;
-      background-position: center;
-      transform: scale(1.05);
-      animation: heroMove 18s ease-in-out infinite alternate;
+      background-position: center 42%;
+      transform: scale(1.02);
       z-index: -2;
     }
 
@@ -110,14 +109,14 @@
       inset: 0;
       background-image: radial-gradient(rgba(255,255,255,.08) 1px, transparent 1px);
       background-size: 4px 4px;
-      opacity: .12;
+      opacity: .10;
       z-index: -1;
       pointer-events: none;
     }
 
-    @keyframes heroMove {
-      from { transform: scale(1.05) translateX(0); }
-      to { transform: scale(1.11) translateX(-18px); }
+    .hero-content {
+      max-width: 1220px;
+      width: 100%;
     }
 
     .eyebrow {
@@ -130,33 +129,34 @@
     }
 
     h1 {
-      font-size: clamp(54px, 10vw, 148px);
+      font-size: clamp(54px, 10vw, 138px);
       line-height: .82;
       letter-spacing: -7px;
       text-transform: uppercase;
-      max-width: 1220px;
-    }
-
-    .hero-bottom {
-      margin-top: 34px;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 36px;
-      align-items: end;
       max-width: 1180px;
     }
 
-    .hero p {
-      color: rgba(245,245,243,.78);
+    .hero-main-text {
+      margin-top: 28px;
+      max-width: 760px;
+      color: rgba(245,245,243,.80);
       font-size: clamp(18px, 2vw, 24px);
       line-height: 1.5;
-      max-width: 680px;
+    }
+
+    .proof {
+      margin-top: 20px;
+      max-width: 760px;
+      color: rgba(245,245,243,.72);
+      font-size: 17px;
+      line-height: 1.55;
     }
 
     .btns {
       display: flex;
       flex-wrap: wrap;
       gap: 14px;
+      margin-top: 28px;
     }
 
     .btn {
@@ -185,6 +185,80 @@
 
     .btn:hover {
       transform: translateY(-3px);
+    }
+
+    .quick-paths {
+      display: flex;
+      gap: 12px;
+      margin-top: 28px;
+      flex-wrap: wrap;
+      max-width: 900px;
+    }
+
+    .path {
+      border: 1px solid rgba(245,245,245,.22);
+      padding: 14px 18px;
+      border-radius: 999px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: .3s ease;
+      background: rgba(0,0,0,.28);
+    }
+
+    .path:hover {
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    .path strong {
+      color: var(--gold);
+    }
+
+    .path span {
+      color: rgba(245,245,245,.62);
+      font-size: 11px;
+    }
+
+    .trust-line {
+      margin-top: 22px;
+      font-size: 13px;
+      color: rgba(245,245,245,.58);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .community-note {
+      background: var(--cream);
+      color: #080808;
+      padding: 74px 5vw;
+    }
+
+    .community-wrap {
+      max-width: 1220px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 42px;
+      align-items: center;
+    }
+
+    .community-wrap h2 {
+      color: var(--green);
+      font-size: clamp(34px, 5vw, 68px);
+      line-height: .9;
+      letter-spacing: -3px;
+      text-transform: uppercase;
+    }
+
+    .community-wrap p {
+      color: #444;
+      font-size: 19px;
+      line-height: 1.65;
+      max-width: 760px;
     }
 
     .ticker {
@@ -522,14 +596,19 @@
         display: none;
       }
 
-      .hero-bottom,
-      .section-head,
-      .web-inner {
-        grid-template-columns: 1fr;
+      .hero {
+        min-height: auto;
+        padding: 130px 5vw 70px;
       }
 
       h1 {
         letter-spacing: -3px;
+      }
+
+      .section-head,
+      .web-inner,
+      .community-wrap {
+        grid-template-columns: 1fr;
       }
 
       .bento {
@@ -560,65 +639,6 @@
         flex-direction: column;
       }
     }
-    .top-bar {
-  width:100%;
-  background:var(--gold);
-  color:#080808;
-  text-align:center;
-  padding:10px 14px;
-  font-size:12px;
-  font-weight:900;
-  letter-spacing:1.5px;
-  text-transform:uppercase;
-}
-    .proof {
-  margin-top:20px;
-  color:rgba(245,245,243,.75);
-  font-size:16px;
-  max-width:700px;
-}
-
-.quick-paths {
-  display:flex;
-  gap:12px;
-  margin-top:26px;
-  flex-wrap:wrap;
-}
-
-.path {
-  border:1px solid rgba(245,245,245,.2);
-  padding:14px 18px;
-  border-radius:999px;
-  display:flex;
-  flex-direction:column;
-  gap:4px;
-  font-size:12px;
-  text-transform:uppercase;
-  letter-spacing:1px;
-  transition:.3s ease;
-}
-
-.path:hover {
-  border-color:var(--gold);
-  transform:translateY(-2px);
-}
-
-.path strong {
-  color:var(--gold);
-}
-
-.path span {
-  color:rgba(245,245,245,.6);
-  font-size:11px;
-}
-
-.trust-line {
-  margin-top:22px;
-  font-size:13px;
-  color:rgba(245,245,245,.5);
-  letter-spacing:1px;
-  text-transform:uppercase;
-}
   </style>
 </head>
 
@@ -637,24 +657,62 @@
   </nav>
 
   <header class="hero">
-  <div class="hero-content">
-    <div class="eyebrow">Northwest Arkansas Visual Media + Web Design</div>
+    <div class="hero-content">
+      <div class="eyebrow">Northwest Arkansas Visual Media + Web Design</div>
 
-    <h1>Make them stop scrolling.</h1>
+      <h1>Make them stop scrolling.</h1>
 
-    <p class="hero-main-copy">
-      Cinematic photo, video, drone, 360 content, and custom websites for listings,
-      vehicles, restaurants, events, projects, and local businesses that need to look worth choosing.
-    </p>
+      <p class="hero-main-text">
+        Cinematic photo, video, drone, 360 content, and custom websites for listings,
+        vehicles, restaurants, events, projects, and local businesses that need to look worth choosing.
+      </p>
 
-    <p class="proof">
-      Real estate. Restaurants. Vehicles. Events. Built to help businesses present better and get chosen faster.
-    </p>
+      <p class="proof">
+        Real estate. Restaurants. Vehicles. Events. Built to help businesses present better and get chosen faster.
+      </p>
 
-    <div class="quick-paths">
-      <a href="real-estate/" class="path">
-        <strong>Real Estate</strong>
-        <span>Listings, drone, 360
+      <div class="btns">
+        <a class="btn gold" href="services/">View Services</a>
+        <a class="btn outline" href="gallery/">View Work</a>
+      </div>
+
+      <div class="quick-paths">
+        <a href="real-estate/" class="path">
+          <strong>Real Estate</strong>
+          <span>Listings, drone, 360 walkthroughs</span>
+        </a>
+
+        <a href="services/" class="path">
+          <strong>All Services</strong>
+          <span>See everything offered</span>
+        </a>
+
+        <a href="web-design/" class="path">
+          <strong>Web Design</strong>
+          <span>Websites that convert</span>
+        </a>
+      </div>
+
+      <div class="trust-line">
+        Built for real businesses that need to look professional, not average.
+      </div>
+    </div>
+  </header>
+
+  <section class="community-note">
+    <div class="community-wrap">
+      <div>
+        <div class="eyebrow">Transparent Pricing · Local Business Focused</div>
+        <h2>I want this to work for your business, not just mine.</h2>
+      </div>
+
+      <p>
+        I know every dollar matters. My goal is to help local businesses, agents, sellers,
+        and brands get better presentation without feeling pressured or confused. Pricing is transparent,
+        and if you are serious about improving how your business shows up, I am open to talking through the best way to make it work.
+      </p>
+    </div>
+  </section>
 
   <div class="ticker">
     <div class="ticker-track">
