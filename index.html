@@ -1,183 +1,805 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vista Venture Co.</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<style>
-body {
-  margin:0;
-  font-family: Arial, sans-serif;
-  background:#050505;
-  color:white;
-}
+  <title>Vista Venture Co. | Photo, Video, Drone & Web Design</title>
 
-section {
-  padding:80px 20px;
-}
+  <style>
+    :root {
+      --black: #050505;
+      --dark: #0b0b0b;
+      --card: #111111;
+      --green: #1F3D2B;
+      --gold: #C2A15A;
+      --cream: #F5F5F3;
+      --muted: rgba(245,245,243,.68);
+      --line: rgba(194,161,90,.24);
+    }
 
-.container {
-  max-width:1100px;
-  margin:auto;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-h1 {
-  font-size:clamp(50px,8vw,100px);
-  line-height:.9;
-  margin-bottom:20px;
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-h2 {
-  font-size:clamp(30px,5vw,60px);
-  margin-bottom:20px;
-}
+    body {
+      background: var(--black);
+      color: var(--cream);
+      font-family: Arial, Helvetica, sans-serif;
+      overflow-x: hidden;
+    }
 
-p {
-  color:#bbb;
-  font-size:18px;
-  line-height:1.6;
-}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-.btn {
-  display:inline-block;
-  padding:14px 24px;
-  border-radius:999px;
-  font-weight:bold;
-  text-decoration:none;
-  margin-top:20px;
-}
+    img {
+      width: 100%;
+      display: block;
+    }
 
-.gold {
-  background:#C2A15A;
-  color:black;
-}
+    .nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 22px 5vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(5,5,5,.58);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
 
-.outline {
-  border:1px solid #666;
-  color:white;
-}
+    .logo {
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
 
-/* HERO */
-.hero {
-  height:100vh;
-  position:relative;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-}
+    .nav-links {
+      display: flex;
+      gap: 26px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(245,245,243,.72);
+    }
 
-.hero::before {
-  content:"";
-  position:absolute;
-  inset:0;
-  background:
-    linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.9)),
-    url("https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/dji_fly_20250110_114758_700_1736531724454_aeb-HDR_1777017055.jpg?width=2400");
-  background-size:cover;
-  background-position:center;
-  z-index:-1;
-}
+    .nav-links a:hover {
+      color: var(--gold);
+    }
 
-.hero p {
-  max-width:600px;
-  margin:auto;
-}
+    .hero {
+      min-height: 100vh;
+      padding: 120px 5vw 60px;
+      display: grid;
+      align-items: end;
+      position: relative;
+      overflow: hidden;
+    }
 
-/* PORTFOLIO */
-.grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:15px;
-}
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(5,5,5,.95), rgba(5,5,5,.35), rgba(5,5,5,.88)),
+        linear-gradient(180deg, rgba(5,5,5,.12), rgba(5,5,5,.96)),
+        url("https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/dji_fly_20250110_114758_700_1736531724454_aeb-HDR_1777017055.jpg?width=2400&optimize=medium");
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.05);
+      animation: heroMove 18s ease-in-out infinite alternate;
+      z-index: -2;
+    }
 
-.grid img {
-  width:100%;
-  height:250px;
-  object-fit:cover;
-  border-radius:12px;
-  transition:.4s;
-}
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,.08) 1px, transparent 1px);
+      background-size: 4px 4px;
+      opacity: .12;
+      z-index: -1;
+      pointer-events: none;
+    }
 
-.grid img:hover {
-  transform:scale(1.05);
-}
+    @keyframes heroMove {
+      from { transform: scale(1.05) translateX(0); }
+      to { transform: scale(1.11) translateX(-18px); }
+    }
 
-/* SERVICES */
-.cards {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:20px;
-}
+    .eyebrow {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 12px;
+      font-weight: 900;
+      margin-bottom: 18px;
+    }
 
-.card {
-  background:#111;
-  padding:24px;
-  border-radius:16px;
-  border:1px solid #222;
-}
+    h1 {
+      font-size: clamp(54px, 10vw, 148px);
+      line-height: .82;
+      letter-spacing: -7px;
+      text-transform: uppercase;
+      max-width: 1220px;
+    }
 
-/* CTA */
-.cta {
-  text-align:center;
-  background:#0a0a0a;
-}
-</style>
+    .hero-bottom {
+      margin-top: 34px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 36px;
+      align-items: end;
+      max-width: 1180px;
+    }
+
+    .hero p {
+      color: rgba(245,245,243,.78);
+      font-size: clamp(18px, 2vw, 24px);
+      line-height: 1.5;
+      max-width: 680px;
+    }
+
+    .btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 15px 24px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      transition: .3s ease;
+      white-space: nowrap;
+    }
+
+    .btn.gold {
+      background: var(--gold);
+      color: #080808;
+    }
+
+    .btn.outline {
+      border: 1px solid rgba(245,245,243,.38);
+      color: var(--cream);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .ticker {
+      overflow: hidden;
+      border-top: 1px solid rgba(255,255,255,.08);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      background: #080808;
+    }
+
+    .ticker-track {
+      display: flex;
+      width: max-content;
+      animation: ticker 30s linear infinite;
+    }
+
+    .ticker span {
+      padding: 18px 34px;
+      color: rgba(245,245,243,.68);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      white-space: nowrap;
+    }
+
+    .ticker b {
+      color: var(--gold);
+    }
+
+    @keyframes ticker {
+      to { transform: translateX(-50%); }
+    }
+
+    section {
+      padding: 110px 5vw;
+    }
+
+    .section-head {
+      max-width: 1220px;
+      margin: 0 auto 54px;
+      display: grid;
+      grid-template-columns: 1fr .8fr;
+      gap: 40px;
+      align-items: end;
+    }
+
+    .section-head h2 {
+      font-size: clamp(42px, 7vw, 94px);
+      line-height: .88;
+      letter-spacing: -4px;
+      text-transform: uppercase;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.65;
+    }
+
+    .bento {
+      max-width: 1380px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 220px;
+      gap: 16px;
+    }
+
+    .tile {
+      position: relative;
+      overflow: hidden;
+      border-radius: 26px;
+      border: 1px solid rgba(194,161,90,.18);
+      background: var(--card);
+      transition: .45s ease;
+    }
+
+    .tile:hover {
+      transform: translateY(-7px);
+      border-color: var(--gold);
+      box-shadow: 0 30px 80px rgba(0,0,0,.42);
+    }
+
+    .tile img {
+      height: 100%;
+      object-fit: cover;
+      opacity: .72;
+      transition: .8s ease;
+    }
+
+    .tile:hover img {
+      transform: scale(1.08);
+      opacity: 1;
+    }
+
+    .tile::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent, rgba(0,0,0,.78));
+    }
+
+    .tile-content {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .tile-label {
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+
+    .tile h3 {
+      font-size: clamp(24px, 3vw, 46px);
+      line-height: .95;
+      text-transform: uppercase;
+      letter-spacing: -1.5px;
+    }
+
+    .tile p {
+      color: rgba(245,245,243,.72);
+      margin-top: 12px;
+      max-width: 420px;
+      line-height: 1.55;
+    }
+
+    .tile.big {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
+    .tile.wide {
+      grid-column: span 2;
+    }
+
+    .tile.tall {
+      grid-row: span 2;
+    }
+
+    .tile.text {
+      background: linear-gradient(145deg, var(--green), #0a0a0a);
+    }
+
+    .tile.gold-tile {
+      background: var(--gold);
+      color: #080808;
+    }
+
+    .tile.gold-tile::after {
+      display: none;
+    }
+
+    .tile.gold-tile .tile-label,
+    .tile.gold-tile p {
+      color: #080808;
+    }
+
+    .web-feature {
+      background: var(--cream);
+      color: #080808;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .web-feature::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(194,161,90,.3), transparent 28%),
+        radial-gradient(circle at 82% 80%, rgba(31,61,43,.26), transparent 32%);
+      pointer-events: none;
+    }
+
+    .web-inner {
+      position: relative;
+      max-width: 1220px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .web-inner h2 {
+      font-size: clamp(44px, 7vw, 90px);
+      line-height: .88;
+      letter-spacing: -4px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .web-inner p {
+      color: #444;
+      font-size: 18px;
+      line-height: 1.65;
+      margin-bottom: 26px;
+    }
+
+    .browser {
+      background: #080808;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 40px 100px rgba(0,0,0,.28);
+      transform: rotate(-2deg);
+    }
+
+    .browser-top {
+      display: flex;
+      gap: 8px;
+      padding: 16px;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+
+    .dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--gold);
+      opacity: .85;
+    }
+
+    .browser-screen {
+      min-height: 420px;
+      background:
+        linear-gradient(rgba(0,0,0,.22), rgba(0,0,0,.88)),
+        url("https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/zzfood_1777017040.jpg?width=2400&optimize=medium");
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: end;
+      padding: 34px;
+    }
+
+    .browser-screen h3 {
+      color: white;
+      font-size: 48px;
+      line-height: .9;
+      letter-spacing: -2px;
+      text-transform: uppercase;
+    }
+
+    .mini-proof {
+      background: #0a0a0a;
+    }
+
+    .proof-grid {
+      max-width: 1220px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .proof-card {
+      border: 1px solid rgba(194,161,90,.18);
+      border-radius: 24px;
+      padding: 26px;
+      min-height: 220px;
+      background: rgba(255,255,255,.035);
+    }
+
+    .proof-card strong {
+      display: block;
+      color: var(--gold);
+      font-size: 42px;
+      margin-bottom: 12px;
+      letter-spacing: -2px;
+    }
+
+    .proof-card span {
+      color: rgba(245,245,243,.7);
+      line-height: 1.5;
+    }
+
+    .cta-final {
+      min-height: 80vh;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      background:
+        linear-gradient(rgba(0,0,0,.68), rgba(0,0,0,.92)),
+        url("https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/2FE078A20D0C4561EDE113B33CCD5864_1777017079.jpg?width=2400&optimize=medium");
+      background-size: cover;
+      background-position: center;
+    }
+
+    .cta-final h2 {
+      font-size: clamp(52px, 9vw, 124px);
+      line-height: .82;
+      letter-spacing: -6px;
+      text-transform: uppercase;
+      margin-bottom: 26px;
+    }
+
+    .cta-final p {
+      color: rgba(245,245,243,.74);
+      font-size: 20px;
+      max-width: 720px;
+      margin: 0 auto 32px;
+      line-height: 1.55;
+    }
+
+    footer {
+      padding: 34px 5vw;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      color: rgba(245,245,243,.45);
+      font-size: 13px;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(34px);
+      transition: 1s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 980px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero-bottom,
+      .section-head,
+      .web-inner {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        letter-spacing: -3px;
+      }
+
+      .bento {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 280px;
+      }
+
+      .tile.big,
+      .tile.wide,
+      .tile.tall {
+        grid-column: span 1;
+        grid-row: span 1;
+      }
+
+      .proof-grid {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 80px 5vw;
+      }
+
+      .cta-final h2 {
+        letter-spacing: -3px;
+      }
+
+      footer {
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- HERO -->
-<section class="hero">
-  <div>
-    <h1>Make your business impossible to ignore.</h1>
-    <p>Photo, video, drone, 360 tours, and websites built to make your business stand out and get chosen.</p>
+  <nav class="nav">
+    <a class="logo" href="./">Vista Venture Co.</a>
 
-    <a href="#contact" class="btn gold">Get a Quote</a>
-    <a href="#portfolio" class="btn outline">View Work</a>
-  </div>
-</section>
+    <div class="nav-links">
+      <a href="services/">Services</a>
+      <a href="gallery/">Gallery</a>
+      <a href="web-design/">Web Design</a>
+      <a href="about/">About</a>
+      <a href="contact/">Contact</a>
+    </div>
+  </nav>
 
-<!-- PORTFOLIO -->
-<section id="portfolio">
-  <div class="container">
-    <h2>See the difference.</h2>
+  <header class="hero">
+    <div>
+      <div class="eyebrow">Northwest Arkansas Visual Media + Web Design</div>
 
-    <div class="grid">
-      <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/house%20front_1777017044.jpg?width=1200">
-      <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/DSC05783_1776649504.jpg?width=2400">
-      <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/zzfood_1777017040.jpg?width=2400">
-      <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/Crowd%204_1777017095.jpg?width=2400">
+      <h1>Make them stop scrolling.</h1>
+
+      <div class="hero-bottom">
+        <p>
+          Cinematic photo, video, drone, 360 content, and custom websites for listings,
+          vehicles, restaurants, events, projects, and local businesses that need to look worth choosing.
+        </p>
+
+        <div class="btns">
+          <a class="btn gold" href="services/">View Services</a>
+          <a class="btn outline" href="gallery/">View Work</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="ticker">
+    <div class="ticker-track">
+      <span><b>Real Estate</b></span>
+      <span>Drone</span>
+      <span>360 Walkthroughs</span>
+      <span><b>Vehicle Media</b></span>
+      <span>Restaurants</span>
+      <span>Construction</span>
+      <span><b>Web Design</b></span>
+      <span>Events</span>
+      <span>Portraits</span>
+
+      <span><b>Real Estate</b></span>
+      <span>Drone</span>
+      <span>360 Walkthroughs</span>
+      <span><b>Vehicle Media</b></span>
+      <span>Restaurants</span>
+      <span>Construction</span>
+      <span><b>Web Design</b></span>
+      <span>Events</span>
+      <span>Portraits</span>
     </div>
   </div>
-</section>
 
-<!-- SERVICES -->
-<section>
-  <div class="container">
-    <h2>Built for different types of business.</h2>
-
-    <div class="cards">
-      <div class="card"><h3>Real Estate</h3><p>Listings that stand out.</p></div>
-      <div class="card"><h3>Vehicles</h3><p>Digital showroom media.</p></div>
-      <div class="card"><h3>Business Content</h3><p>Marketing visuals that work.</p></div>
-      <div class="card"><h3>Events</h3><p>Capture moments and energy.</p></div>
-      <div class="card"><h3>Land</h3><p>Show full property value.</p></div>
-      <div class="card"><h3>Construction</h3><p>Track and present progress.</p></div>
-      <div class="card"><h3>Portraits</h3><p>Clean professional images.</p></div>
-      <div class="card"><h3>Web Design</h3><p>Make your business look legit.</p></div>
+  <section>
+    <div class="section-head reveal">
+      <h2>Visual work built around what you need to show.</h2>
+      <p>
+        Different clients need different kinds of presentation. A listing needs clarity.
+        A restaurant needs atmosphere. A vehicle needs trust. A website needs to make the business feel established.
+      </p>
     </div>
-  </div>
-</section>
 
-<!-- CTA -->
-<section class="cta" id="contact">
-  <h2>Ready to get better content?</h2>
-  <p>Call or email to get started.</p>
+    <div class="bento reveal">
 
-  <a href="tel:4793268775" class="btn gold">Call Now</a>
-</section>
+      <a class="tile big" href="real-estate/">
+        <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/house%20front_1777017044.jpg?width=1200" alt="Real estate media">
+        <div class="tile-content">
+          <div class="tile-label">Real Estate</div>
+          <h3>Listings that feel worth seeing.</h3>
+          <p>HDR photography, drone coverage, video, and 360 walkthroughs for stronger property presentation.</p>
+        </div>
+      </a>
+
+      <a class="tile tall" href="vehicle-media/">
+        <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/DSC05783_1776649504.jpg?width=2400&optimize=medium" alt="Vehicle media">
+        <div class="tile-content">
+          <div class="tile-label">Vehicles</div>
+          <h3>Digital showroom.</h3>
+        </div>
+      </a>
+
+      <a class="tile text" href="services/">
+        <div class="tile-content">
+          <div class="tile-label">All Services</div>
+          <h3>Explore the full lineup.</h3>
+          <p>See every service, package direction, and the type of client each one is built for.</p>
+        </div>
+      </a>
+
+      <a class="tile" href="construction-progress/">
+        <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/zzzc1_1777066364.jpg?width=2400&optimize=medium" alt="Construction progress media">
+        <div class="tile-content">
+          <div class="tile-label">Construction</div>
+          <h3>Progress documented.</h3>
+        </div>
+      </a>
+
+      <a class="tile wide" href="business-content/">
+        <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/zzfood_1777017040.jpg?width=2400&optimize=medium" alt="Business content">
+        <div class="tile-content">
+          <div class="tile-label">Brand & Business</div>
+          <h3>Content for businesses that need to show up better.</h3>
+        </div>
+      </a>
+
+      <a class="tile" href="event-coverage/">
+        <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/Crowd%204_1777017095.jpg?width=2400&optimize=medium" alt="Event coverage">
+        <div class="tile-content">
+          <div class="tile-label">Events</div>
+          <h3>Capture the energy.</h3>
+        </div>
+      </a>
+
+      <a class="tile" href="land-acreage/">
+        <img src="https://cdn.myportfolio.com/6548b179-e775-4fd6-82d3-1c416ff2f000/b7b5bc59-eaed-46dc-955b-ede949e3b546_rw_1920.jpg?h=cef9277274ba929657b63af996dfe13b" alt="Land and acreage media">
+        <div class="tile-content">
+          <div class="tile-label">Land & Acreage</div>
+          <h3>Show scale and potential.</h3>
+        </div>
+      </a>
+
+      <a class="tile gold-tile" href="web-design/">
+        <div class="tile-content">
+          <div class="tile-label">New Service</div>
+          <h3>Website Design</h3>
+          <p>Clean, cinematic websites for restaurants, real estate, service businesses, and local brands.</p>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <section class="web-feature">
+    <div class="web-inner reveal">
+      <div>
+        <div class="eyebrow">Website Design Service</div>
+        <h2>This website should be the proof.</h2>
+
+        <p>
+          Vista Venture Co. now builds custom-coded websites for businesses that want something stronger than a basic template.
+        </p>
+
+        <p>
+          The goal is simple: build websites that look premium, feel clear, and help the business get taken seriously.
+        </p>
+
+        <div class="btns">
+          <a class="btn gold" href="web-design/">View Web Design</a>
+          <a class="btn outline" style="color:#080808;border-color:#080808;" href="contact/">Start a Website</a>
+        </div>
+      </div>
+
+      <div class="browser">
+        <div class="browser-top">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+
+        <div class="browser-screen">
+          <h3>Built to look expensive.</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mini-proof">
+    <div class="section-head reveal">
+      <h2>Not just better visuals. Better presentation.</h2>
+      <p>
+        Your photos, videos, tours, and website should all work together. The point is not just to look good — it is to help people understand, trust, and choose you.
+      </p>
+    </div>
+
+    <div class="proof-grid reveal">
+      <div class="proof-card">
+        <strong>01</strong>
+        <span>Clean visual direction that makes your business feel more professional.</span>
+      </div>
+
+      <div class="proof-card">
+        <strong>02</strong>
+        <span>Media built for how people actually make decisions online.</span>
+      </div>
+
+      <div class="proof-card">
+        <strong>03</strong>
+        <span>Simple, useful delivery for websites, listings, social media, and ads.</span>
+      </div>
+
+      <div class="proof-card">
+        <strong>04</strong>
+        <span>A visual system that helps you show up consistently.</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="cta-final">
+    <div class="reveal">
+      <div class="eyebrow">Now Booking</div>
+
+      <h2>Make it look worth choosing.</h2>
+
+      <p>
+        Photo, video, drone, 360 tours, business content, and websites for people who are ready to look more professional online.
+      </p>
+
+      <div class="btns" style="justify-content:center;">
+        <a class="btn gold" href="tel:4793268775">Call 479-326-8775</a>
+        <a class="btn outline" href="contact/">Contact Page</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div>© 2026 Vista Venture Co. · Northwest Arkansas</div>
+    <div>Photo · Video · Drone · 360 · Web Design</div>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.16 });
+
+    reveals.forEach(el => observer.observe(el));
+  </script>
 
 </body>
 </html>
