@@ -1,1 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <title>Event Coverage | Vista Venture Co.</title>
+
+  <style>
+    :root {
+      --black:#050505;
+      --green:#1F3D2B;
+      --gold:#C2A15A;
+      --cream:#F5F5F3;
+      --muted:rgba(245,245,243,.68);
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+      background:var(--black);
+      color:var(--cream);
+      font-family:Arial, Helvetica, sans-serif;
+      overflow-x:hidden;
+    }
+
+    a { color:inherit; text-decoration:none; }
+    img { width:100%; display:block; }
+
+    .nav {
+      position:fixed;
+      top:0;
+      width:100%;
+      z-index:1000;
+      padding:22px 5vw;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      background:rgba(5,5,5,.70);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+
+    .logo {
+      font-size:13px;
+      font-weight:900;
+      letter-spacing:3px;
+      text-transform:uppercase;
+    }
+
+    .nav-links {
+      display:flex;
+      gap:26px;
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:1.5px;
+      text-transform:uppercase;
+      color:rgba(245,245,243,.72);
+    }
+
+    .nav-links a:hover { color:var(--gold); }
+
+    .hero {
+      min-height:94vh;
+      padding:140px 5vw 80px;
+      display:flex;
+      align-items:end;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero::before {
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(90deg, rgba(5,5,5,.94), rgba(5,5,5,.40), rgba(5,5,5,.90)),
+        linear-gradient(180deg, rgba(5,5,5,.12), rgba(5,5,5,.96)),
+        url("https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/Crowd%204_1777017095.jpg?width=2400&optimize=medium");
+      background-size:cover;
+      background-position:center;
+      transform:scale(1.02);
+      z-index:-2;
+    }
+
+    .hero::after {
+      content:"";
+      position:absolute;
+      inset:0;
+      background-image:radial-gradient(rgba(255,255,255,.08) 1px, transparent 1px);
+      background-size:4px 4px;
+      opacity:.10;
+      z-index:-1;
+      pointer-events:none;
+    }
+
+    .eyebrow {
+      color:var(--gold);
+      text-transform:uppercase;
+      letter-spacing:3px;
+      font-size:12px;
+      font-weight:900;
+      margin-bottom:18px;
+    }
+
+    h1 {
+      font-size:clamp(54px,10vw,138px);
+      line-height:.82;
+      letter-spacing:-7px;
+      text-transform:uppercase;
+      max-width:1180px;
+    }
+
+    .hero p {
+      margin-top:28px;
+      max-width:760px;
+      color:rgba(245,245,243,.80);
+      font-size:clamp(18px,2vw,24px);
+      line-height:1.5;
+    }
+
+    .btns {
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-top:30px;
+    }
+
+    .btn {
+      display:inline-flex;
+      justify-content:center;
+      align-items:center;
+      padding:15px 24px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:1.5px;
+      transition:.3s ease;
+      white-space:nowrap;
+    }
+
+    .btn.gold {
+      background:var(--gold);
+      color:#080808;
+    }
+
+    .btn.outline {
+      border:1px solid rgba(245,245,243,.38);
+      color:var(--cream);
+    }
+
+    .btn:hover { transform:translateY(-3px); }
+
+    section { padding:105px 5vw; }
+
+    .section-head {
+      max-width:1220px;
+      margin:0 auto 54px;
+      display:grid;
+      grid-template-columns:1fr .8fr;
+      gap:40px;
+      align-items:end;
+    }
+
+    .section-head h2 {
+      font-size:clamp(42px,7vw,94px);
+      line-height:.88;
+      letter-spacing:-4px;
+      text-transform:uppercase;
+    }
+
+    .section-head p {
+      color:var(--muted);
+      font-size:18px;
+      line-height:1.65;
+    }
+
+    .visual-grid {
+      max-width:1320px;
+      margin:auto;
+      display:grid;
+      grid-template-columns:1.2fr .8fr 1fr;
+      grid-auto-rows:280px;
+      gap:16px;
+    }
+
+    .shot {
+      position:relative;
+      overflow:hidden;
+      border-radius:28px;
+      border:1px solid rgba(194,161,90,.18);
+      background:#111;
+      transition:.45s ease;
+    }
+
+    .shot.large { grid-row:span 2; }
+    .shot.wide { grid-column:span 2; }
+
+    .shot:hover {
+      transform:translateY(-7px);
+      border-color:var(--gold);
+      box-shadow:0 30px 80px rgba(0,0,0,.5);
+    }
+
+    .shot img {
+      height:100%;
+      object-fit:cover;
+      opacity:.84;
+      transition:.9s ease;
+    }
+
+    .shot:hover img {
+      transform:scale(1.08);
+      opacity:1;
+    }
+
+    .shot::after {
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, transparent, rgba(0,0,0,.78));
+    }
+
+    .shot-content {
+      position:absolute;
+      left:22px;
+      right:22px;
+      bottom:20px;
+      z-index:2;
+    }
+
+    .shot-label {
+      color:var(--gold);
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:2px;
+      text-transform:uppercase;
+      margin-bottom:7px;
+    }
+
+    .shot h3 {
+      font-size:clamp(22px,2.4vw,38px);
+      line-height:.95;
+      letter-spacing:-1.2px;
+      text-transform:uppercase;
+    }
+
+    .once {
+      background:var(--cream);
+      color:#080808;
+    }
+
+    .once-wrap {
+      max-width:1220px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:.85fr 1.15fr;
+      gap:38px;
+      align-items:center;
+    }
+
+    .once h2 {
+      color:var(--green);
+      font-size:clamp(42px,7vw,94px);
+      line-height:.88;
+      letter-spacing:-4px;
+      text-transform:uppercase;
+    }
+
+    .once p {
+      color:#444;
+      font-size:18px;
+      line-height:1.7;
+      margin-bottom:18px;
+    }
+
+    .once-box {
+      background:#080808;
+      color:var(--cream);
+      border-radius:34px;
+      padding:38px;
+      min-height:430px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      box-shadow:0 35px 90px rgba(0,0,0,.22);
+    }
+
+    .once-box strong {
+      font-size:76px;
+      color:var(--gold);
+      letter-spacing:-4px;
+      line-height:.9;
+    }
+
+    .once-box span {
+      color:rgba(245,245,243,.72);
+      line-height:1.6;
+      font-size:18px;
+    }
+
+    .coverage {
+      background:#080808;
+    }
+
+    .coverage-grid {
+      max-width:1220px;
+      margin:auto;
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:16px;
+    }
+
+    .coverage-card {
+      border:1px solid rgba(194,161,90,.22);
+      border-radius:28px;
+      padding:28px;
+      background:rgba(255,255,255,.035);
+      min-height:270px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      transition:.35s ease;
+    }
+
+    .coverage-card:hover {
+      transform:translateY(-6px);
+      border-color:var(--gold);
+      box-shadow:0 25px 70px rgba(0,0,0,.38);
+    }
+
+    .coverage-card strong {
+      display:block;
+      color:var(--gold);
+      font-size:42px;
+      letter-spacing:-2px;
+    }
+
+    .coverage-card h3 {
+      font-size:25px;
+      line-height:.95;
+      text-transform:uppercase;
+      letter-spacing:-1px;
+      margin:18px 0 14px;
+    }
+
+    .coverage-card p {
+      color:rgba(245,245,243,.68);
+      line-height:1.55;
+    }
+
+    .pricing {
+      background:
+        radial-gradient(circle at top right, rgba(194,161,90,.14), transparent 34%),
+        #080808;
+    }
+
+    .price-grid {
+      max-width:1220px;
+      margin:auto;
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+
+    .price-card {
+      border:1px solid rgba(194,161,90,.22);
+      border-radius:30px;
+      padding:34px;
+      background:rgba(255,255,255,.035);
+      min-height:390px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      transition:.35s ease;
+    }
+
+    .price-card:hover {
+      transform:translateY(-6px);
+      border-color:var(--gold);
+      box-shadow:0 25px 70px rgba(0,0,0,.38);
+    }
+
+    .price-card.feature {
+      background:linear-gradient(145deg, var(--green), #0a0a0a);
+      border-color:rgba(194,161,90,.42);
+    }
+
+    .price-card h3 {
+      font-size:32px;
+      line-height:.95;
+      text-transform:uppercase;
+      letter-spacing:-1.4px;
+      margin-bottom:14px;
+    }
+
+    .price {
+      font-size:54px;
+      color:var(--gold);
+      font-weight:900;
+      letter-spacing:-2px;
+      margin:18px 0;
+    }
+
+    .price-card p {
+      color:rgba(245,245,243,.7);
+      line-height:1.6;
+      font-size:16px;
+    }
+
+    .pill-row {
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:24px;
+    }
+
+    .pill {
+      border:1px solid rgba(245,245,243,.18);
+      border-radius:999px;
+      padding:9px 12px;
+      color:rgba(245,245,243,.72);
+      font-size:12px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:1px;
+    }
+
+    .event-note {
+      max-width:1220px;
+      margin:28px auto 0;
+      border:1px solid rgba(194,161,90,.30);
+      border-radius:30px;
+      padding:32px;
+      background:
+        radial-gradient(circle at top left, rgba(194,161,90,.15), transparent 34%),
+        rgba(255,255,255,.035);
+    }
+
+    .event-note h3 {
+      font-size:clamp(30px,5vw,58px);
+      line-height:.92;
+      letter-spacing:-2px;
+      text-transform:uppercase;
+      margin-bottom:16px;
+    }
+
+    .event-note p {
+      color:rgba(245,245,243,.72);
+      font-size:18px;
+      line-height:1.6;
+      max-width:900px;
+    }
+
+    .use {
+      background:var(--cream);
+      color:#080808;
+    }
+
+    .use-wrap {
+      max-width:1220px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:.85fr 1.15fr;
+      gap:38px;
+      align-items:center;
+    }
+
+    .use h2 {
+      color:var(--green);
+      font-size:clamp(42px,7vw,94px);
+      line-height:.88;
+      letter-spacing:-4px;
+      text-transform:uppercase;
+    }
+
+    .use-list {
+      display:grid;
+      gap:14px;
+    }
+
+    .use-list div {
+      background:#080808;
+      color:var(--cream);
+      border-radius:24px;
+      padding:24px;
+      border:1px solid rgba(194,161,90,.25);
+      box-shadow:0 20px 50px rgba(0,0,0,.12);
+    }
+
+    .use-list strong {
+      display:block;
+      color:var(--gold);
+      text-transform:uppercase;
+      letter-spacing:1.4px;
+      font-size:13px;
+      margin-bottom:8px;
+    }
+
+    .use-list span {
+      color:rgba(245,245,243,.72);
+      line-height:1.55;
+    }
+
+    .cta {
+      min-height:78vh;
+      display:grid;
+      place-items:center;
+      text-align:center;
+      background:
+        linear-gradient(rgba(0,0,0,.68), rgba(0,0,0,.92)),
+        url("https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/Alyssa%207_1777017092.jpg?width=2400&optimize=medium");
+      background-size:cover;
+      background-position:center;
+    }
+
+    .cta h2 {
+      font-size:clamp(52px,9vw,124px);
+      line-height:.82;
+      letter-spacing:-6px;
+      text-transform:uppercase;
+      margin-bottom:26px;
+    }
+
+    .cta p {
+      color:rgba(245,245,243,.74);
+      font-size:20px;
+      max-width:720px;
+      margin:0 auto 32px;
+      line-height:1.55;
+    }
+
+    footer {
+      padding:34px 5vw;
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      color:rgba(245,245,243,.45);
+      font-size:13px;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+
+    .reveal {
+      opacity:0;
+      transform:translateY(34px);
+      transition:1s ease;
+    }
+
+    .reveal.visible {
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    @media (max-width:980px) {
+      .nav-links { display:none; }
+
+      .hero {
+        min-height:auto;
+        padding:130px 5vw 70px;
+      }
+
+      h1,
+      .cta h2 {
+        letter-spacing:-3px;
+      }
+
+      .section-head,
+      .once-wrap,
+      .use-wrap {
+        grid-template-columns:1fr;
+      }
+
+      .visual-grid {
+        grid-template-columns:1fr;
+        grid-auto-rows:320px;
+      }
+
+      .shot.large,
+      .shot.wide {
+        grid-column:span 1;
+        grid-row:span 1;
+      }
+
+      .coverage-grid,
+      .price-grid {
+        grid-template-columns:1fr;
+      }
+
+      section {
+        padding:80px 5vw;
+      }
+
+      footer { flex-direction:column; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="nav">
+    <a class="logo" href="../">Vista Venture Co.</a>
+
+    <div class="nav-links">
+      <a href="../services/">Services</a>
+      <a href="../gallery/">Gallery</a>
+      <a href="../web-design/">Web Design</a>
+      <a href="../about/">About</a>
+      <a href="../contact/">Contact</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div>
+      <div class="eyebrow">Event Coverage</div>
+      <h1>Events only happen once.</h1>
+      <p>
+        Photo and video coverage for events, parties, brand activations, corporate moments, live experiences,
+        and gatherings that deserve to be remembered and shared clearly.
+      </p>
+
+      <div class="btns">
+        <a class="btn gold" href="../start/">Start an Event Project</a>
+        <a class="btn outline" href="../gallery/">View Gallery</a>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <div class="section-head reveal">
+      <h2>Capture the energy, not just the room.</h2>
+      <p>
+        Event coverage should show the people, atmosphere, details, emotion, and movement that made it worth hosting.
+        The goal is to create usable media for memories, marketing, social sharing, and future promotion.
+      </p>
+    </div>
+
+    <div class="visual-grid reveal">
+      <div class="shot large">
+        <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/Crowd%204_1777017095.jpg?width=2400&optimize=medium" alt="Event crowd coverage">
+        <div class="shot-content">
+          <div class="shot-label">Energy</div>
+          <h3>Show the crowd and atmosphere</h3>
+        </div>
+      </div>
+
+      <div class="shot">
+        <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/Alyssa%207_1777017092.jpg?width=2400&optimize=medium" alt="Event key moment">
+        <div class="shot-content">
+          <div class="shot-label">Moments</div>
+          <h3>Catch what matters</h3>
+        </div>
+      </div>
+
+      <div class="shot large">
+        <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/_DSC0627_1777017433.jpg?width=2400&optimize=medium" alt="Event atmosphere">
+        <div class="shot-content">
+          <div class="shot-label">Atmosphere</div>
+          <h3>Make people feel like they were there</h3>
+        </div>
+      </div>
+
+      <div class="shot wide">
+        <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/Crowd%204_1777017095.jpg?width=2400&optimize=medium" alt="Event media coverage">
+        <div class="shot-content">
+          <div class="shot-label">Marketing</div>
+          <h3>Use the event long after it ends</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="once">
+    <div class="once-wrap reveal">
+      <div>
+        <div class="eyebrow">Why It Matters</div>
+        <h2>You cannot recreate the moment later.</h2>
+      </div>
+
+      <div>
+        <p>
+          Events move fast. The best moments are often unscripted — people laughing, the room filling up,
+          the energy changing, the small details that make the experience feel alive.
+        </p>
+
+        <p>
+          Professional coverage helps preserve the event while also giving you media that can be used for promotion,
+          social posts, recaps, sponsors, future events, and brand trust.
+        </p>
+
+        <div class="once-box">
+          <strong>1×</strong>
+          <span>
+            The event happens once. The right coverage lets it keep working for you after the day is over.
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="coverage">
+    <div class="section-head reveal">
+      <h2>Coverage built around the type of event.</h2>
+      <p>
+        Every event has a different purpose. Some need memories. Some need marketing. Some need proof of turnout,
+        atmosphere, experience, or brand presence.
+      </p>
+    </div>
+
+    <div class="coverage-grid reveal">
+      <div class="coverage-card">
+        <strong>01</strong>
+        <div>
+          <h3>Private Events</h3>
+          <p>Parties, gatherings, celebrations, and personal events that deserve better than phone photos.</p>
+        </div>
+      </div>
+
+      <div class="coverage-card">
+        <strong>02</strong>
+        <div>
+          <h3>Business Events</h3>
+          <p>Corporate events, openings, networking, fundraisers, and local business activations.</p>
+        </div>
+      </div>
+
+      <div class="coverage-card">
+        <strong>03</strong>
+        <div>
+          <h3>Brand Content</h3>
+          <p>Event media for social, websites, ads, future promotions, and sponsor recaps.</p>
+        </div>
+      </div>
+
+      <div class="coverage-card">
+        <strong>04</strong>
+        <div>
+          <h3>Live Energy</h3>
+          <p>Coverage that shows the crowd, mood, movement, and feeling of the experience.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing">
+    <div class="section-head reveal">
+      <h2>Transparent event pricing.</h2>
+      <p>
+        Pricing depends on the length, location, deliverables, and how the media will be used.
+        These are starting points for planning.
+      </p>
+    </div>
+
+    <div class="price-grid reveal">
+      <div class="price-card">
+        <div>
+          <div class="eyebrow">Starter</div>
+          <h3>Event Photo Coverage</h3>
+          <div class="price">$250+</div>
+          <p>
+            Great for smaller events that need clean edited photos and professional documentation.
+          </p>
+        </div>
+
+        <div class="pill-row">
+          <span class="pill">Photos</span>
+          <span class="pill">Edited Images</span>
+          <span class="pill">Small Events</span>
+        </div>
+      </div>
+
+      <div class="price-card feature">
+        <div>
+          <div class="eyebrow">Most Useful</div>
+          <h3>Photo + Video Recap</h3>
+          <div class="price">$500+</div>
+          <p>
+            Best for events that need strong visuals, social content, and a recap that can be shared after.
+          </p>
+        </div>
+
+        <div class="pill-row">
+          <span class="pill">Photo</span>
+          <span class="pill">Video</span>
+          <span class="pill">Recap</span>
+          <span class="pill">Social</span>
+        </div>
+      </div>
+
+      <div class="price-card">
+        <div>
+          <div class="eyebrow">Custom</div>
+          <h3>Full Event Coverage</h3>
+          <div class="price">Custom</div>
+          <p>
+            For larger events, brand activations, multi-hour coverage, multi-day events, or specific deliverables.
+          </p>
+        </div>
+
+        <div class="pill-row">
+          <span class="pill">Large Events</span>
+          <span class="pill">Brand Use</span>
+          <span class="pill">Custom Plan</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-note reveal">
+      <h3>Every event is different.</h3>
+      <p>
+        If you are serious about documenting the event well, we can talk through the best coverage plan based on timeline,
+        location, what matters most, and how you want to use the media afterward.
+      </p>
+    </div>
+  </section>
+
+  <section class="use">
+    <div class="use-wrap reveal">
+      <div>
+        <div class="eyebrow">After the Event</div>
+        <h2>Use the media long after the day is over.</h2>
+      </div>
+
+      <div class="use-list">
+        <div>
+          <strong>Social Media</strong>
+          <span>Share recaps, moments, highlights, and promotional posts after the event.</span>
+        </div>
+
+        <div>
+          <strong>Future Promotion</strong>
+          <span>Use the media to promote the next event, show turnout, and build anticipation.</span>
+        </div>
+
+        <div>
+          <strong>Sponsor / Stakeholder Recaps</strong>
+          <span>Show partners, sponsors, clients, or leadership what the event looked and felt like.</span>
+        </div>
+
+        <div>
+          <strong>Website + Brand Trust</strong>
+          <span>Show that your business, organization, or brand is active, real, and worth engaging with.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="reveal">
+      <div class="eyebrow">Event Coverage</div>
+      <h2>Capture it while it is happening.</h2>
+      <p>
+        Photo and video coverage for events that matter — private, business, brand, and local experiences.
+      </p>
+
+      <div class="btns" style="justify-content:center;">
+        <a class="btn gold" href="../start/">Start Here</a>
+        <a class="btn outline" href="tel:4793268775">Call 479-326-8775</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div>© 2026 Vista Venture Co. · Northwest Arkansas</div>
+    <div>Events · Photo · Video · Brand Content</div>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.16 });
+
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
