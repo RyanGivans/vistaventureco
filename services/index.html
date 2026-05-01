@@ -1,264 +1,931 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>Services | Vista Venture Co.</title>
+  <title>Services | Vista Venture Co.</title>
 
-<style>
-:root {
-  --black:#050505;
-  --gold:#C2A15A;
-  --cream:#F5F5F3;
-  --muted:rgba(245,245,243,.68);
-}
+  <style>
+    :root {
+      --black:#050505;
+      --green:#1F3D2B;
+      --gold:#C2A15A;
+      --cream:#F5F5F3;
+      --muted:rgba(245,245,243,.68);
+    }
 
-* { margin:0; padding:0; box-sizing:border-box; }
+    * { margin:0; padding:0; box-sizing:border-box; }
 
-body {
-  background:var(--black);
-  color:var(--cream);
-  font-family:Arial, sans-serif;
-}
+    body {
+      background:var(--black);
+      color:var(--cream);
+      font-family:Arial, Helvetica, sans-serif;
+      overflow-x:hidden;
+    }
 
-a { text-decoration:none; color:inherit; }
+    a { color:inherit; text-decoration:none; }
+    img { width:100%; display:block; }
 
-.nav {
-  position:fixed;
-  top:0;
-  width:100%;
-  padding:20px 5vw;
-  display:flex;
-  justify-content:space-between;
-  background:rgba(5,5,5,.7);
-  backdrop-filter:blur(12px);
-}
+    .nav {
+      position:fixed;
+      top:0;
+      width:100%;
+      z-index:1000;
+      padding:22px 5vw;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      background:rgba(5,5,5,.70);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
 
-.hero {
-  height:80vh;
-  display:flex;
-  align-items:end;
-  padding:120px 5vw 60px;
-  position:relative;
-}
+    .logo {
+      font-size:13px;
+      font-weight:900;
+      letter-spacing:3px;
+      text-transform:uppercase;
+    }
 
-.hero::before {
-  content:"";
-  position:absolute;
-  inset:0;
-  background:
-    linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.95)),
-    url("https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/dji_fly_20250110_114758_700_1736531724454_aeb-HDR_1777017055.jpg?width=2400&optimize=medium");
-  background-size:cover;
-  background-position:center;
-  z-index:-1;
-}
+    .nav-links {
+      display:flex;
+      gap:22px;
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:1.3px;
+      text-transform:uppercase;
+      color:rgba(245,245,243,.72);
+      align-items:center;
+    }
 
-h1 {
-  font-size:clamp(50px,8vw,110px);
-  line-height:.85;
-}
+    .nav-links a:hover { color:var(--gold); }
 
-.section {
-  padding:80px 5vw;
-}
+    .nav-cta {
+      border:1px solid rgba(194,161,90,.5);
+      color:var(--gold);
+      border-radius:999px;
+      padding:9px 13px;
+    }
 
-.intro {
-  max-width:900px;
-  margin-bottom:40px;
-  color:#bbb;
-  line-height:1.6;
-  font-size:18px;
-}
+    .hero {
+      min-height:94vh;
+      padding:140px 5vw 80px;
+      display:flex;
+      align-items:end;
+      position:relative;
+      overflow:hidden;
+    }
 
-/* SERVICE GRID */
-.grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:20px;
-}
+    .hero::before {
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(90deg, rgba(5,5,5,.96), rgba(5,5,5,.42), rgba(5,5,5,.92)),
+        linear-gradient(180deg, rgba(5,5,5,.10), rgba(5,5,5,.96)),
+        url("https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/dji_fly_20250110_114758_700_1736531724454_aeb-HDR_1777017055.jpg?width=2400&optimize=medium");
+      background-size:cover;
+      background-position:center;
+      transform:scale(1.02);
+      z-index:-2;
+    }
 
-.card {
-  position:relative;
-  height:300px;
-  border-radius:20px;
-  overflow:hidden;
-}
+    .hero::after {
+      content:"";
+      position:absolute;
+      inset:0;
+      background-image:radial-gradient(rgba(255,255,255,.08) 1px, transparent 1px);
+      background-size:4px 4px;
+      opacity:.10;
+      z-index:-1;
+      pointer-events:none;
+    }
 
-.card img {
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  opacity:.8;
-  transition:.4s;
-}
+    .eyebrow {
+      color:var(--gold);
+      text-transform:uppercase;
+      letter-spacing:3px;
+      font-size:12px;
+      font-weight:900;
+      margin-bottom:18px;
+    }
 
-.card:hover img {
-  transform:scale(1.08);
-  opacity:1;
-}
+    h1 {
+      font-size:clamp(54px,10vw,138px);
+      line-height:.82;
+      letter-spacing:-7px;
+      text-transform:uppercase;
+      max-width:1180px;
+    }
 
-.card::after {
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(transparent, rgba(0,0,0,.85));
-}
+    .hero p {
+      margin-top:28px;
+      max-width:820px;
+      color:rgba(245,245,243,.80);
+      font-size:clamp(18px,2vw,24px);
+      line-height:1.5;
+    }
 
-.card-content {
-  position:absolute;
-  bottom:20px;
-  left:20px;
-}
+    .btns {
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-top:30px;
+    }
 
-.card h3 {
-  font-size:26px;
-  margin-bottom:8px;
-}
+    .btn {
+      display:inline-flex;
+      justify-content:center;
+      align-items:center;
+      padding:15px 24px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:1.5px;
+      transition:.3s ease;
+      white-space:nowrap;
+    }
 
-.card p {
-  font-size:14px;
-  color:#ccc;
-}
+    .btn.gold {
+      background:var(--gold);
+      color:#080808;
+    }
 
-/* WHY SECTION */
-.why {
-  max-width:900px;
-  margin:auto;
-  text-align:center;
-}
+    .btn.outline {
+      border:1px solid rgba(245,245,243,.38);
+      color:var(--cream);
+    }
 
-.why h2 {
-  font-size:40px;
-  margin-bottom:20px;
-}
+    .btn:hover { transform:translateY(-3px); }
 
-.why p {
-  color:#bbb;
-  line-height:1.6;
-}
+    section { padding:105px 5vw; }
 
-/* CTA */
-.cta {
-  text-align:center;
-  padding:100px 20px;
-}
+    .intro {
+      background:var(--cream);
+      color:#080808;
+    }
 
-.btn {
-  display:inline-block;
-  padding:14px 24px;
-  border-radius:999px;
-  background:var(--gold);
-  color:black;
-  margin-top:20px;
-  font-weight:bold;
-}
-</style>
+    .intro-wrap {
+      max-width:1220px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:42px;
+      align-items:center;
+    }
+
+    .intro h2 {
+      color:var(--green);
+      font-size:clamp(42px,7vw,94px);
+      line-height:.88;
+      letter-spacing:-4px;
+      text-transform:uppercase;
+    }
+
+    .intro p {
+      color:#444;
+      font-size:18px;
+      line-height:1.75;
+      margin-bottom:18px;
+    }
+
+    .section-head {
+      max-width:1220px;
+      margin:0 auto 54px;
+      display:grid;
+      grid-template-columns:1fr .8fr;
+      gap:40px;
+      align-items:end;
+    }
+
+    .section-head h2 {
+      font-size:clamp(42px,7vw,94px);
+      line-height:.88;
+      letter-spacing:-4px;
+      text-transform:uppercase;
+    }
+
+    .section-head p {
+      color:var(--muted);
+      font-size:18px;
+      line-height:1.65;
+    }
+
+    .bento {
+      max-width:1380px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      grid-auto-rows:230px;
+      gap:16px;
+    }
+
+    .service-tile {
+      position:relative;
+      overflow:hidden;
+      border-radius:28px;
+      border:1px solid rgba(194,161,90,.18);
+      background:#111;
+      transition:.45s ease;
+    }
+
+    .service-tile:hover {
+      transform:translateY(-7px);
+      border-color:var(--gold);
+      box-shadow:0 30px 80px rgba(0,0,0,.48);
+    }
+
+    .service-tile img {
+      height:100%;
+      object-fit:cover;
+      opacity:.76;
+      transition:.9s ease;
+    }
+
+    .service-tile:hover img {
+      transform:scale(1.08);
+      opacity:1;
+    }
+
+    .service-tile::after {
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.84));
+    }
+
+    .service-tile.big {
+      grid-column:span 2;
+      grid-row:span 2;
+    }
+
+    .service-tile.wide {
+      grid-column:span 2;
+    }
+
+    .service-tile.tall {
+      grid-row:span 2;
+    }
+
+    .tile-content {
+      position:absolute;
+      inset:0;
+      z-index:2;
+      padding:24px;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+    }
+
+    .tile-label {
+      color:var(--gold);
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:2px;
+      text-transform:uppercase;
+      margin-bottom:8px;
+    }
+
+    .service-tile h3 {
+      font-size:clamp(24px,3vw,48px);
+      line-height:.92;
+      letter-spacing:-1.6px;
+      text-transform:uppercase;
+    }
+
+    .service-tile p {
+      color:rgba(245,245,243,.72);
+      line-height:1.5;
+      margin-top:12px;
+      max-width:520px;
+      font-size:15px;
+    }
+
+    .gold-tile {
+      background:var(--gold);
+      color:#080808;
+    }
+
+    .gold-tile::after { display:none; }
+
+    .gold-tile .tile-label,
+    .gold-tile p {
+      color:#080808;
+    }
+
+    .decision {
+      background:var(--cream);
+      color:#080808;
+    }
+
+    .decision-wrap {
+      max-width:1220px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:.85fr 1.15fr;
+      gap:38px;
+      align-items:center;
+    }
+
+    .decision h2 {
+      color:var(--green);
+      font-size:clamp(42px,7vw,94px);
+      line-height:.88;
+      letter-spacing:-4px;
+      text-transform:uppercase;
+    }
+
+    .decision-list {
+      display:grid;
+      gap:14px;
+    }
+
+    .decision-list div {
+      background:#080808;
+      color:var(--cream);
+      border-radius:24px;
+      padding:24px;
+      border:1px solid rgba(194,161,90,.25);
+      box-shadow:0 20px 50px rgba(0,0,0,.12);
+    }
+
+    .decision-list strong {
+      display:block;
+      color:var(--gold);
+      text-transform:uppercase;
+      letter-spacing:1.4px;
+      font-size:13px;
+      margin-bottom:8px;
+    }
+
+    .decision-list span {
+      color:rgba(245,245,243,.72);
+      line-height:1.55;
+    }
+
+    .pricing-note {
+      background:
+        radial-gradient(circle at top right, rgba(194,161,90,.14), transparent 34%),
+        #080808;
+    }
+
+    .note-wrap {
+      max-width:1220px;
+      margin:0 auto;
+      border:1px solid rgba(194,161,90,.34);
+      border-radius:34px;
+      padding:38px;
+      background:
+        radial-gradient(circle at top left, rgba(194,161,90,.16), transparent 34%),
+        linear-gradient(145deg, rgba(31,61,43,.72), rgba(8,8,8,.98));
+      box-shadow:0 35px 90px rgba(0,0,0,.32);
+      display:grid;
+      grid-template-columns:.85fr 1.15fr;
+      gap:34px;
+      align-items:center;
+    }
+
+    .note-wrap h2 {
+      font-size:clamp(38px,6vw,76px);
+      line-height:.88;
+      letter-spacing:-3px;
+      text-transform:uppercase;
+    }
+
+    .note-wrap p {
+      color:rgba(245,245,243,.74);
+      font-size:18px;
+      line-height:1.65;
+      margin-bottom:18px;
+    }
+
+    .mini-cards {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+      margin-top:22px;
+    }
+
+    .mini-card {
+      border:1px solid rgba(245,245,243,.14);
+      border-radius:22px;
+      padding:20px;
+      background:rgba(255,255,255,.04);
+      color:rgba(245,245,243,.72);
+      line-height:1.5;
+    }
+
+    .mini-card strong {
+      display:block;
+      color:var(--gold);
+      margin-bottom:8px;
+      text-transform:uppercase;
+      letter-spacing:1.2px;
+      font-size:12px;
+    }
+
+    .service-index {
+      background:#050505;
+    }
+
+    .index-grid {
+      max-width:1220px;
+      margin:auto;
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:16px;
+    }
+
+    .index-card {
+      border:1px solid rgba(194,161,90,.22);
+      border-radius:28px;
+      padding:28px;
+      background:rgba(255,255,255,.035);
+      min-height:260px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      transition:.35s ease;
+    }
+
+    .index-card:hover {
+      transform:translateY(-6px);
+      border-color:var(--gold);
+      box-shadow:0 25px 70px rgba(0,0,0,.38);
+    }
+
+    .index-card strong {
+      color:var(--gold);
+      font-size:13px;
+      text-transform:uppercase;
+      letter-spacing:1.7px;
+    }
+
+    .index-card h3 {
+      font-size:34px;
+      line-height:.95;
+      text-transform:uppercase;
+      letter-spacing:-1.4px;
+      margin:18px 0 12px;
+    }
+
+    .index-card p {
+      color:rgba(245,245,243,.68);
+      line-height:1.6;
+      margin-bottom:18px;
+    }
+
+    .index-card a {
+      color:var(--gold);
+      font-size:12px;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:1.4px;
+    }
+
+    .cta {
+      min-height:78vh;
+      display:grid;
+      place-items:center;
+      text-align:center;
+      background:
+        linear-gradient(rgba(0,0,0,.68), rgba(0,0,0,.92)),
+        url("https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/2FE078A20D0C4561EDE113B33CCD5864_1777017079.jpg?width=2400&optimize=medium");
+      background-size:cover;
+      background-position:center;
+    }
+
+    .cta h2 {
+      font-size:clamp(52px,9vw,124px);
+      line-height:.82;
+      letter-spacing:-6px;
+      text-transform:uppercase;
+      margin-bottom:26px;
+    }
+
+    .cta p {
+      color:rgba(245,245,243,.74);
+      font-size:20px;
+      max-width:760px;
+      margin:0 auto 32px;
+      line-height:1.55;
+    }
+
+    .vanish {
+      display:inline-block;
+    }
+
+    @keyframes serviceFlicker {
+      0%, 56% { opacity:1; filter:none; }
+      58% { opacity:.15; filter:blur(1px); }
+      60% { opacity:1; filter:none; }
+      62% { opacity:.08; filter:blur(2px); }
+      64% { opacity:1; filter:none; }
+      68%, 82% { opacity:0; filter:blur(4px); }
+      86% { opacity:.12; filter:blur(2px); }
+      88% { opacity:1; filter:none; }
+      90% { opacity:.2; filter:blur(1px); }
+      92%, 100% { opacity:1; filter:none; }
+    }
+
+    .service-easter .vanish {
+      animation:serviceFlicker 9s infinite;
+    }
+
+    footer {
+      padding:34px 5vw;
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      color:rgba(245,245,243,.45);
+      font-size:13px;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+
+    .reveal {
+      opacity:0;
+      transform:translateY(34px);
+      transition:1s ease;
+    }
+
+    .reveal.visible {
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    @media (max-width:1080px) {
+      .nav-links {
+        gap:14px;
+        font-size:11px;
+      }
+    }
+
+    @media (max-width:980px) {
+      .nav-links { display:none; }
+
+      .hero {
+        min-height:auto;
+        padding:130px 5vw 70px;
+      }
+
+      h1,
+      .cta h2 {
+        letter-spacing:-3px;
+      }
+
+      .intro-wrap,
+      .section-head,
+      .decision-wrap,
+      .note-wrap {
+        grid-template-columns:1fr;
+      }
+
+      .bento {
+        grid-template-columns:1fr;
+        grid-auto-rows:310px;
+      }
+
+      .service-tile.big,
+      .service-tile.wide,
+      .service-tile.tall {
+        grid-column:span 1;
+        grid-row:span 1;
+      }
+
+      .mini-cards,
+      .index-grid {
+        grid-template-columns:1fr;
+      }
+
+      section {
+        padding:80px 5vw;
+      }
+
+      footer { flex-direction:column; }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="nav">
-  <a href="../">Vista Venture Co.</a>
-  <div>
-    <a href="../gallery/">Gallery</a>
-    <a href="../contact/">Contact</a>
-  </div>
-</div>
+  <nav class="nav">
+    <a class="logo" href="../">Vista Venture Co.</a>
 
-<!-- HERO -->
-<section class="hero">
-  <div>
-    <h1>Services built around how you sell.</h1>
-  </div>
-</section>
+    <div class="nav-links">
+      <a href="../services/">Services</a>
+      <a href="../gallery/">Gallery</a>
+      <a href="../web-design/">Web Design</a>
+      <a href="../about/">About</a>
+      <a href="../contact/">Contact</a>
+      <a class="nav-cta" href="../start/">Start Here</a>
+    </div>
+  </nav>
 
-<!-- INTRO -->
-<section class="section">
-  <div class="intro">
-    Every business needs something different. A listing needs clarity. A restaurant needs atmosphere. 
-    A vehicle needs transparency. The goal is always the same — make what you offer easier to understand and more worth choosing.
-  </div>
+  <header class="hero">
+    <div>
+      <div class="eyebrow">Services</div>
+      <h1>Everything you need to look worth choosing.</h1>
+      <p>
+        Photo, video, drone, 360 walkthroughs, business content, portraits, construction progress,
+        land media, vehicle media, and websites — built to help people understand, trust, and choose what you offer.
+      </p>
 
-  <div class="grid">
-
-    <a href="../real-estate/" class="card">
-      <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/house%20front_1777017044.jpg?width=1200">
-      <div class="card-content">
-        <h3>Real Estate</h3>
-        <p>Photos, drone, and walkthroughs</p>
+      <div class="btns">
+        <a class="btn gold" href="../start/">Start Here</a>
+        <a class="btn outline" href="../gallery/">View Work</a>
       </div>
-    </a>
+    </div>
+  </header>
 
-    <a href="../vehicle-media/" class="card">
-      <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/DSC05783_1776649504.jpg?width=2400&optimize=medium">
-      <div class="card-content">
-        <h3>Vehicles</h3>
-        <p>360 tours and listing visuals</p>
+  <section class="intro">
+    <div class="intro-wrap reveal">
+      <div>
+        <div class="eyebrow">How This Works</div>
+        <h2>Different services. One goal.</h2>
       </div>
-    </a>
 
-    <a href="../business-content/" class="card">
-      <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/zzfood_1777017040.jpg?width=2400&optimize=medium">
-      <div class="card-content">
-        <h3>Business Content</h3>
-        <p>Restaurants, brands, and marketing visuals</p>
+      <div>
+        <p>
+          A house needs clarity. A restaurant needs atmosphere. A vehicle needs trust.
+          A construction project needs progress documentation. A website needs to make the business feel established.
+        </p>
+
+        <p>
+          Every service is built around the same idea: better presentation helps people make better decisions faster.
+        </p>
       </div>
-    </a>
+    </div>
+  </section>
 
-    <a href="../event-coverage/" class="card">
-      <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/Crowd%204_1777017095.jpg?width=2400&optimize=medium">
-      <div class="card-content">
-        <h3>Events</h3>
-        <p>Capture moments and energy</p>
+  <section>
+    <div class="section-head reveal">
+      <h2>Choose the service that fits the project.</h2>
+      <p>
+        Explore the main services below. If you are not sure what you need, use the guided Start Here page and we can figure out the best approach.
+      </p>
+    </div>
+
+    <div class="bento reveal">
+      <a class="service-tile big" href="../real-estate/">
+        <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/house%20front_1777017044.jpg?width=2400&optimize=medium" alt="Real estate media">
+        <div class="tile-content">
+          <div class="tile-label">Real Estate</div>
+          <h3>Listings that feel complete.</h3>
+          <p>HDR photos, drone, 360 walkthroughs, and full listing presentation.</p>
+        </div>
+      </a>
+
+      <a class="service-tile tall" href="../land-acreage/">
+        <img src="https://cdn.myportfolio.com/6548b179-e775-4fd6-82d3-1c416ff2f000/b7b5bc59-eaed-46dc-955b-ede949e3b546_rw_1920.jpg?h=cef9277274ba929657b63af996dfe13b" alt="Land and acreage media">
+        <div class="tile-content">
+          <div class="tile-label">Land + Acreage</div>
+          <h3>Show scale and boundaries.</h3>
+          <p>Drone-heavy land media, boundary overlays, and flyovers.</p>
+        </div>
+      </a>
+
+      <a class="service-tile" href="../vehicle-media/">
+        <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/DSC05783_1776649504.jpg?width=2400&optimize=medium" alt="Vehicle media">
+        <div class="tile-content">
+          <div class="tile-label">Vehicles</div>
+          <h3>Digital showroom.</h3>
+          <p>Vehicle photos, inventory media, and 360 presentation.</p>
+        </div>
+      </a>
+
+      <a class="service-tile wide" href="../business-content/">
+        <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/zzfood_1777017040.jpg?width=2400&optimize=medium" alt="Business content">
+        <div class="tile-content">
+          <div class="tile-label">Business Content</div>
+          <h3>Make the business feel worth visiting.</h3>
+          <p>Food, brand, restaurant, website, and marketing visuals.</p>
+        </div>
+      </a>
+
+      <a class="service-tile" href="../construction-progress/">
+        <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/zzzc1_1777066364.jpg?width=2400&optimize=medium" alt="Construction progress">
+        <div class="tile-content">
+          <div class="tile-label">Construction</div>
+          <h3>Progress from above.</h3>
+          <p>Drone progress media for builders, developers, and projects.</p>
+        </div>
+      </a>
+
+      <a class="service-tile" href="../event-coverage/">
+        <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/Crowd%204_1777017095.jpg?width=2400&optimize=medium" alt="Event coverage">
+        <div class="tile-content">
+          <div class="tile-label">Events</div>
+          <h3>Capture what only happens once.</h3>
+          <p>Photo and video coverage for moments, energy, and promotion.</p>
+        </div>
+      </a>
+
+      <a class="service-tile" href="../portrait-photography/">
+        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=1600&auto=format&fit=crop" alt="Portrait photography">
+        <div class="tile-content">
+          <div class="tile-label">Portraits</div>
+          <h3>Natural, clean, usable.</h3>
+          <p>Headshots, families, branding, couples, and personal images.</p>
+        </div>
+      </a>
+
+      <a class="service-tile gold-tile" href="../web-design/">
+        <div class="tile-content">
+          <div class="tile-label">Web Design</div>
+          <h3>Websites that look established.</h3>
+          <p>Custom-coded websites for local businesses, restaurants, real estate, and brands.</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section class="decision">
+    <div class="decision-wrap reveal">
+      <div>
+        <div class="eyebrow">Not Sure What You Need?</div>
+        <h2>Start with the goal, not the service.</h2>
       </div>
-    </a>
 
-    <a href="../construction-progress/" class="card">
-      <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/zzzc1_1777066364.jpg?width=2400&optimize=medium">
-      <div class="card-content">
-        <h3>Construction</h3>
-        <p>Track and document progress</p>
+      <div class="decision-list">
+        <div>
+          <strong>If you need to sell something</strong>
+          <span>Real estate, land, vehicles, and product-based projects need clarity, trust, and enough visual information to reduce hesitation.</span>
+        </div>
+
+        <div>
+          <strong>If you need to look more professional</strong>
+          <span>Business content, portraits, and web design help you show up stronger before someone ever reaches out.</span>
+        </div>
+
+        <div>
+          <strong>If you need to document something</strong>
+          <span>Events and construction progress need coverage that preserves the moment, the timeline, or the project story.</span>
+        </div>
+
+        <div>
+          <strong>If you need everything to work together</strong>
+          <span>Photo, video, drone, 360, and websites can be combined so your online presence feels consistent.</span>
+        </div>
       </div>
-    </a>
+    </div>
+  </section>
 
-    <a href="../portraits/" class="card">
-      <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/mattie_1777072975.jpg?width=2400&optimize=medium">
-      <div class="card-content">
-        <h3>Portraits</h3>
-        <p>Clean professional images</p>
+  <section class="pricing-note">
+    <div class="note-wrap reveal">
+      <div>
+        <div class="eyebrow">Transparent + Flexible</div>
+        <h2>Clear pricing, but real projects are not always one-size-fits-all.</h2>
       </div>
-    </a>
 
-    <a href="../web-design/" class="card">
-      <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/zzfood_1777017040.jpg?width=2400&optimize=medium">
-      <div class="card-content">
-        <h3>Web Design</h3>
-        <p>Modern websites that convert</p>
+      <div>
+        <p>
+          I like transparent pricing because people should not feel confused before they even ask.
+          Most service pages include starting points or package pricing so you have a real idea of what to expect.
+        </p>
+
+        <p>
+          At the same time, every project is different. If you are serious about improving how your business, listing,
+          event, or project shows up, I am open to talking through the best way to make it work.
+        </p>
+
+        <div class="mini-cards">
+          <div class="mini-card">
+            <strong>Clear</strong>
+            Starting prices where possible.
+          </div>
+
+          <div class="mini-card">
+            <strong>Flexible</strong>
+            Scoped around the real need.
+          </div>
+
+          <div class="mini-card">
+            <strong>Useful</strong>
+            Built to help you actually use the media.
+          </div>
+        </div>
       </div>
-    </a>
+    </div>
+  </section>
 
-  </div>
-</section>
+  <section class="service-index">
+    <div class="section-head reveal">
+      <h2>Quick service guide.</h2>
+      <p>
+        A simple breakdown of what each service is best for.
+      </p>
+    </div>
 
-<!-- WHY -->
-<section class="section">
-  <div class="why">
-    <h2>It’s not just visuals. It’s presentation.</h2>
-    <p>
-      Better presentation leads to better understanding. Better understanding builds confidence. 
-      And confidence is what makes someone choose your business over someone else.
-    </p>
-  </div>
-</section>
+    <div class="index-grid reveal">
+      <div class="index-card">
+        <div>
+          <strong>Real Estate</strong>
+          <h3>Homes, listings, rentals, and walkthroughs.</h3>
+          <p>Best for agents, sellers, builders, and property owners who need complete listing media.</p>
+        </div>
+        <a href="../real-estate/">View Real Estate →</a>
+      </div>
 
-<!-- CTA -->
-<section class="cta">
-  <h2>Not sure what you need?</h2>
-  <p>Reach out and we can figure out the best setup for your project.</p>
-  <a href="../contact/" class="btn">Contact Us</a>
-</section>
+      <div class="index-card">
+        <div>
+          <strong>Land + Acreage</strong>
+          <h3>Drone-first media for property scale.</h3>
+          <p>Best for land, acreage, farms, lots, recreational property, and boundary overlays.</p>
+        </div>
+        <a href="../land-acreage/">View Land →</a>
+      </div>
+
+      <div class="index-card">
+        <div>
+          <strong>Business Content</strong>
+          <h3>Food, brand, and marketing visuals.</h3>
+          <p>Best for restaurants, service businesses, local brands, websites, social media, and ads.</p>
+        </div>
+        <a href="../business-content/">View Business Content →</a>
+      </div>
+
+      <div class="index-card">
+        <div>
+          <strong>Vehicle Media</strong>
+          <h3>Inventory that feels more trustworthy.</h3>
+          <p>Best for dealerships, RVs, boats, private sellers, and digital showroom presentation.</p>
+        </div>
+        <a href="../vehicle-media/">View Vehicles →</a>
+      </div>
+
+      <div class="index-card">
+        <div>
+          <strong>Construction</strong>
+          <h3>Progress updates and documentation.</h3>
+          <p>Best for builders, developers, contractors, commercial projects, and recurring site coverage.</p>
+        </div>
+        <a href="../construction-progress/">View Construction →</a>
+      </div>
+
+      <div class="index-card">
+        <div>
+          <strong>Events</strong>
+          <h3>Moments, energy, and recap media.</h3>
+          <p>Best for private events, business events, brand activations, and live experiences.</p>
+        </div>
+        <a href="../event-coverage/">View Events →</a>
+      </div>
+
+      <div class="index-card">
+        <div>
+          <strong>Portraits</strong>
+          <h3>Natural images people actually use.</h3>
+          <p>Best for headshots, families, couples, personal branding, and social/profile images.</p>
+        </div>
+        <a href="../portrait-photography/">View Portraits →</a>
+      </div>
+
+      <div class="index-card">
+        <div>
+          <strong>Web Design</strong>
+          <h3>Websites that make you look established.</h3>
+          <p>Best for local businesses that need a strong online presence and clear path to contact.</p>
+        </div>
+        <a href="../web-design/">View Web Design →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="reveal service-easter">
+      <div class="eyebrow">Start the Project</div>
+      <h2>Make it <span class="vanish">look</span> worth choosing.</h2>
+      <p>
+        When the word disappears, the meaning still works. That is the point — the work should be strong enough to be worth choosing, not just worth looking at.
+      </p>
+
+      <div class="btns" style="justify-content:center;">
+        <a class="btn gold" href="../start/">Start Here</a>
+        <a class="btn outline" href="tel:4793268775">Call 479-326-8775</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div>© 2026 Vista Venture Co. · Northwest Arkansas</div>
+    <div>Photo · Video · Drone · 360 · Web Design</div>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.16 });
+
+    reveals.forEach(el => observer.observe(el));
+  </script>
 
 </body>
 </html>
