@@ -305,13 +305,13 @@
     }
 
     .bento {
-      max-width:1380px;
-      margin:0 auto;
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      grid-auto-rows:220px;
-      gap:16px;
-    }
+  max-width:1380px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  grid-auto-rows:minmax(260px, auto);
+  gap:16px;
+}
 
     .tile {
       position:relative;
@@ -367,7 +367,7 @@
     }
 
     .tile h3 {
-      font-size:clamp(24px,3vw,46px);
+  font-size:clamp(24px,2.65vw,42px);
       line-height:.95;
       text-transform:uppercase;
       letter-spacing:-1.5px;
@@ -511,8 +511,7 @@
       min-height:420px;
       background:
         linear-gradient(rgba(0,0,0,.22), rgba(0,0,0,.88)),
-        url("https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/zzfood_1777017040.jpg?width=2400&optimize=medium");
-      background-size:cover;
+url("https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=2400&auto=format&fit=crop");      background-size:cover;
       background-position:center;
       display:flex;
       align-items:end;
@@ -735,6 +734,52 @@
 
       footer { flex-direction:column; }
     }
+    .choice-egg {
+  overflow:visible;
+}
+
+.swap-wrap {
+  display:inline-grid;
+  position:relative;
+  vertical-align:baseline;
+  min-width:7.5em;
+}
+
+.swap-line {
+  grid-area:1 / 1;
+  display:inline-block;
+  transition:
+    opacity .7s ease,
+    transform .7s ease,
+    filter .7s ease;
+}
+
+.choice-line {
+  opacity:0;
+  transform:translateY(22px);
+  filter:blur(8px);
+  color:var(--gold);
+}
+
+.choice-egg:hover .business-line,
+.choice-egg.swap-active .business-line {
+  opacity:0;
+  transform:translateY(-22px);
+  filter:blur(8px);
+}
+
+.choice-egg:hover .choice-line,
+.choice-egg.swap-active .choice-line {
+  opacity:1;
+  transform:translateY(0);
+  filter:blur(0);
+}
+
+@media (max-width:980px) {
+  .swap-wrap {
+    min-width:6.4em;
+  }
+}
   </style>
 </head>
 
@@ -1067,8 +1112,13 @@
     <div class="reveal">
       <div class="eyebrow">Now Booking</div>
 
-      <h2>Make your business easier to choose.</h2>
-
+<h2 class="choice-egg">
+  Make your 
+  <span class="swap-wrap">
+    <span class="swap-line business-line">business easier to choose</span>
+    <span class="swap-line choice-line">choice</span>
+  </span>.
+</h2>
       <p>
         Start with what you know you need — or use the guided form and I’ll help you figure out the right direction.
       </p>
@@ -1097,6 +1147,19 @@
     }, { threshold: 0.16 });
 
     reveals.forEach(el => observer.observe(el));
+    const choiceEgg = document.querySelector('.choice-egg');
+
+function runChoiceEgg() {
+  if (!choiceEgg) return;
+
+  choiceEgg.classList.add('swap-active');
+
+  setTimeout(() => {
+    choiceEgg.classList.remove('swap-active');
+  }, 3000);
+}
+
+setInterval(runChoiceEgg, 9000);
   </script>
 
 </body>
