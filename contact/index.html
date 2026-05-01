@@ -493,6 +493,68 @@
 
       footer { flex-direction:column; }
     }
+    .faq {
+  padding:100px 5vw;
+  background:#080808;
+}
+
+.faq-wrap {
+  max-width:1100px;
+  margin:0 auto;
+}
+
+.faq-header h2 {
+  font-size:clamp(40px,6vw,80px);
+  line-height:.9;
+  letter-spacing:-3px;
+  margin-bottom:20px;
+}
+
+.faq-header p {
+  color:rgba(255,255,255,.7);
+  max-width:600px;
+  margin-bottom:50px;
+}
+
+.faq-grid {
+  display:grid;
+  gap:12px;
+}
+
+.faq-item {
+  border:1px solid rgba(194,161,90,.25);
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.faq-item button {
+  width:100%;
+  text-align:left;
+  padding:20px;
+  background:none;
+  border:none;
+  color:white;
+  font-size:16px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.faq-item button:hover {
+  color:#C2A15A;
+}
+
+.answer {
+  max-height:0;
+  overflow:hidden;
+  transition:.3s ease;
+  padding:0 20px;
+  color:rgba(255,255,255,.7);
+}
+
+.faq-item.active .answer {
+  max-height:200px;
+  padding:0 20px 20px;
+}
   </style>
 </head>
 
@@ -720,7 +782,84 @@
       </div>
     </div>
   </section>
+<section class="faq">
+  <div class="faq-wrap">
 
+    <div class="faq-header">
+      <div class="eyebrow">FAQ</div>
+      <h2>Clear answers before you ask.</h2>
+      <p>
+        Most people have the same questions before reaching out.
+        Here are the answers so you can move forward confidently.
+      </p>
+    </div>
+
+    <div class="faq-grid">
+
+      <div class="faq-item">
+        <button>
+          How much does this cost?
+        </button>
+        <div class="answer">
+          Pricing depends on what you need, but I keep everything clear and straightforward.
+          You can see starting prices on service pages, and I’m always open to working within
+          what makes sense for your project.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button>
+          Do I need everything or can I start small?
+        </button>
+        <div class="answer">
+          You can absolutely start small. A lot of people begin with basic photos or a simple package,
+          then build from there. The goal is to get you something useful first.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button>
+          How fast is turnaround?
+        </button>
+        <div class="answer">
+          Most projects are delivered within 24–72 hours depending on the scope.
+          If you need something faster, just ask — I can usually accommodate.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button>
+          What areas do you serve?
+        </button>
+        <div class="answer">
+          Northwest Arkansas is the main focus, but I’m open to travel depending on the project.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button>
+          What if I’m not sure what I need?
+        </button>
+        <div class="answer">
+          That’s completely normal. Use the “Start Here” form and I’ll help you figure out
+          the best approach based on your goals.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button>
+          Why not just use my phone or cheaper photos?
+        </button>
+        <div class="answer">
+          You can — but most people are making decisions online now.
+          Better presentation helps people understand faster, trust what they’re seeing,
+          and feel more confident choosing you.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
   <footer>
     <div>© 2026 Vista Venture Co. · Northwest Arkansas</div>
     <div>Photo · Video · Drone · 360 · Web Design</div>
@@ -761,5 +900,14 @@ form.addEventListener("submit", async function(e) {
   }
 });
 </script>
+<script>
+document.querySelectorAll('.faq-item button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.parentElement;
+    item.classList.toggle('active');
+  });
+});
+</script>
+
 </body>
 </html>
