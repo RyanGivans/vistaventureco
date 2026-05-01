@@ -1,196 +1,1020 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>Case Studies | Vista Venture Co.</title>
+  <title>Case Studies | Vista Venture Co.</title>
 
-<style>
-:root{
-  --black:#050505;
-  --green:#1F3D2B;
-  --gold:#C2A15A;
-  --cream:#F5F5F3;
-}
+  <style>
+    :root {
+      --black:#050505;
+      --green:#1F3D2B;
+      --gold:#C2A15A;
+      --cream:#F5F5F3;
+      --muted:rgba(245,245,243,.68);
+    }
 
-body{
-  margin:0;
-  background:var(--black);
-  color:var(--cream);
-  font-family:Arial, Helvetica, sans-serif;
-}
+    * { margin:0; padding:0; box-sizing:border-box; }
 
-/* NAV */
-.nav{
-  position:fixed;
-  width:100%;
-  padding:20px 5vw;
-  display:flex;
-  justify-content:space-between;
-  background:rgba(0,0,0,.6);
-  backdrop-filter:blur(10px);
-}
+    body {
+      background:var(--black);
+      color:var(--cream);
+      font-family:Arial, Helvetica, sans-serif;
+      overflow-x:hidden;
+    }
 
-.logo{font-weight:900; letter-spacing:2px;}
-.nav a{margin-left:20px; font-size:12px;}
+    a { color:inherit; text-decoration:none; }
+    img { width:100%; display:block; }
 
-/* HERO */
-.hero{
-  min-height:80vh;
-  display:flex;
-  align-items:end;
-  padding:140px 5vw 80px;
-}
+    .nav {
+      position:fixed;
+      top:0;
+      width:100%;
+      z-index:1000;
+      padding:22px 5vw;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      background:rgba(5,5,5,.70);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
 
-.hero h1{
-  font-size:clamp(60px,10vw,130px);
-  line-height:.8;
-}
+    .logo {
+      font-size:13px;
+      font-weight:900;
+      letter-spacing:3px;
+      text-transform:uppercase;
+    }
 
-.hero p{
-  max-width:600px;
-  margin-top:20px;
-  color:rgba(255,255,255,.7);
-}
+    .nav-links {
+      display:flex;
+      gap:22px;
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:1.3px;
+      text-transform:uppercase;
+      color:rgba(245,245,243,.72);
+      align-items:center;
+    }
 
-/* SECTION */
-section{padding:100px 5vw;}
+    .nav-links a:hover { color:var(--gold); }
 
-.case{
-  max-width:1200px;
-  margin:0 auto 100px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:40px;
-  align-items:center;
-}
+    .nav-cta {
+      border:1px solid rgba(194,161,90,.5);
+      color:var(--gold);
+      border-radius:999px;
+      padding:9px 13px;
+    }
 
-.case img{
-  width:100%;
-  border-radius:20px;
-}
+    .hero {
+      min-height:94vh;
+      padding:140px 5vw 80px;
+      display:flex;
+      align-items:end;
+      position:relative;
+      overflow:hidden;
+    }
 
-.case h3{
-  font-size:40px;
-}
+    .hero::before {
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(90deg, rgba(5,5,5,.96), rgba(5,5,5,.42), rgba(5,5,5,.92)),
+        linear-gradient(180deg, rgba(5,5,5,.10), rgba(5,5,5,.96)),
+        url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=2400&auto=format&fit=crop");
+      background-size:cover;
+      background-position:center;
+      transform:scale(1.02);
+      z-index:-2;
+    }
 
-.label{
-  color:var(--gold);
-  text-transform:uppercase;
-  font-size:12px;
-  letter-spacing:2px;
-  margin-bottom:10px;
-}
+    .hero::after {
+      content:"";
+      position:absolute;
+      inset:0;
+      background-image:radial-gradient(rgba(255,255,255,.08) 1px, transparent 1px);
+      background-size:4px 4px;
+      opacity:.10;
+      z-index:-1;
+      pointer-events:none;
+    }
 
-/* CTA */
-.cta{
-  text-align:center;
-  padding:120px 5vw;
-}
+    .eyebrow {
+      color:var(--gold);
+      text-transform:uppercase;
+      letter-spacing:3px;
+      font-size:12px;
+      font-weight:900;
+      margin-bottom:18px;
+    }
 
-.cta h2{
-  font-size:clamp(50px,8vw,120px);
-}
+    h1 {
+      font-size:clamp(54px,10vw,138px);
+      line-height:.82;
+      letter-spacing:-7px;
+      text-transform:uppercase;
+      max-width:1180px;
+    }
 
-/* MOBILE */
-@media(max-width:900px){
-  .case{
-    grid-template-columns:1fr;
-  }
-}
-</style>
+    .hero p {
+      margin-top:28px;
+      max-width:820px;
+      color:rgba(245,245,243,.80);
+      font-size:clamp(18px,2vw,24px);
+      line-height:1.5;
+    }
+
+    .btns {
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-top:30px;
+    }
+
+    .btn {
+      display:inline-flex;
+      justify-content:center;
+      align-items:center;
+      padding:15px 24px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:1.5px;
+      transition:.3s ease;
+      white-space:nowrap;
+    }
+
+    .btn.gold {
+      background:var(--gold);
+      color:#080808;
+    }
+
+    .btn.outline {
+      border:1px solid rgba(245,245,243,.38);
+      color:var(--cream);
+    }
+
+    .btn:hover { transform:translateY(-3px); }
+
+    section { padding:105px 5vw; }
+
+    .intro {
+      background:var(--cream);
+      color:#080808;
+    }
+
+    .intro-wrap {
+      max-width:1220px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:42px;
+      align-items:center;
+    }
+
+    .intro h2 {
+      color:var(--green);
+      font-size:clamp(42px,7vw,94px);
+      line-height:.88;
+      letter-spacing:-4px;
+      text-transform:uppercase;
+    }
+
+    .intro p {
+      color:#444;
+      font-size:18px;
+      line-height:1.75;
+      margin-bottom:18px;
+    }
+
+    .section-head {
+      max-width:1220px;
+      margin:0 auto 54px;
+      display:grid;
+      grid-template-columns:1fr .8fr;
+      gap:40px;
+      align-items:end;
+    }
+
+    .section-head h2 {
+      font-size:clamp(42px,7vw,94px);
+      line-height:.88;
+      letter-spacing:-4px;
+      text-transform:uppercase;
+    }
+
+    .section-head p {
+      color:var(--muted);
+      font-size:18px;
+      line-height:1.65;
+    }
+
+    .case-feature {
+      background:#050505;
+    }
+
+    .case-grid {
+      max-width:1380px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:18px;
+      align-items:stretch;
+    }
+
+    .case-visual {
+      position:relative;
+      min-height:620px;
+      border-radius:34px;
+      overflow:hidden;
+      border:1px solid rgba(194,161,90,.22);
+      background:#111;
+      box-shadow:0 35px 90px rgba(0,0,0,.30);
+    }
+
+    .case-visual img {
+      height:100%;
+      object-fit:cover;
+      opacity:.82;
+      transition:.9s ease;
+    }
+
+    .case-visual:hover img {
+      transform:scale(1.06);
+      opacity:1;
+    }
+
+    .case-visual::after {
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, transparent, rgba(0,0,0,.85));
+    }
+
+    .case-visual-content {
+      position:absolute;
+      left:34px;
+      right:34px;
+      bottom:32px;
+      z-index:2;
+    }
+
+    .case-visual-content h3 {
+      font-size:clamp(38px,6vw,84px);
+      line-height:.86;
+      letter-spacing:-3px;
+      text-transform:uppercase;
+      margin-bottom:16px;
+    }
+
+    .case-visual-content p {
+      color:rgba(245,245,243,.72);
+      font-size:18px;
+      line-height:1.55;
+      max-width:720px;
+    }
+
+    .case-details {
+      border:1px solid rgba(194,161,90,.22);
+      border-radius:34px;
+      padding:34px;
+      background:
+        radial-gradient(circle at top right, rgba(194,161,90,.14), transparent 34%),
+        linear-gradient(145deg, rgba(31,61,43,.72), rgba(8,8,8,.98));
+      box-shadow:0 35px 90px rgba(0,0,0,.30);
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:24px;
+    }
+
+    .case-details h3 {
+      font-size:clamp(34px,5vw,68px);
+      line-height:.9;
+      letter-spacing:-2.5px;
+      text-transform:uppercase;
+    }
+
+    .story-points {
+      display:grid;
+      gap:14px;
+    }
+
+    .story-point {
+      border:1px solid rgba(245,245,243,.13);
+      background:rgba(255,255,255,.04);
+      border-radius:24px;
+      padding:22px;
+    }
+
+    .story-point strong {
+      display:block;
+      color:var(--gold);
+      text-transform:uppercase;
+      letter-spacing:1.5px;
+      font-size:12px;
+      margin-bottom:8px;
+    }
+
+    .story-point span {
+      color:rgba(245,245,243,.72);
+      line-height:1.55;
+    }
+
+    .case-link {
+      color:var(--gold);
+      font-size:12px;
+      font-weight:900;
+      letter-spacing:1.5px;
+      text-transform:uppercase;
+    }
+
+    .case-list {
+      background:
+        radial-gradient(circle at top right, rgba(194,161,90,.12), transparent 34%),
+        #080808;
+    }
+
+    .story-grid {
+      max-width:1380px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+
+    .story-card {
+      border:1px solid rgba(194,161,90,.22);
+      border-radius:30px;
+      overflow:hidden;
+      background:rgba(255,255,255,.035);
+      min-height:620px;
+      display:flex;
+      flex-direction:column;
+      transition:.35s ease;
+    }
+
+    .story-card:hover {
+      transform:translateY(-7px);
+      border-color:var(--gold);
+      box-shadow:0 30px 80px rgba(0,0,0,.42);
+    }
+
+    .story-image {
+      height:260px;
+      position:relative;
+      overflow:hidden;
+      background:#111;
+    }
+
+    .story-image img {
+      height:100%;
+      object-fit:cover;
+      opacity:.84;
+      transition:.9s ease;
+    }
+
+    .story-card:hover .story-image img {
+      transform:scale(1.08);
+      opacity:1;
+    }
+
+    .story-image::after {
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, transparent, rgba(0,0,0,.72));
+    }
+
+    .story-content {
+      padding:28px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      flex:1;
+      gap:22px;
+    }
+
+    .story-content h3 {
+      font-size:32px;
+      line-height:.95;
+      letter-spacing:-1.4px;
+      text-transform:uppercase;
+      margin-bottom:12px;
+    }
+
+    .story-content p {
+      color:rgba(245,245,243,.68);
+      line-height:1.6;
+      font-size:16px;
+    }
+
+    .mini-points {
+      display:grid;
+      gap:10px;
+    }
+
+    .mini-points div {
+      border-left:2px solid rgba(194,161,90,.65);
+      padding-left:14px;
+      color:rgba(245,245,243,.72);
+      line-height:1.5;
+      font-size:15px;
+    }
+
+    .mini-points strong {
+      color:var(--gold);
+      text-transform:uppercase;
+      font-size:11px;
+      letter-spacing:1.2px;
+      margin-right:4px;
+    }
+
+    .why {
+      background:var(--cream);
+      color:#080808;
+    }
+
+    .why-wrap {
+      max-width:1220px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:.85fr 1.15fr;
+      gap:38px;
+      align-items:center;
+    }
+
+    .why h2 {
+      color:var(--green);
+      font-size:clamp(42px,7vw,94px);
+      line-height:.88;
+      letter-spacing:-4px;
+      text-transform:uppercase;
+    }
+
+    .why-list {
+      display:grid;
+      gap:14px;
+    }
+
+    .why-list div {
+      background:#080808;
+      color:var(--cream);
+      border-radius:24px;
+      padding:24px;
+      border:1px solid rgba(194,161,90,.25);
+      box-shadow:0 20px 50px rgba(0,0,0,.12);
+    }
+
+    .why-list strong {
+      display:block;
+      color:var(--gold);
+      text-transform:uppercase;
+      letter-spacing:1.4px;
+      font-size:13px;
+      margin-bottom:8px;
+    }
+
+    .why-list span {
+      color:rgba(245,245,243,.72);
+      line-height:1.55;
+    }
+
+    .category-links {
+      background:#050505;
+    }
+
+    .link-grid {
+      max-width:1220px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:14px;
+    }
+
+    .link-card {
+      background:rgba(255,255,255,.035);
+      color:var(--cream);
+      border-radius:24px;
+      padding:24px;
+      min-height:180px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      border:1px solid rgba(194,161,90,.22);
+      transition:.35s ease;
+    }
+
+    .link-card:hover {
+      transform:translateY(-6px);
+      border-color:var(--gold);
+      box-shadow:0 20px 60px rgba(0,0,0,.32);
+    }
+
+    .link-card strong {
+      color:var(--gold);
+      text-transform:uppercase;
+      letter-spacing:1.4px;
+      font-size:13px;
+    }
+
+    .link-card span {
+      color:rgba(245,245,243,.72);
+      line-height:1.55;
+      font-size:15px;
+    }
+
+    .cta {
+      min-height:78vh;
+      display:grid;
+      place-items:center;
+      text-align:center;
+      background:
+        linear-gradient(rgba(0,0,0,.68), rgba(0,0,0,.92)),
+        url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=2400&auto=format&fit=crop");
+      background-size:cover;
+      background-position:center;
+    }
+
+    .cta h2 {
+      font-size:clamp(52px,9vw,124px);
+      line-height:.82;
+      letter-spacing:-6px;
+      text-transform:uppercase;
+      margin-bottom:26px;
+    }
+
+    .cta p {
+      color:rgba(245,245,243,.74);
+      font-size:20px;
+      max-width:760px;
+      margin:0 auto 32px;
+      line-height:1.55;
+    }
+
+    .vanish {
+      display:inline-block;
+    }
+
+    @keyframes caseFlicker {
+      0%, 56% { opacity:1; filter:none; }
+      58% { opacity:.18; filter:blur(1px); }
+      60% { opacity:1; filter:none; }
+      62% { opacity:.08; filter:blur(2px); }
+      64% { opacity:1; filter:none; }
+      68%, 82% { opacity:0; filter:blur(4px); }
+      86% { opacity:.12; filter:blur(2px); }
+      88% { opacity:1; filter:none; }
+      90% { opacity:.2; filter:blur(1px); }
+      92%, 100% { opacity:1; filter:none; }
+    }
+
+    .case-easter .vanish {
+      animation:caseFlicker 9s infinite;
+    }
+
+    footer {
+      padding:34px 5vw;
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      color:rgba(245,245,243,.45);
+      font-size:13px;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+
+    .reveal {
+      opacity:0;
+      transform:translateY(34px);
+      transition:1s ease;
+    }
+
+    .reveal.visible {
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    @media (max-width:1080px) {
+      .nav-links {
+        gap:14px;
+        font-size:11px;
+      }
+    }
+
+    @media (max-width:980px) {
+      .nav-links { display:none; }
+
+      .hero {
+        min-height:auto;
+        padding:130px 5vw 70px;
+      }
+
+      h1,
+      .cta h2 {
+        letter-spacing:-3px;
+      }
+
+      .intro-wrap,
+      .section-head,
+      .case-grid,
+      .why-wrap {
+        grid-template-columns:1fr;
+      }
+
+      .case-visual {
+        min-height:460px;
+      }
+
+      .story-grid,
+      .link-grid {
+        grid-template-columns:1fr;
+      }
+
+      section {
+        padding:80px 5vw;
+      }
+
+      footer { flex-direction:column; }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="nav">
-  <div class="logo">Vista Venture Co.</div>
-  <div>
-    <a href="../">Home</a>
-    <a href="../services/">Services</a>
-    <a href="../contact/">Contact</a>
-  </div>
-</div>
+  <nav class="nav">
+    <a class="logo" href="../">Vista Venture Co.</a>
 
-<header class="hero">
-  <div>
-    <h1>Work that actually helps.</h1>
-    <p>
-      Real examples of how better presentation changes how people see,
-      understand, and choose what you offer.
-    </p>
-  </div>
-</header>
-
-<section>
-
-  <!-- REAL ESTATE -->
-  <div class="case">
-    <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=1200">
-    <div>
-      <div class="label">Real Estate</div>
-      <h3>Listing that feels clear</h3>
-      <p><strong>Problem:</strong> Photos did not show the full space.</p>
-      <p><strong>Work:</strong> HDR interior + drone + walkthrough.</p>
-      <p><strong>Result:</strong> Easier for buyers to understand before visiting.</p>
+    <div class="nav-links">
+      <a href="../services/">Services</a>
+      <a href="../gallery/">Gallery</a>
+      <a href="../case-studies/">Case Studies</a>
+      <a href="../web-design/">Web Design</a>
+      <a href="../about/">About</a>
+      <a href="../contact/">Contact</a>
+      <a class="nav-cta" href="../start/">Start Here</a>
     </div>
-  </div>
+  </nav>
 
-  <!-- LAND -->
-  <div class="case">
-    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1200">
+  <header class="hero">
     <div>
-      <div class="label">Land</div>
-      <h3>Property with no context</h3>
-      <p><strong>Problem:</strong> Buyers could not tell boundaries.</p>
-      <p><strong>Work:</strong> Drone + boundary overlay.</p>
-      <p><strong>Result:</strong> Clear understanding of layout and size.</p>
+      <div class="eyebrow">Case Studies</div>
+      <h1>Project stories that show the point.</h1>
+      <p>
+        These are not just portfolio images. Each project story shows the problem, the work, and the reason better presentation matters.
+      </p>
+
+      <div class="btns">
+        <a class="btn gold" href="../start/">Start a Project</a>
+        <a class="btn outline" href="../gallery/">View Gallery</a>
+      </div>
     </div>
-  </div>
+  </header>
 
-  <!-- VEHICLES -->
-  <div class="case">
-    <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=1200">
-    <div>
-      <div class="label">Vehicles</div>
-      <h3>Inventory that builds trust</h3>
-      <p><strong>Problem:</strong> Basic photos did not show detail.</p>
-      <p><strong>Work:</strong> Exterior + interior + 360.</p>
-      <p><strong>Result:</strong> Stronger online presentation.</p>
+  <section class="intro">
+    <div class="intro-wrap reveal">
+      <div>
+        <div class="eyebrow">Why Case Studies Matter</div>
+        <h2>People need to see how it helps.</h2>
+      </div>
+
+      <div>
+        <p>
+          A gallery shows what something looked like. A case study explains why it mattered.
+          That is the difference between showing pretty images and showing a business reason to hire you.
+        </p>
+
+        <p>
+          These project stories are designed to help potential clients imagine the same kind of improvement for their listing,
+          business, vehicle, event, construction project, or website.
+        </p>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <!-- BUSINESS -->
-  <div class="case">
-    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1200">
-    <div>
-      <div class="label">Restaurant</div>
-      <h3>Business that needed better visuals</h3>
-      <p><strong>Problem:</strong> Weak online presence.</p>
-      <p><strong>Work:</strong> Food + branding photos.</p>
-      <p><strong>Result:</strong> More appealing online presence.</p>
+  <section class="case-feature">
+    <div class="section-head reveal">
+      <h2>Featured project story.</h2>
+      <p>
+        Start with the clearest example: a project where better media gives people a stronger way to explore, understand, and trust what they are seeing.
+      </p>
     </div>
-  </div>
 
-  <!-- EVENTS -->
-  <div class="case">
-    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1200">
-    <div>
-      <div class="label">Events</div>
-      <h3>Moments captured properly</h3>
-      <p><strong>Problem:</strong> Event would be forgotten.</p>
-      <p><strong>Work:</strong> Photo + video coverage.</p>
-      <p><strong>Result:</strong> Content for future promotion.</p>
+    <div class="case-grid reveal">
+      <div class="case-visual">
+        <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=2400&auto=format&fit=crop" alt="RV and vehicle media case study">
+        <div class="case-visual-content">
+          <div class="eyebrow">Vehicle / RV 360</div>
+          <h3>Turning a listing into an experience.</h3>
+          <p>
+            Instead of relying on a handful of photos, the project gives buyers a cleaner way to explore the vehicle before they ever show up.
+          </p>
+        </div>
+      </div>
+
+      <div class="case-details">
+        <div>
+          <div class="eyebrow">Project Story</div>
+          <h3>More trust before the visit.</h3>
+        </div>
+
+        <div class="story-points">
+          <div class="story-point">
+            <strong>Problem</strong>
+            <span>Basic photos do not always help buyers understand layout, condition, or details well enough to feel confident.</span>
+          </div>
+
+          <div class="story-point">
+            <strong>Work</strong>
+            <span>Create a stronger digital presentation with interior/exterior media, detail coverage, and a 360-style walkthrough experience.</span>
+          </div>
+
+          <div class="story-point">
+            <strong>Result</strong>
+            <span>The listing feels more complete, easier to understand, and more trustworthy before someone visits in person.</span>
+          </div>
+        </div>
+
+        <a class="case-link" href="../vehicle-media/">View Vehicle Media →</a>
+      </div>
     </div>
-  </div>
+  </section>
 
-</section>
+  <section class="case-list">
+    <div class="section-head reveal">
+      <h2>More project stories.</h2>
+      <p>
+        These are placeholders for now. Later, you can swap in your real project images and make each one more specific.
+      </p>
+    </div>
 
-<section class="cta">
-  <h2>Make your project one of these.</h2>
-  <p>Start with what you need, and we’ll build the right approach.</p>
-</section>
+    <div class="story-grid reveal">
+
+      <div class="story-card">
+        <div class="story-image">
+          <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=1600&auto=format&fit=crop" alt="Real estate case study">
+        </div>
+
+        <div class="story-content">
+          <div>
+            <div class="eyebrow">Real Estate</div>
+            <h3>Listing media that makes the home easier to understand.</h3>
+            <p>
+              A complete listing presentation helps buyers understand the space before scheduling a showing.
+            </p>
+          </div>
+
+          <div class="mini-points">
+            <div><strong>Problem</strong> Photos alone can leave questions about layout, flow, and property context.</div>
+            <div><strong>Work</strong> HDR photos, drone coverage, and 360 walkthrough.</div>
+            <div><strong>Result</strong> A clearer listing that feels more complete online.</div>
+          </div>
+
+          <a class="case-link" href="../real-estate/">View Real Estate →</a>
+        </div>
+      </div>
+
+      <div class="story-card">
+        <div class="story-image">
+          <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1600&auto=format&fit=crop" alt="Land case study">
+        </div>
+
+        <div class="story-content">
+          <div>
+            <div class="eyebrow">Land + Acreage</div>
+            <h3>Making land easier to understand from above.</h3>
+            <p>
+              Drone coverage helps land buyers understand size, access, surroundings, and layout.
+            </p>
+          </div>
+
+          <div class="mini-points">
+            <div><strong>Problem</strong> Ground-level photos do not show the full scale or shape.</div>
+            <div><strong>Work</strong> Aerial coverage with boundary overlay direction.</div>
+            <div><strong>Result</strong> More clarity and context for buyers reviewing the listing.</div>
+          </div>
+
+          <a class="case-link" href="../land-acreage/">View Land →</a>
+        </div>
+      </div>
+
+      <div class="story-card">
+        <div class="story-image">
+          <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1600&auto=format&fit=crop" alt="Restaurant content case study">
+        </div>
+
+        <div class="story-content">
+          <div>
+            <div class="eyebrow">Restaurant / Business</div>
+            <h3>Food and brand visuals that make people want to visit.</h3>
+            <p>
+              Restaurant content should make the food, room, and experience feel worth choosing.
+            </p>
+          </div>
+
+          <div class="mini-points">
+            <div><strong>Problem</strong> Weak photos can make good food feel average online.</div>
+            <div><strong>Work</strong> Food, atmosphere, brand, and website-ready visuals.</div>
+            <div><strong>Result</strong> Stronger first impression across web, social, and ordering.</div>
+          </div>
+
+          <a class="case-link" href="../business-content/">View Business Content →</a>
+        </div>
+      </div>
+
+      <div class="story-card">
+        <div class="story-image">
+          <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1600&auto=format&fit=crop" alt="Construction progress case study">
+        </div>
+
+        <div class="story-content">
+          <div>
+            <div class="eyebrow">Construction</div>
+            <h3>Progress media that keeps the project visible.</h3>
+            <p>
+              Recurring coverage gives stakeholders a clear way to see how the site is changing.
+            </p>
+          </div>
+
+          <div class="mini-points">
+            <div><strong>Problem</strong> Progress can be hard to communicate from the ground.</div>
+            <div><strong>Work</strong> Drone photos, video clips, and recurring site coverage.</div>
+            <div><strong>Result</strong> Clear updates for owners, investors, teams, and marketing.</div>
+          </div>
+
+          <a class="case-link" href="../construction-progress/">View Construction →</a>
+        </div>
+      </div>
+
+      <div class="story-card">
+        <div class="story-image">
+          <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1600&auto=format&fit=crop" alt="Event case study">
+        </div>
+
+        <div class="story-content">
+          <div>
+            <div class="eyebrow">Events</div>
+            <h3>Coverage that keeps the event working after it ends.</h3>
+            <p>
+              Event media can become recap content, sponsor proof, social content, and future promotion.
+            </p>
+          </div>
+
+          <div class="mini-points">
+            <div><strong>Problem</strong> Events move fast and cannot be recreated later.</div>
+            <div><strong>Work</strong> Photo and video coverage focused on energy and moments.</div>
+            <div><strong>Result</strong> Media that preserves the experience and promotes what comes next.</div>
+          </div>
+
+          <a class="case-link" href="../event-coverage/">View Events →</a>
+        </div>
+      </div>
+
+      <div class="story-card">
+        <div class="story-image">
+          <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1600&auto=format&fit=crop" alt="Website design case study">
+        </div>
+
+        <div class="story-content">
+          <div>
+            <div class="eyebrow">Web Design</div>
+            <h3>A website that makes the business feel established.</h3>
+            <p>
+              A stronger website turns scattered information into a clear brand experience.
+            </p>
+          </div>
+
+          <div class="mini-points">
+            <div><strong>Problem</strong> Template sites can feel generic and fail to guide action.</div>
+            <div><strong>Work</strong> Custom-coded layout, clear sections, CTA flow, and stronger visuals.</div>
+            <div><strong>Result</strong> A site that looks more professional and helps people take the next step.</div>
+          </div>
+
+          <a class="case-link" href="../web-design/">View Web Design →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="why">
+    <div class="why-wrap reveal">
+      <div>
+        <div class="eyebrow">The Sales Value</div>
+        <h2>This is how people understand the offer.</h2>
+      </div>
+
+      <div class="why-list">
+        <div>
+          <strong>It shows the problem</strong>
+          <span>People can immediately recognize the same issue in their own business, listing, or project.</span>
+        </div>
+
+        <div>
+          <strong>It shows the work</strong>
+          <span>Instead of just saying “photo and video,” the case study explains the actual solution.</span>
+        </div>
+
+        <div>
+          <strong>It shows the reason</strong>
+          <span>The point is not just better visuals. It is better understanding, trust, and presentation.</span>
+        </div>
+
+        <div>
+          <strong>It makes the next step easier</strong>
+          <span>Once someone sees how it applies to them, reaching out feels more natural.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="category-links">
+    <div class="section-head reveal">
+      <h2>Explore the services behind the stories.</h2>
+      <p>
+        Each service page explains what is included, who it is for, and how the media helps.
+      </p>
+    </div>
+
+    <div class="link-grid reveal">
+      <a class="link-card" href="../real-estate/">
+        <strong>Real Estate</strong>
+        <span>Listing photos, drone, 360 walkthroughs, and full property media.</span>
+      </a>
+
+      <a class="link-card" href="../land-acreage/">
+        <strong>Land</strong>
+        <span>Aerial coverage, boundary overlays, and land listing clarity.</span>
+      </a>
+
+      <a class="link-card" href="../business-content/">
+        <strong>Business</strong>
+        <span>Food, brand, restaurant, and marketing visuals.</span>
+      </a>
+
+      <a class="link-card" href="../vehicle-media/">
+        <strong>Vehicles</strong>
+        <span>Vehicle photos, 360 media, dealership inventory, and digital showroom.</span>
+      </a>
+
+      <a class="link-card" href="../construction-progress/">
+        <strong>Construction</strong>
+        <span>Drone progress media for builders, developers, and project updates.</span>
+      </a>
+
+      <a class="link-card" href="../event-coverage/">
+        <strong>Events</strong>
+        <span>Photo and video coverage for events that only happen once.</span>
+      </a>
+
+      <a class="link-card" href="../web-design/">
+        <strong>Web Design</strong>
+        <span>Custom-coded websites that help businesses look established.</span>
+      </a>
+
+      <a class="link-card" href="../start/">
+        <strong>Start Here</strong>
+        <span>Not sure what you need? Use the guided project form.</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="reveal case-easter">
+      <div class="eyebrow">Start Your Project Story</div>
+      <h2>Make your project <span class="vanish">one of these.</span></h2>
+      <p>
+        The words disappear, but the idea stays: make your project worth showing, worth understanding, and worth choosing.
+      </p>
+
+      <div class="btns" style="justify-content:center;">
+        <a class="btn gold" href="../start/">Start Here</a>
+        <a class="btn outline" href="tel:4793268775">Call 479-326-8775</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div>© 2026 Vista Venture Co. · Northwest Arkansas</div>
+    <div>Case Studies · Project Stories · Results</div>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.16 });
+
+    reveals.forEach(el => observer.observe(el));
+  </script>
 
 </body>
 </html>
