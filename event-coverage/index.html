@@ -593,6 +593,46 @@
 
       footer { flex-direction:column; }
     }
+    /* Flicker Easter Egg */
+.flicker-text {
+  display:inline-block;
+  position:relative;
+}
+
+.vanish {
+  display:inline-block;
+  transition:opacity .3s ease;
+}
+
+/* Flicker animation */
+@keyframes flickerHide {
+  0% { opacity:1; }
+  5% { opacity:0; }
+  10% { opacity:1; }
+  15% { opacity:0; }
+  20% { opacity:1; }
+  60% { opacity:1; }
+  65% { opacity:0; }
+  100% { opacity:0; }
+}
+
+@keyframes flickerShow {
+  0% { opacity:0; }
+  5% { opacity:1; }
+  10% { opacity:0; }
+  15% { opacity:1; }
+  20% { opacity:0; }
+  100% { opacity:1; }
+}
+
+/* Trigger animation */
+.flicker-text.active .vanish {
+  animation:flickerHide 2s forwards;
+}
+
+.flicker-text.restore .vanish {
+  animation:flickerShow 2s forwards;
+}
   </style>
 </head>
 
@@ -848,7 +888,13 @@
   <section class="cta">
     <div class="reveal">
       <div class="eyebrow">Event Coverage</div>
-      <h2>Capture it while it is happening.</h2>
+      <h2>
+  Capture it 
+  <span class="flicker-text">
+    <span class="vanish">while it is</span>
+  </span>
+  happening.
+</h2>
       <p>
         Photo and video coverage for events that matter — private, business, brand, and local experiences.
       </p>
@@ -877,6 +923,23 @@
     }, { threshold: 0.16 });
 
     reveals.forEach(el => observer.observe(el));
+    // Easter Egg Flicker Loop
+const flicker = document.querySelector('.flicker-text');
+
+function runFlicker() {
+  if (!flicker) return;
+
+  flicker.classList.remove('restore');
+  flicker.classList.add('active');
+
+  setTimeout(() => {
+    flicker.classList.remove('active');
+    flicker.classList.add('restore');
+  }, 4000);
+}
+
+// run every 8 seconds
+setInterval(runFlicker, 8000);
   </script>
 
 </body>
