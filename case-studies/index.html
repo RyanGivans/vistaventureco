@@ -640,6 +640,46 @@
 
       footer { flex-direction:column; }
     }
+    .start-strip {
+  max-width:1220px;
+  margin:26px auto 0;
+  border:1px solid rgba(194,161,90,.34);
+  border-radius:28px;
+  padding:24px;
+  background:
+    radial-gradient(circle at top right, rgba(194,161,90,.14), transparent 34%),
+    linear-gradient(145deg, rgba(31,61,43,.72), rgba(8,8,8,.98));
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  box-shadow:0 25px 70px rgba(0,0,0,.28);
+}
+
+.start-strip strong {
+  display:block;
+  color:var(--gold);
+  text-transform:uppercase;
+  letter-spacing:1.4px;
+  font-size:13px;
+  margin-bottom:8px;
+}
+
+.start-strip span {
+  color:rgba(245,245,243,.72);
+  line-height:1.5;
+}
+
+@media (max-width:980px) {
+  .start-strip {
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .start-strip .btn {
+    width:100%;
+  }
+}
   </style>
 </head>
 
@@ -1026,14 +1066,21 @@
   <span>Custom-coded websites that help businesses look established.</span>
 </a>
 
-      <a class="link-card" href="../start/">
-        <strong>Start Here</strong>
-        <span>Not sure what you need? Use the guided project form.</span>
-      </a>
-    </div>
-  </section>
+     
+   </div>
 
-  <section class="cta">
+<div class="start-strip">
+  <div>
+    <strong>Not sure which service fits?</strong>
+    <span>Use the guided project form and I’ll help you figure out the right direction.</span>
+  </div>
+
+  <a class="btn gold" href="../start/">Start Here</a>
+</div>
+
+</section>
+
+<section class="cta">
     <div class="reveal case-easter">
       <div class="eyebrow">Start Your Project Story</div>
       <h2>Make your project <span class="vanish">one of these.</span></h2>
