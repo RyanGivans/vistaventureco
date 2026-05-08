@@ -5,80 +5,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Dayframe | School Photo Day, Simplified</title>
-  <meta name="description" content="Modern school photography for Northwest Arkansas schools. Simple pricing, digital delivery, family photo days, team photos, and staff headshots.">
+  <meta name="description" content="Modern school photography for Northwest Arkansas schools. Simple pricing, digital delivery, family photo days, teams, clubs, and staff headshots.">
 
   <style>
     :root {
       --navy:#061b3d;
       --blue:#0b3f9f;
       --green:#2f7d20;
-      --light:#f6f8fb;
+      --gold:#d8b24f;
+      --cream:#f7f8f4;
       --white:#ffffff;
       --ink:#07142d;
-      --muted:#5e6a7d;
-      --line:rgba(7,20,45,.14);
-      --shadow:0 24px 70px rgba(6,27,61,.15);
+      --muted:#5d6a7f;
+      --line:rgba(6,27,61,.13);
+      --glass:rgba(255,255,255,.74);
+      --shadow:0 30px 90px rgba(6,27,61,.16);
     }
 
     * { margin:0; padding:0; box-sizing:border-box; }
 
+    html { scroll-behavior:smooth; }
+
     body {
       font-family: Arial, Helvetica, sans-serif;
+      background:var(--cream);
       color:var(--ink);
-      background:var(--light);
-      line-height:1.5;
       overflow-x:hidden;
+      line-height:1.5;
     }
 
     a { color:inherit; text-decoration:none; }
+    img { width:100%; display:block; }
 
     .wrap {
       width:min(1180px, 90vw);
       margin:0 auto;
     }
 
-    .btns {
-      display:flex;
-      flex-wrap:wrap;
-      gap:14px;
-      margin-top:28px;
-    }
-
-    .btn {
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      border-radius:999px;
-      padding:15px 24px;
-      font-size:13px;
-      font-weight:900;
-      text-transform:uppercase;
-      letter-spacing:1px;
-      transition:.25s ease;
-    }
-
-    .btn.primary {
-      background:var(--blue);
-      color:white;
-      box-shadow:0 14px 35px rgba(11,63,159,.25);
-    }
-
-    .btn.secondary {
-      border:2px solid var(--navy);
-      color:var(--navy);
-      background:white;
-    }
-
-    .btn:hover {
-      transform:translateY(-3px);
-    }
-
     .nav {
-      position:sticky;
+      position:fixed;
       top:0;
-      z-index:10;
-      background:rgba(255,255,255,.92);
-      backdrop-filter:blur(16px);
+      left:0;
+      width:100%;
+      z-index:1000;
+      background:rgba(255,255,255,.78);
+      backdrop-filter:blur(18px);
       border-bottom:1px solid var(--line);
     }
 
@@ -87,17 +58,14 @@
       display:flex;
       align-items:center;
       justify-content:space-between;
+      gap:20px;
     }
 
     .brand {
       display:flex;
       align-items:center;
-      gap:14px;
-      font-weight:900;
+      gap:13px;
       color:var(--navy);
-      letter-spacing:5px;
-      text-transform:uppercase;
-      font-size:22px;
     }
 
     .brand-mark {
@@ -107,48 +75,104 @@
       border-radius:50%;
       display:grid;
       place-items:center;
+      font-size:21px;
       font-weight:900;
       letter-spacing:-3px;
-      font-size:22px;
+      text-transform:lowercase;
     }
 
-    .brand small {
+    .brand-name {
+      font-size:22px;
+      font-weight:900;
+      letter-spacing:5px;
+      text-transform:uppercase;
+      line-height:1;
+    }
+
+    .brand-sub {
       display:block;
       font-size:10px;
-      letter-spacing:3px;
-      font-weight:800;
+      letter-spacing:2.5px;
       color:var(--muted);
-      margin-top:2px;
+      margin-top:6px;
+      font-weight:800;
+      text-transform:uppercase;
     }
 
-    .nav-actions {
+    .nav-links {
       display:flex;
-      gap:12px;
       align-items:center;
-    }
-
-    .nav-actions a {
+      gap:18px;
       font-size:12px;
       font-weight:900;
-      text-transform:uppercase;
       letter-spacing:1px;
+      text-transform:uppercase;
       color:var(--navy);
     }
 
+    .nav-links a {
+      position:relative;
+      opacity:.82;
+    }
+
+    .nav-links a::after {
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:-7px;
+      width:0;
+      height:2px;
+      background:var(--green);
+      transition:.25s ease;
+    }
+
+    .nav-links a:hover {
+      opacity:1;
+    }
+
+    .nav-links a:hover::after {
+      width:100%;
+    }
+
+    .nav-cta {
+      border:2px solid var(--blue);
+      color:var(--blue);
+      border-radius:999px;
+      padding:10px 15px;
+    }
+
+    .nav-cta::after { display:none; }
+
     .hero {
+      min-height:100vh;
+      padding:150px 0 80px;
+      display:flex;
+      align-items:center;
       position:relative;
       overflow:hidden;
       background:
-        radial-gradient(circle at 78% 22%, rgba(11,63,159,.16), transparent 34%),
-        linear-gradient(135deg, #ffffff 0%, #eef5ff 100%);
-      padding:82px 0 70px;
-      border-bottom:1px solid var(--line);
+        radial-gradient(circle at 18% 22%, rgba(47,125,32,.18), transparent 32%),
+        radial-gradient(circle at 84% 18%, rgba(11,63,159,.18), transparent 34%),
+        linear-gradient(135deg, #fff, #edf5ff 64%, #f8fbf6);
+    }
+
+    .hero::before {
+      content:"";
+      position:absolute;
+      inset:0;
+      background-image:
+        linear-gradient(rgba(6,27,61,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(6,27,61,.035) 1px, transparent 1px);
+      background-size:42px 42px;
+      mask-image:linear-gradient(to bottom, black, transparent 88%);
+      pointer-events:none;
     }
 
     .hero-grid {
+      position:relative;
       display:grid;
       grid-template-columns:1.05fr .95fr;
-      gap:44px;
+      gap:50px;
       align-items:center;
     }
 
@@ -162,101 +186,162 @@
     }
 
     h1 {
-      font-size:clamp(58px, 8vw, 116px);
-      line-height:.86;
-      letter-spacing:-5px;
       color:var(--navy);
+      font-size:clamp(58px, 8.5vw, 122px);
+      line-height:.82;
+      letter-spacing:-6px;
       text-transform:uppercase;
     }
 
     .script {
       display:block;
-      font-family: Georgia, serif;
+      font-family:Georgia, serif;
       font-style:italic;
-      text-transform:none;
       color:var(--green);
-      font-size:clamp(42px, 6vw, 72px);
+      text-transform:none;
+      font-size:clamp(42px,6.4vw,78px);
+      line-height:1;
       letter-spacing:-2px;
       margin-top:8px;
     }
 
-    .hero p {
+    .hero-copy {
       margin-top:24px;
-      color:#253047;
       font-size:22px;
+      color:#28354b;
       max-width:700px;
     }
 
-    .hero-card {
-      background:white;
-      border-radius:34px;
-      padding:22px;
-      box-shadow:var(--shadow);
-      border:1px solid var(--line);
+    .btns {
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-top:30px;
     }
 
-    .photo-placeholder {
-      min-height:520px;
-      border-radius:26px;
+    .btn {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:999px;
+      padding:16px 24px;
+      font-size:13px;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:1.2px;
+      transition:.25s ease;
+      cursor:pointer;
+    }
+
+    .btn.primary {
+      background:var(--blue);
+      color:white;
+      box-shadow:0 16px 38px rgba(11,63,159,.25);
+    }
+
+    .btn.secondary {
+      background:white;
+      border:2px solid var(--navy);
+      color:var(--navy);
+    }
+
+    .btn.green {
+      background:var(--green);
+      color:white;
+    }
+
+    .btn:hover {
+      transform:translateY(-3px);
+    }
+
+    .hero-visual {
+      position:relative;
+      min-height:620px;
+    }
+
+    .portrait-card {
+      position:absolute;
+      inset:0 0 70px 70px;
+      border-radius:38px;
+      overflow:hidden;
       background:
-        linear-gradient(180deg, rgba(6,27,61,.04), rgba(6,27,61,.08)),
-        url("https://images.unsplash.com/photo-1503919545889-aef636e10ad4?w=1400&auto=format&fit=crop");
+        linear-gradient(180deg, rgba(6,27,61,.02), rgba(6,27,61,.12)),
+        url("https://images.unsplash.com/photo-1544717305-2782549b5136?w=1600&auto=format&fit=crop");
       background-size:cover;
       background-position:center;
-      position:relative;
-      overflow:hidden;
+      box-shadow:var(--shadow);
+      border:1px solid rgba(255,255,255,.72);
     }
 
-    .photo-badge {
+    .price-card {
       position:absolute;
-      left:22px;
-      bottom:22px;
-      background:white;
-      border-radius:22px;
-      padding:20px;
-      box-shadow:0 18px 50px rgba(0,0,0,.16);
-      max-width:300px;
+      left:0;
+      bottom:0;
+      width:min(390px, 84%);
+      background:rgba(255,255,255,.86);
+      backdrop-filter:blur(18px);
+      border:1px solid rgba(255,255,255,.8);
+      border-radius:30px;
+      padding:28px;
+      box-shadow:0 28px 80px rgba(6,27,61,.2);
     }
 
-    .photo-badge strong {
-      color:var(--blue);
-      font-size:48px;
-      letter-spacing:-2px;
+    .price-card span {
       display:block;
-      line-height:1;
-    }
-
-    .photo-badge span {
       color:var(--navy);
       font-weight:900;
       text-transform:uppercase;
       letter-spacing:1px;
     }
 
+    .price-card strong {
+      display:block;
+      color:var(--blue);
+      font-size:76px;
+      line-height:.95;
+      letter-spacing:-5px;
+      margin:8px 0;
+    }
+
+    .float-note {
+      position:absolute;
+      right:0;
+      top:38px;
+      background:var(--green);
+      color:white;
+      border-radius:999px;
+      padding:14px 20px;
+      font-size:12px;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:1px;
+      box-shadow:0 16px 40px rgba(47,125,32,.28);
+    }
+
     section {
-      padding:90px 0;
+      padding:100px 0;
     }
 
     .section-head {
-      margin-bottom:38px;
       display:grid;
       grid-template-columns:.9fr 1.1fr;
-      gap:36px;
+      gap:40px;
       align-items:end;
+      margin-bottom:42px;
     }
 
     .section-head h2 {
       color:var(--navy);
-      font-size:clamp(40px, 5vw, 76px);
-      line-height:.92;
-      letter-spacing:-3px;
+      font-size:clamp(42px, 5.8vw, 86px);
+      line-height:.88;
+      letter-spacing:-4px;
       text-transform:uppercase;
     }
 
     .section-head p {
-      color:#3f4c61;
+      color:#415068;
       font-size:20px;
-      max-width:760px;
+      max-width:780px;
     }
 
     .cards {
@@ -268,45 +353,50 @@
     .card {
       background:white;
       border:1px solid var(--line);
-      border-radius:28px;
-      padding:28px;
+      border-radius:30px;
+      padding:30px;
       box-shadow:0 18px 55px rgba(6,27,61,.08);
+      transition:.3s ease;
     }
 
-    .card.highlight {
-      background:linear-gradient(135deg, var(--navy), var(--blue));
+    .card:hover {
+      transform:translateY(-6px);
+      box-shadow:0 28px 80px rgba(6,27,61,.14);
+    }
+
+    .card.dark {
+      background:linear-gradient(135deg, var(--navy), #082b64);
       color:white;
     }
 
     .card.green {
-      background:linear-gradient(135deg, var(--green), #1b4f16);
+      background:linear-gradient(135deg, var(--green), #1b5517);
       color:white;
     }
 
     .card h3 {
-      color:inherit;
       font-size:28px;
       line-height:1;
       text-transform:uppercase;
+      color:inherit;
       margin-bottom:14px;
     }
 
     .card p {
       color:inherit;
-      opacity:.86;
-      margin-bottom:16px;
+      opacity:.84;
     }
 
     .price {
-      font-size:66px;
-      line-height:1;
       color:var(--blue);
+      font-size:72px;
+      line-height:.95;
       font-weight:900;
-      letter-spacing:-4px;
+      letter-spacing:-5px;
       margin:8px 0 14px;
     }
 
-    .highlight .price,
+    .dark .price,
     .green .price {
       color:white;
     }
@@ -321,11 +411,11 @@
     li {
       position:relative;
       padding-left:28px;
-      color:#28354b;
+      color:#2f3d53;
     }
 
-    .card.highlight li,
-    .card.green li {
+    .dark li,
+    .green li {
       color:white;
     }
 
@@ -338,51 +428,211 @@
       font-weight:900;
     }
 
-    .highlight li::before,
+    .dark li::before,
     .green li::before {
       color:white;
+    }
+
+    .parents-strip {
+      background:white;
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+    }
+
+    .icon-row {
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:14px;
+    }
+
+    .icon-card {
+      border:1px solid var(--line);
+      border-radius:26px;
+      padding:26px;
+      background:linear-gradient(180deg, #fff, #f7fbff);
+      min-height:190px;
+      box-shadow:0 14px 40px rgba(6,27,61,.06);
+    }
+
+    .icon {
+      width:54px;
+      height:54px;
+      border-radius:18px;
+      background:var(--blue);
+      color:white;
+      display:grid;
+      place-items:center;
+      font-size:26px;
+      margin-bottom:18px;
+    }
+
+    .icon-card h3 {
+      color:var(--navy);
+      font-size:18px;
+      text-transform:uppercase;
+      margin-bottom:8px;
+    }
+
+    .icon-card p {
+      color:var(--muted);
+      font-size:15px;
+    }
+
+    .stats {
+      background:
+        radial-gradient(circle at 15% 25%, rgba(216,178,79,.18), transparent 35%),
+        linear-gradient(135deg, #061b3d, #051225);
+      color:white;
+      overflow:hidden;
+      position:relative;
+    }
+
+    .stats::after {
+      content:"DAYFRAME";
+      position:absolute;
+      right:-40px;
+      bottom:-36px;
+      font-size:190px;
+      letter-spacing:-10px;
+      font-weight:900;
+      color:rgba(255,255,255,.04);
+      pointer-events:none;
+    }
+
+    .stat-grid {
+      position:relative;
+      z-index:2;
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+    }
+
+    .stat {
+      border:1px solid rgba(255,255,255,.16);
+      border-radius:28px;
+      padding:30px;
+      background:rgba(255,255,255,.06);
+      backdrop-filter:blur(12px);
+    }
+
+    .stat strong {
+      display:block;
+      font-size:54px;
+      color:var(--gold);
+      margin-bottom:8px;
+      letter-spacing:-3px;
+    }
+
+    .stat span {
+      color:rgba(255,255,255,.78);
     }
 
     .split {
       display:grid;
       grid-template-columns:1fr 1fr;
-      gap:22px;
+      gap:24px;
       align-items:stretch;
     }
 
     .giveback {
       background:
-        radial-gradient(circle at top left, rgba(47,125,32,.16), transparent 30%),
+        radial-gradient(circle at top left, rgba(47,125,32,.17), transparent 34%),
         white;
-      border-radius:34px;
-      padding:40px;
       border:1px solid rgba(47,125,32,.22);
+      border-radius:36px;
+      padding:42px;
       box-shadow:var(--shadow);
     }
 
     .giveback h2 {
       color:var(--green);
-      font-size:56px;
-      line-height:.95;
+      font-size:clamp(42px,5vw,74px);
+      line-height:.9;
       text-transform:uppercase;
-      letter-spacing:-2px;
+      letter-spacing:-3px;
       margin-bottom:18px;
     }
 
     .giveback p {
       font-size:22px;
-      color:#253047;
+      color:#27354a;
     }
 
     .image-panel {
-      min-height:420px;
-      border-radius:34px;
+      border-radius:36px;
+      overflow:hidden;
+      min-height:500px;
       background:
-        linear-gradient(180deg, rgba(6,27,61,.05), rgba(6,27,61,.24)),
-        url("https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1500&auto=format&fit=crop");
+        linear-gradient(180deg, rgba(6,27,61,.04), rgba(6,27,61,.2)),
+        url("https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1600&auto=format&fit=crop");
       background-size:cover;
       background-position:center;
       box-shadow:var(--shadow);
+    }
+
+    .collage {
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:18px;
+      align-items:stretch;
+    }
+
+    .collage-main,
+    .collage-small {
+      border-radius:34px;
+      overflow:hidden;
+      position:relative;
+      min-height:420px;
+      box-shadow:var(--shadow);
+      background-size:cover;
+      background-position:center;
+    }
+
+    .collage-main {
+      min-height:680px;
+      background-image:
+        linear-gradient(180deg, transparent, rgba(6,27,61,.68)),
+        url("https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1600&auto=format&fit=crop");
+    }
+
+    .collage-stack {
+      display:grid;
+      gap:18px;
+    }
+
+    .small-1 {
+      background-image:
+        linear-gradient(180deg, transparent, rgba(6,27,61,.62)),
+        url("https://images.unsplash.com/photo-1544717305-2782549b5136?w=1200&auto=format&fit=crop");
+    }
+
+    .small-2 {
+      background-image:
+        linear-gradient(180deg, transparent, rgba(6,27,61,.62)),
+        url("https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&auto=format&fit=crop");
+    }
+
+    .collage-label {
+      position:absolute;
+      left:26px;
+      bottom:26px;
+      color:white;
+    }
+
+    .collage-label span {
+      display:block;
+      color:var(--gold);
+      font-weight:900;
+      letter-spacing:2px;
+      text-transform:uppercase;
+      font-size:12px;
+      margin-bottom:8px;
+    }
+
+    .collage-label h3 {
+      font-size:38px;
+      line-height:.95;
+      text-transform:uppercase;
     }
 
     .process {
@@ -394,17 +644,17 @@
 
     .step {
       background:white;
-      border-radius:28px;
-      padding:28px;
       border:1px solid var(--line);
+      border-radius:30px;
+      padding:30px;
       box-shadow:0 18px 55px rgba(6,27,61,.08);
       counter-increment:step;
     }
 
     .step::before {
       content:counter(step);
-      width:44px;
-      height:44px;
+      width:48px;
+      height:48px;
       border-radius:50%;
       background:var(--blue);
       color:white;
@@ -416,79 +666,146 @@
 
     .step h3 {
       color:var(--navy);
-      text-transform:uppercase;
       font-size:22px;
+      text-transform:uppercase;
       margin-bottom:8px;
     }
 
-    .band {
-      background:var(--navy);
-      color:white;
-      padding:70px 0;
+    .trust-grid {
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:14px;
+      margin-top:24px;
     }
 
-    .band-grid {
+    .trust {
+      background:white;
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:22px;
+      text-align:center;
+      color:var(--navy);
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.8px;
+      font-size:13px;
+    }
+
+    .about-band {
+      background:var(--navy);
+      color:white;
+    }
+
+    .about-grid {
       display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:26px;
+      grid-template-columns:.9fr 1.1fr;
+      gap:44px;
       align-items:center;
     }
 
-    .band h2 {
-      font-size:clamp(42px, 6vw, 88px);
-      line-height:.9;
+    .about-grid h2 {
+      font-size:clamp(44px,6vw,88px);
+      line-height:.88;
       letter-spacing:-4px;
       text-transform:uppercase;
     }
 
-    .band p {
+    .about-grid p {
       color:rgba(255,255,255,.78);
       font-size:20px;
+      margin-top:20px;
+    }
+
+    .school-form {
+      background:white;
+      border-radius:38px;
+      padding:38px;
+      box-shadow:var(--shadow);
+      border:1px solid rgba(255,255,255,.8);
+    }
+
+    .form-grid {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+    }
+
+    .field {
+      display:flex;
+      flex-direction:column;
+      gap:7px;
+    }
+
+    .field.full { grid-column:1 / -1; }
+
+    label {
+      color:var(--navy);
+      font-weight:900;
+      text-transform:uppercase;
+      font-size:11px;
+      letter-spacing:1px;
+    }
+
+    input, select, textarea {
+      width:100%;
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:14px 15px;
+      font:inherit;
+      background:#f8fbff;
+      color:var(--ink);
+    }
+
+    textarea {
+      min-height:120px;
+      resize:vertical;
     }
 
     .final {
       background:
-        linear-gradient(rgba(255,255,255,.9), rgba(255,255,255,.92)),
-        url("https://images.unsplash.com/photo-1588072432836-e10032774350?w=1600&auto=format&fit=crop");
-      background-size:cover;
-      background-position:center;
-      text-align:center;
-      padding:110px 0;
+        radial-gradient(circle at 20% 20%, rgba(47,125,32,.18), transparent 32%),
+        linear-gradient(135deg, #fff, #eef5ff);
+    }
+
+    .final-grid {
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:40px;
+      align-items:start;
     }
 
     .final h2 {
       color:var(--navy);
-      font-size:clamp(48px, 7vw, 96px);
-      line-height:.9;
-      letter-spacing:-4px;
+      font-size:clamp(50px, 7vw, 100px);
+      line-height:.86;
+      letter-spacing:-5px;
       text-transform:uppercase;
+      margin-bottom:18px;
     }
 
     .final p {
-      max-width:820px;
-      margin:22px auto 0;
       font-size:21px;
-      color:#253047;
+      color:#344259;
     }
 
     footer {
       background:var(--navy);
       color:white;
-      padding:34px 0;
+      padding:36px 0;
     }
 
     .footer-grid {
       display:grid;
       grid-template-columns:1.1fr 1fr 1fr;
-      gap:22px;
+      gap:24px;
       align-items:center;
     }
 
     footer strong {
       display:block;
-      letter-spacing:4px;
-      font-size:22px;
-      margin-bottom:6px;
+      font-size:24px;
+      letter-spacing:5px;
+      margin-bottom:8px;
     }
 
     footer span,
@@ -498,30 +815,55 @@
       margin-top:5px;
     }
 
-    @media (max-width:900px) {
+    @media (max-width:980px) {
+      .nav-links { display:none; }
+
       .hero-grid,
       .section-head,
       .split,
-      .band-grid,
+      .collage,
+      .about-grid,
+      .final-grid,
       .footer-grid {
         grid-template-columns:1fr;
       }
 
       .cards,
-      .process {
+      .process,
+      .stat-grid,
+      .icon-row,
+      .trust-grid {
         grid-template-columns:1fr;
       }
 
-      .nav-actions {
-        display:none;
+      .form-grid {
+        grid-template-columns:1fr;
       }
 
-      h1 {
+      h1,
+      .section-head h2,
+      .final h2 {
         letter-spacing:-3px;
       }
 
-      .photo-placeholder {
-        min-height:420px;
+      .hero {
+        padding-top:120px;
+      }
+
+      .hero-visual {
+        min-height:560px;
+      }
+
+      .portrait-card {
+        inset:0 0 80px 0;
+      }
+
+      .price-card {
+        width:92%;
+      }
+
+      section {
+        padding:76px 0;
       }
     }
   </style>
@@ -534,16 +876,17 @@
       <a class="brand" href="../">
         <span class="brand-mark">df</span>
         <span>
-          Dayframe
-          <small>A Vista Venture Company</small>
+          <span class="brand-name">Dayframe</span>
+          <span class="brand-sub">A Vista Venture Company</span>
         </span>
       </a>
 
-      <div class="nav-actions">
+      <div class="nav-links">
         <a href="#school">School Photos</a>
         <a href="#family">Family Day</a>
         <a href="#teams">Teams</a>
-        <a href="#contact">Contact</a>
+        <a href="#how">How It Works</a>
+        <a class="nav-cta" href="#contact">Start</a>
       </div>
     </div>
   </nav>
@@ -551,30 +894,32 @@
   <header class="hero">
     <div class="wrap hero-grid">
       <div>
-        <div class="eyebrow">Modern school photography · Northwest Arkansas</div>
+        <div class="eyebrow">Northwest Arkansas School Photography</div>
         <h1>
-          School Photo Day,
+          Modern school photography.
           <span class="script">simplified.</span>
         </h1>
 
-        <p>
-          Modern school photography for Northwest Arkansas schools.
-          Simple pricing. Great photos. No stress.
+        <p class="hero-copy">
+          Built for schools. Loved by parents. Simple pricing, organized picture day workflow,
+          digital delivery, and natural photos without the stress.
         </p>
 
         <div class="btns">
-          <a class="btn primary" href="#contact">Schedule a Call</a>
-          <a class="btn secondary" href="#contact">Request Information</a>
+          <a class="btn primary" href="#contact">Schedule a School Consultation</a>
+          <a class="btn secondary" href="#school">View Pricing</a>
         </div>
       </div>
 
-      <div class="hero-card">
-        <div class="photo-placeholder">
-          <div class="photo-badge">
-            <span>Picture Day</span>
-            <strong>$30</strong>
-            <span>Per Student</span>
-          </div>
+      <div class="hero-visual">
+        <div class="portrait-card"></div>
+
+        <div class="float-note">20% give back option</div>
+
+        <div class="price-card">
+          <span>School Photo Day</span>
+          <strong>$30</strong>
+          <span>Per Student · Digital Delivery</span>
         </div>
       </div>
     </div>
@@ -586,39 +931,83 @@
         <h2>Why schools choose Dayframe.</h2>
         <p>
           We built Dayframe to modernize school photography. No confusing order forms.
-          No overpriced print packages. No stressful picture day process.
+          No overpriced print bundles. No stressful picture day process.
         </p>
       </div>
 
       <div class="cards">
         <div class="card">
-          <h3>Efficient Workflow</h3>
-          <p>Organized, efficient photo day setup designed to minimize disruption.</p>
+          <h3>Organized Workflow</h3>
+          <p>Designed to keep picture day moving without disrupting the school day.</p>
           <ul>
-            <li>Managed setup and flow</li>
-            <li>Works with your school schedule</li>
-            <li>Clear communication before picture day</li>
+            <li>Managed setup, flow, and delivery</li>
+            <li>Works with your existing schedule</li>
+            <li>Clear communication from start to finish</li>
           </ul>
         </div>
 
-        <div class="card highlight">
-          <h3>Modern Delivery</h3>
-          <p>Simple digital pricing and secure galleries for families.</p>
+        <div class="card dark">
+          <h3>Digital First</h3>
+          <p>A modern photo experience for modern families.</p>
           <ul>
+            <li>Secure digital galleries</li>
             <li>No paper order forms</li>
-            <li>No confusing print packages</li>
-            <li>Fast digital delivery</li>
+            <li>Simple pricing parents understand</li>
           </ul>
         </div>
 
         <div class="card green">
-          <h3>Optional Give Back</h3>
-          <p>Schools can use photo day as a simple fundraising opportunity.</p>
+          <h3>School Give Back</h3>
+          <p>Optional fundraising that is simple for the school and easy for families.</p>
           <ul>
-            <li>20% back to your school</li>
+            <li>20% can go back to your school</li>
             <li>Flexible use of funds</li>
-            <li>Easy for parents to support</li>
+            <li>No complicated fundraiser setup</li>
           </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="parents-strip">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Why parents love it.</h2>
+        <p>
+          Parents want good photos without the mess. Dayframe makes the process simple,
+          clear, and easy to use.
+        </p>
+      </div>
+
+      <div class="icon-row">
+        <div class="icon-card">
+          <div class="icon">✓</div>
+          <h3>No Forms</h3>
+          <p>No envelopes, order sheets, or confusing paperwork.</p>
+        </div>
+
+        <div class="icon-card">
+          <div class="icon">📷</div>
+          <h3>Natural Smiles</h3>
+          <p>Clean, modern portraits that feel relaxed and real.</p>
+        </div>
+
+        <div class="icon-card">
+          <div class="icon">🔒</div>
+          <h3>Secure Galleries</h3>
+          <p>Private digital delivery for each family.</p>
+        </div>
+
+        <div class="icon-card">
+          <div class="icon">⚡</div>
+          <h3>Fast Delivery</h3>
+          <p>Quick turnaround with easy online access.</p>
+        </div>
+
+        <div class="icon-card">
+          <div class="icon">$</div>
+          <h3>Fair Pricing</h3>
+          <p>Transparent pricing without overpriced bundles.</p>
         </div>
       </div>
     </div>
@@ -629,13 +1018,13 @@
       <div class="section-head">
         <h2>Modern photos for modern families.</h2>
         <p>
-          School portraits should be clean, natural, and easy for parents to access.
+          School portraits should be clean, natural, and easy to access.
           Dayframe keeps the process simple from picture day to delivery.
         </p>
       </div>
 
       <div class="cards">
-        <div class="card highlight">
+        <div class="card dark">
           <h3>School Photo Day</h3>
           <div class="price">$30</div>
           <p>Per student</p>
@@ -672,6 +1061,39 @@
     </div>
   </section>
 
+  <section class="stats">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 style="color:white;">Built for schools, not just photos.</h2>
+        <p style="color:rgba(255,255,255,.75);">
+          Picture day should feel organized, professional, and easy for everyone involved.
+        </p>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat">
+          <strong>01</strong>
+          <span>Minimal classroom disruption with a planned student flow.</span>
+        </div>
+
+        <div class="stat">
+          <strong>02</strong>
+          <span>Secure digital photo handling and private family access.</span>
+        </div>
+
+        <div class="stat">
+          <strong>03</strong>
+          <span>Transparent pricing that parents understand quickly.</span>
+        </div>
+
+        <div class="stat">
+          <strong>04</strong>
+          <span>Optional fundraising that can support your school directly.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section>
     <div class="wrap split">
       <div class="giveback">
@@ -698,7 +1120,7 @@
   <section id="family">
     <div class="wrap">
       <div class="section-head">
-        <h2>More than just school photos.</h2>
+        <h2>Family Photo Day, right at school.</h2>
         <p>
           After school, families can participate in Family Photo Day right at the school.
           No need to schedule a separate photographer.
@@ -748,13 +1170,38 @@
       <div class="section-head">
         <h2>Teams, clubs & staff.</h2>
         <p>
-          Dayframe also helps schools capture teams, clubs, organizations,
-          staff headshots, and important student groups.
+          More than picture day. Dayframe can help schools capture teams, clubs,
+          organizations, faculty, and important student groups.
         </p>
       </div>
 
-      <div class="cards">
-        <div class="card highlight">
+      <div class="collage">
+        <div class="collage-main">
+          <div class="collage-label">
+            <span>Teams & Organizations</span>
+            <h3>Capture your people.</h3>
+          </div>
+        </div>
+
+        <div class="collage-stack">
+          <div class="collage-small small-1">
+            <div class="collage-label">
+              <span>Individuals</span>
+              <h3>Clean portraits.</h3>
+            </div>
+          </div>
+
+          <div class="collage-small small-2">
+            <div class="collage-label">
+              <span>Staff & Faculty</span>
+              <h3>Consistent headshots.</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cards" style="margin-top:22px;">
+        <div class="card dark">
           <h3>Team Package</h3>
           <div class="price">$350</div>
           <p>Starting at · Includes up to 12 athletes</p>
@@ -791,25 +1238,25 @@
     </div>
   </section>
 
-  <section>
+  <section id="how">
     <div class="wrap">
       <div class="section-head">
         <h2>Simple process. Professional results.</h2>
         <p>
-          Dayframe is designed to make picture day easier for schools,
-          parents, students, and staff.
+          Dayframe is designed to make picture day easier for administrators,
+          teachers, parents, students, and staff.
         </p>
       </div>
 
       <div class="process">
         <div class="step">
           <h3>Planning</h3>
-          <p>We coordinate directly with your school to schedule photo days and organize workflow.</p>
+          <p>We coordinate with your school to schedule photo days and organize the workflow.</p>
         </div>
 
         <div class="step">
           <h3>Picture Day</h3>
-          <p>We handle setup, lighting, flow, and photography while keeping the process smooth.</p>
+          <p>We handle setup, lighting, flow, and photography while keeping things smooth.</p>
         </div>
 
         <div class="step">
@@ -819,36 +1266,101 @@
 
         <div class="step">
           <h3>Support</h3>
-          <p>We provide responsive communication and support throughout the process.</p>
+          <p>We provide responsive communication and support throughout the full process.</p>
         </div>
+      </div>
+
+      <div class="trust-grid">
+        <div class="trust">Local NWA Company</div>
+        <div class="trust">Professional Setup</div>
+        <div class="trust">Secure Galleries</div>
+        <div class="trust">Fast Turnaround</div>
+        <div class="trust">Reliable Communication</div>
       </div>
     </div>
   </section>
 
-  <section class="band">
-    <div class="wrap band-grid">
-      <h2>A Vista Venture Company.</h2>
-      <p>
-        Dayframe was created to modernize school photography and create a better
-        experience for both schools and families. Based in Northwest Arkansas,
-        we combine professional photography, streamlined systems, and modern delivery methods.
-      </p>
+  <section class="about-band">
+    <div class="wrap about-grid">
+      <div>
+        <div class="eyebrow" style="color:var(--gold);">A Vista Venture Company</div>
+        <h2>Modern photos. Better systems.</h2>
+      </div>
+
+      <div>
+        <p>
+          Dayframe was created to modernize school photography and create a better
+          experience for both schools and families.
+        </p>
+        <p>
+          Based in Northwest Arkansas, we combine professional photography, streamlined
+          systems, and modern delivery methods to create a clean, stress-free experience.
+        </p>
+      </div>
     </div>
   </section>
 
   <section id="contact" class="final">
-    <div class="wrap">
-      <div class="eyebrow">Now booking school partners</div>
-      <h2>Let’s simplify picture day.</h2>
-      <p>
-        Whether you’re looking for school portraits, family photo sessions, team photography,
-        or staff headshots, Dayframe provides a clean, modern solution designed for schools.
-      </p>
+    <div class="wrap final-grid">
+      <div>
+        <div class="eyebrow">Now booking school partners</div>
+        <h2>Let’s make picture day better.</h2>
+        <p>
+          Whether you’re looking for school portraits, family photo sessions,
+          team photography, or staff headshots, Dayframe provides a clean,
+          modern solution designed for schools.
+        </p>
 
-      <div class="btns" style="justify-content:center;">
-        <a class="btn primary" href="mailto:ryan@vistaventureco.com?subject=Dayframe%20School%20Photo%20Day%20Inquiry">Schedule a Call</a>
-        <a class="btn secondary" href="mailto:ryan@vistaventureco.com?subject=Dayframe%20Information%20Request">Request Information</a>
+        <div class="btns">
+          <a class="btn primary" href="mailto:info@vistaventureco.com?subject=Dayframe%20School%20Consultation">Email info</a>
+          <a class="btn secondary" href="../contact/">Vista Contact Page</a>
+        </div>
       </div>
+
+      <form class="school-form" action="<form class="school-form" action="https://formspree.io/f/abcdwxyz" method="POST">" method="POST">
+        <input type="hidden" name="source" value="Dayframe page">
+        <div class="form-grid">
+          <div class="field">
+            <label for="name">Your Name</label>
+            <input id="name" name="name" type="text" placeholder="Your name" required>
+          </div>
+
+          <div class="field">
+            <label for="school">School / Organization</label>
+            <input id="school" name="school" type="text" placeholder="School name" required>
+          </div>
+
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="you@email.com" required>
+          </div>
+
+          <div class="field">
+            <label for="phone">Phone</label>
+            <input id="phone" name="phone" type="tel" placeholder="Phone number">
+          </div>
+
+          <div class="field full">
+            <label for="interest">What are you interested in?</label>
+            <select id="interest" name="interest">
+              <option>School Photo Day</option>
+              <option>Family Photo Day</option>
+              <option>Teams / Clubs / Organizations</option>
+              <option>Staff Headshots</option>
+              <option>Everything / Not Sure Yet</option>
+            </select>
+          </div>
+
+          <div class="field full">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Tell me what you are thinking about, timeline, school size, or questions."></textarea>
+          </div>
+
+          <div class="field full">
+            <button class="btn primary" type="submit">Request Information</button>
+          </div>
+        </div>
+      </form>
     </div>
   </section>
 
@@ -860,8 +1372,8 @@
       </div>
 
       <div>
-        <span>Ryan Givans</span>
-        <a href="mailto:ryan@vistaventureco.com">ryan@vistaventureco.com</a>
+        <span>(479)326-8775</span>
+        <a href="mailto:info@vistaventureco.com">info@vistaventureco.com</a>
         <a href="https://www.vistaventureco.com">vistaventureco.com</a>
       </div>
 
