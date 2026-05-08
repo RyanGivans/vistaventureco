@@ -3,839 +3,190 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Blue Door Group Proposal — Vista Venture Co.</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <title>Client Proposal Portal | Vista Venture Co.</title>
+
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    @page { size: letter; margin: 0; }
-    @media print {
-      body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-      .page-break { page-break-before: always; }
-      .no-break { page-break-inside: avoid; }
-    }
-
     :root {
-      --green-dark:  #1f3d2b;
-      --green-light: #e8f0eb;
-      --off-white:   #f5f5f3;
-      --near-black:  #080808;
-      --body-text:   #2c2c2c;
-      --muted:       #666666;
-      --border:      #d4ddd7;
-      --table-stripe:#f0f5f1;
+      --black:#050505;
+      --cream:#F5F5F3;
+      --gold:#C2A15A;
+      --green:#1F3D2B;
+      --muted:rgba(245,245,243,.68);
+      --line:rgba(194,161,90,.25);
     }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
 
     body {
-      background: #fff;
-      color: var(--body-text);
-      font-family: 'Inter', Arial, Helvetica, sans-serif;
-      font-size: 14px;
-      line-height: 1.7;
+      min-height:100vh;
+      background:
+        linear-gradient(rgba(0,0,0,.72), rgba(0,0,0,.9)),
+        radial-gradient(circle at 30% 20%, rgba(194,161,90,.18), transparent 32%),
+        radial-gradient(circle at 80% 70%, rgba(31,61,43,.32), transparent 34%),
+        #050505;
+      color:var(--cream);
+      font-family:Arial, Helvetica, sans-serif;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:40px 20px;
     }
 
-    /* ══════════════════════════════
-       COVER PAGE
-    ══════════════════════════════ */
-    .cover {
-      width: 100%;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      background: #fff;
+    .portal {
+      width:min(760px, 100%);
+      border:1px solid var(--line);
+      border-radius:34px;
+      padding:46px;
+      background:rgba(255,255,255,.045);
+      backdrop-filter:blur(18px);
+      box-shadow:0 40px 120px rgba(0,0,0,.45);
     }
 
-    .cover-topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 24px 56px;
-      border-bottom: 3px solid var(--green-dark);
+    .logo {
+      font-size:13px;
+      font-weight:900;
+      letter-spacing:3px;
+      text-transform:uppercase;
+      color:var(--gold);
+      margin-bottom:34px;
     }
 
-    .cover-logo {
-      font-size: 13px;
-      font-weight: 900;
-      letter-spacing: 3.5px;
-      text-transform: uppercase;
-      color: var(--near-black);
-    }
-
-    .cover-date {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    /* CENTERED HERO */
-    .cover-hero {
-      flex: 1;
-      padding: 64px 56px 48px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
-
-    .cover-label {
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: var(--green-dark);
-      margin-bottom: 20px;
-    }
-
-    .cover-title {
-      font-size: clamp(58px, 9.5vw, 104px);
-      font-weight: 900;
-      line-height: 0.88;
-      letter-spacing: -3px;
-      text-transform: uppercase;
-      color: var(--green-dark);
-      margin-bottom: 10px;
-    }
-
-    .cover-title .black { color: var(--near-black); }
-
-    .cover-subtitle {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 48px;
-      margin-top: 16px;
-    }
-
-    .meta-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      width: 100%;
-      max-width: 580px;
-      border: 1.5px solid var(--border);
-      margin: 0 auto;
-      text-align: left;
-    }
-
-    .meta-cell { padding: 22px 26px; }
-    .meta-cell:first-child { border-right: 1.5px solid var(--border); }
-
-    .meta-label {
-      font-size: 9px;
-      font-weight: 800;
-      letter-spacing: 3.5px;
-      text-transform: uppercase;
-      color: var(--green-dark);
-      margin-bottom: 8px;
-    }
-
-    .meta-name {
-      font-size: 17px;
-      font-weight: 700;
-      color: var(--near-black);
-      margin-bottom: 4px;
-    }
-
-    .meta-detail {
-      font-size: 12px;
-      color: var(--muted);
-      line-height: 1.8;
-    }
-
-    .meta-detail a { color: var(--muted); text-decoration: none; }
-
-    /* OVERVIEW */
-    .cover-overview {
-      padding: 48px 56px 56px;
-      background: var(--green-light);
-      border-top: 2px solid var(--border);
-      text-align: center;
-    }
-
-    .section-eyebrow {
-      font-size: 9px;
-      font-weight: 800;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: var(--green-dark);
-      margin-bottom: 14px;
-    }
-
-    .overview-heading {
-      font-size: clamp(20px, 2.5vw, 27px);
-      font-weight: 800;
-      letter-spacing: -0.4px;
-      color: var(--near-black);
-      line-height: 1.2;
-      margin-bottom: 16px;
-      max-width: 640px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .overview-body {
-      font-size: 13.5px;
-      line-height: 1.85;
-      color: #444;
-      max-width: 680px;
-      margin: 0 auto 20px;
-      text-align: left;
-    }
-
-    /* PILLARS — wider, bigger text */
-    .pillars {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1px;
-      background: var(--border);
-      max-width: 720px;
-      margin: 16px auto 0;
-      text-align: left;
-    }
-
-    .pillar {
-      background: var(--green-light);
-      padding: 18px 24px;
-      display: flex;
-      gap: 14px;
-      align-items: flex-start;
-    }
-
-    .pillar-num {
-      font-size: 11px;
-      font-weight: 800;
-      color: var(--green-dark);
-      letter-spacing: 1px;
-      padding-top: 2px;
-      flex-shrink: 0;
-    }
-
-    .pillar-text {
-      font-size: 13.5px;
-      font-weight: 500;
-      color: #3a3a3a;
-      line-height: 1.55;
-    }
-
-    /* VALIDITY BANNER */
-    .validity-banner {
-      background: var(--green-dark);
-      color: #fff;
-      text-align: center;
-      padding: 11px 56px;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-    }
-
-    .cover-footer {
-      padding: 15px 56px;
-      border-top: 1.5px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .cover-footer span {
-      font-size: 10px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: #bbb;
-    }
-
-    /* ══════════════════════════════
-       INNER PAGES
-    ══════════════════════════════ */
-    .inner-page {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 56px 56px 64px;
-    }
-
-    .section-header {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 32px;
-      padding-bottom: 14px;
-      border-bottom: 2px solid var(--green-dark);
-    }
-
-    .section-num {
-      font-size: 11px;
-      font-weight: 900;
-      letter-spacing: 2px;
-      color: #fff;
-      background: var(--green-dark);
-      padding: 4px 10px;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .section-title {
-      font-size: 20px;
-      font-weight: 800;
-      color: var(--green-dark);
-      letter-spacing: -0.3px;
-      text-transform: uppercase;
-    }
-
-    h3.subsection {
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--near-black);
-      margin: 28px 0 10px;
-      padding-left: 12px;
-      border-left: 3px solid var(--green-dark);
+    h1 {
+      font-size:clamp(46px,7vw,86px);
+      line-height:.85;
+      letter-spacing:-4px;
+      text-transform:uppercase;
+      margin-bottom:22px;
     }
 
     p {
-      font-size: 14px;
-      line-height: 1.85;
-      color: #444;
-      margin-bottom: 14px;
+      color:var(--muted);
+      font-size:18px;
+      line-height:1.6;
+      max-width:620px;
+      margin-bottom:30px;
     }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 18px 0 24px;
-      font-size: 13px;
+    .form-box {
+      display:grid;
+      gap:14px;
+      margin-top:28px;
     }
 
-    thead tr { background: var(--green-dark); color: #fff; }
-
-    thead th {
-      padding: 10px 14px;
-      text-align: left;
-      font-weight: 700;
-      font-size: 11px;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
+    label {
+      font-size:12px;
+      font-weight:900;
+      letter-spacing:1.5px;
+      text-transform:uppercase;
+      color:var(--gold);
     }
 
-    tbody tr:nth-child(even) { background: var(--table-stripe); }
-    tbody tr:nth-child(odd)  { background: #fff; }
-
-    tbody td {
-      padding: 9px 14px;
-      color: #333;
-      border-bottom: 1px solid #e4ebe6;
-      vertical-align: top;
+    input {
+      width:100%;
+      padding:18px 20px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(0,0,0,.42);
+      color:white;
+      font-size:17px;
+      outline:none;
     }
 
-  tbody td strong { color: inherit; }
-
-    tr.highlight td {
-      background: var(--green-dark) !important;
-      color: #fff !important;
-      font-weight: 700;
+    input:focus {
+      border-color:var(--gold);
+      box-shadow:0 0 0 4px rgba(194,161,90,.12);
     }
 
-    .callout {
-      background: var(--green-light);
-      border-left: 4px solid var(--green-dark);
-      padding: 14px 18px;
-      margin: 16px 0 24px;
-      font-size: 13px;
-      color: #333;
+    button {
+      margin-top:8px;
+      border:none;
+      border-radius:999px;
+      padding:17px 24px;
+      background:var(--gold);
+      color:#080808;
+      font-size:13px;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:1.4px;
+      cursor:pointer;
+      transition:.25s ease;
     }
 
-    .callout strong { color: var(--green-dark); }
-
-    .shot-category {
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--green-dark);
-      margin: 20px 0 6px;
+    button:hover {
+      transform:translateY(-3px);
+      box-shadow:0 18px 40px rgba(194,161,90,.22);
     }
 
-    .shot-list {
-      font-size: 13px;
-      color: #444;
-      line-height: 1.85;
-      padding: 10px 14px;
-      border-left: 3px solid var(--border);
-      background: #fafcfb;
-      margin-bottom: 6px;
+    .error {
+      display:none;
+      color:#ffb3b3;
+      font-size:14px;
+      margin-top:10px;
     }
 
-    /* PACKAGE BOX */
-    .package-box {
-      background: var(--green-dark);
-      color: #fff;
-      padding: 36px 40px;
-      margin: 24px 0;
+    .hint {
+      margin-top:26px;
+      padding-top:24px;
+      border-top:1px solid rgba(255,255,255,.09);
+      color:rgba(245,245,243,.48);
+      font-size:13px;
     }
 
-    .package-box h2 {
-      font-size: 22px;
-      font-weight: 900;
-      letter-spacing: -0.3px;
-      text-transform: uppercase;
-      margin-bottom: 4px;
-      color: #fff;
-    }
-
-    .package-box .pkg-sub {
-      font-size: 11px;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.5);
-      margin-bottom: 24px;
-    }
-
-    .package-box table thead tr { background: rgba(255,255,255,0.14); }
-    .package-box table thead th { color: rgba(255,255,255,0.8); }
-    .package-box table tbody tr:nth-child(even) { background: rgba(255,255,255,0.06); }
-    .package-box table tbody tr:nth-child(odd)  { background: transparent; }
-    .package-box table tbody td { color: rgba(255,255,255,0.82); border-bottom: 1px solid rgba(255,255,255,0.1); }
-    .package-box table tr.highlight td { background: rgba(255,255,255,0.18) !important; color: #fff !important; }
-
-    .package-box .pkg-note {
-      font-size: 13px;
-      color: rgba(255,255,255,0.7);
-      margin-top: 16px;
-      line-height: 1.75;
-    }
-
-    .package-box .pkg-photography {
-      background: rgba(255,255,255,0.1);
-      border-left: 3px solid rgba(255,255,255,0.4);
-      padding: 12px 16px;
-      margin: 16px 0;
-      font-size: 13px;
-      color: rgba(255,255,255,0.9);
-      line-height: 1.7;
-    }
-
-    /* MAINTENANCE PLANS */
-    .plan-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin: 16px 0 24px;
-    }
-
-    .plan-card {
-      border: 1.5px solid var(--border);
-      padding: 22px 24px;
-    }
-
-    .plan-card.featured { border-color: var(--green-dark); border-width: 2px; }
-
-    .plan-card .plan-name {
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--green-dark);
-      margin-bottom: 4px;
-    }
-
-    .plan-card .plan-price {
-      font-size: 28px;
-      font-weight: 900;
-      color: var(--near-black);
-      margin-bottom: 14px;
-      letter-spacing: -0.5px;
-    }
-
-    .plan-card .plan-price span {
-      font-size: 13px;
-      font-weight: 400;
-      color: var(--muted);
-    }
-
-    .plan-card ul { list-style: none; }
-
-    .plan-card ul li {
-      font-size: 12.5px;
-      color: #555;
-      line-height: 1.9;
-      padding-left: 14px;
-      position: relative;
-    }
-
-    .plan-card ul li::before {
-      content: '—';
-      position: absolute;
-      left: 0;
-      color: var(--green-dark);
-      font-weight: 700;
-    }
-
-    /* NEXT STEPS */
-    .steps-list { list-style: none; margin: 16px 0; counter-reset: steps; }
-
-    .steps-list li {
-      counter-increment: steps;
-      display: flex;
-      gap: 16px;
-      align-items: flex-start;
-      padding: 14px 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .steps-list li::before {
-      content: counter(steps, decimal-leading-zero);
-      font-size: 11px;
-      font-weight: 900;
-      color: #fff;
-      background: var(--green-dark);
-      padding: 3px 8px;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    .steps-list li span { font-size: 14px; color: #444; line-height: 1.65; }
-    .steps-list li strong { color: var(--near-black); display: block; margin-bottom: 2px; }
-
-    .divider { border: none; border-top: 1px solid var(--border); margin: 36px 0; }
-
-    .inner-footer {
-      display: flex;
-      justify-content: space-between;
-      padding: 14px 56px;
-      border-top: 1px solid var(--border);
-      font-size: 10px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: #bbb;
+    @media (max-width:700px) {
+      .portal { padding:32px 24px; }
+      h1 { letter-spacing:-2px; }
     }
   </style>
 </head>
+
 <body>
 
-<!-- ══════════════════════════════
-     COVER PAGE
-══════════════════════════════ -->
-<div class="cover">
-  <header class="cover-topbar">
-    <span class="cover-logo">Vista Venture Co.</span>
-    <span class="cover-date">May 2026</span>
-  </header>
+  <main class="portal">
+    <div class="logo">Vista Venture Co.</div>
 
-  <section class="cover-hero">
-    <p class="cover-label">Digital Media &amp; Web Services Proposal</p>
-    <h1 class="cover-title">Blue Door<br /><span class="black">Group.</span></h1>
-    <p class="cover-subtitle">Photography &nbsp;·&nbsp; Web Development &nbsp;·&nbsp; Digital Infrastructure</p>
+    <h1>Client Proposal Portal.</h1>
 
-    <div class="meta-grid">
-      <div class="meta-cell">
-        <p class="meta-label">Prepared For</p>
-        <p class="meta-name">Kurt Carlson</p>
-        <p class="meta-detail">Blue Door Group</p>
-      </div>
-      <div class="meta-cell">
-        <p class="meta-label">Prepared By</p>
-        <p class="meta-name">Ryan Givans</p>
-        <p class="meta-detail">
-          Vista Venture Co.<br />
-          <a href="mailto:ryan.givans@vistaventureco.com">ryan.givans@vistaventureco.com</a><br />
-          (479) 326-8775 &nbsp;·&nbsp; Business<br />
-          (479) 409-4936 &nbsp;·&nbsp; Cell
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="cover-overview">
-    <p class="section-eyebrow">Overview</p>
-    <h2 class="overview-heading">A full-service partnership built to scale with Blue Door Group.</h2>
-    <p class="overview-body">
-      Thank you for the opportunity to work with Blue Door Group and its associated businesses. This proposal outlines a scalable strategy for digital media, photography, branding, and website development — designed to support long-term growth across property management, storage, investment, and construction operations.
-    </p>
-    <p class="overview-body">
-      Every service in this proposal is built around the same goal: make Blue Door Group easier to find, easier to trust, and easier to choose. Whether a prospective tenant is browsing a rental listing, a boat owner is booking a storage spot, or an investor is evaluating the portfolio — the presentation should be strong enough to do the work before anyone picks up the phone.
-    </p>
-    <div class="pillars">
-      <div class="pillar"><span class="pillar-num">01</span><span class="pillar-text">Professional, consistent property marketing media across all 31 rental units</span></div>
-      <div class="pillar"><span class="pillar-num">02</span><span class="pillar-text">A high-converting Eagle Rock Storage website with booking and payment functionality</span></div>
-      <div class="pillar"><span class="pillar-num">03</span><span class="pillar-text">A premium Blue Door Group brand presence connecting all three divisions</span></div>
-      <div class="pillar"><span class="pillar-num">04</span><span class="pillar-text">Long-term digital infrastructure that scales as the portfolio grows</span></div>
-    </div>
-  </section>
-
-  <div class="validity-banner">
-    Pricing in this proposal is valid for 30 days from the date of issue &nbsp;·&nbsp; A new proposal will be issued upon expiration, even if pricing remains unchanged
-  </div>
-
-  <footer class="cover-footer">
-    <span>Vista Venture Co. — Confidential</span>
-    <span>vistaventureco.com</span>
-  </footer>
-</div>
-
-<!-- ══════════════════════════════
-     SECTION 1 — REAL ESTATE PHOTOGRAPHY
-══════════════════════════════ -->
-<div class="page-break"></div>
-<div class="inner-page no-break">
-  <div class="section-header">
-    <span class="section-num">Section 01</span>
-    <span class="section-title">Real Estate Photography Services</span>
-  </div>
-
-  <h3 class="subsection">Rental Property Media Program</h3>
-  <p>A scalable photography solution designed to provide professional, consistent marketing media for rental vacancies as units become available. The recommended workflow is simple: as units become vacant, photography is scheduled immediately while the property is empty to maximize marketing quality and leasing speed. This creates a consistent media library across all 31 properties and helps maintain a premium brand image across every rental listing.</p>
-
-  <h3 class="subsection">Included Per Property</h3>
-  <table>
-    <thead><tr><th>Deliverable</th><th>Details</th></tr></thead>
-    <tbody>
-      <tr><td><strong>Interior Photography</strong></td><td>HDR bracketed capture, wide-angle, fully edited</td></tr>
-      <tr><td><strong>Exterior Photography</strong></td><td>HDR bracketed capture, multiple angles</td></tr>
-      <tr><td><strong>Drone Photography</strong></td><td>Aerial property images, lot context, neighborhood visuals, exterior layout</td></tr>
-      <tr><td><strong>Professional Editing</strong></td><td>Color correction and final retouching</td></tr>
-      <tr><td><strong>Platform-Ready Delivery</strong></td><td>MLS, Zillow, Airbnb, and web-ready formatting</td></tr>
-      <tr><td><strong>Fast Turnaround</strong></td><td>Prioritized delivery for active vacancy listings</td></tr>
-    </tbody>
-  </table>
-
-  <h3 class="subsection">Pricing</h3>
-  <table>
-    <thead><tr><th>Rate</th><th>Per Property</th></tr></thead>
-    <tbody>
-      <tr><td>Standard Rate</td><td>$275</td></tr>
-      <tr class="highlight"><td><strong>Blue Door Group Bulk Partner Rate</strong></td><td><strong>$175</strong></td></tr>
-    </tbody>
-  </table>
-
-  <div class="callout">
-    <strong>Bulk Partner Rate:</strong> The $175/property rate is locked in for all 31 properties and any future acquisitions — shot on-demand as each unit becomes vacant. No rush, no bulk upfront commitment.
-  </div>
-
-  <h3 class="subsection">Optional Add-On Services</h3>
-  <table>
-    <thead><tr><th>Add-On</th><th>Starting At</th><th>What's Included</th></tr></thead>
-    <tbody>
-      <tr><td><strong>360 Walkthrough</strong></td><td>$100</td><td>Interactive tour for Zillow, Airbnb, and web embeds — lets tenants walk through before scheduling</td></tr>
-      <tr><td><strong>Vertical Social Media Reels</strong></td><td>$95+</td><td>Short-form vertical property videos optimized for Facebook, Instagram, and listing promotion</td></tr>
-    </tbody>
-  </table>
-</div>
-<div class="inner-footer"><span>Vista Venture Co. — Blue Door Group Proposal</span><span>Section 01 — Photography</span></div>
-
-<!-- ══════════════════════════════
-     SECTION 2 — EAGLE ROCK STORAGE MEDIA
-══════════════════════════════ -->
-<div class="page-break"></div>
-<div class="inner-page">
-  <div class="section-header">
-    <span class="section-num">Section 02</span>
-    <span class="section-title">Eagle Rock Storage — Media Package</span>
-  </div>
-
-  <h3 class="subsection">Commercial Photography &amp; Branding Media</h3>
-  <p>Professional media coverage for the Eagle Rock boat and RV storage facility near Eagle Rock, MO, designed for website use, advertising, social media, and long-term brand marketing. The visual direction will focus on clean and secure presentation, premium facility perception, easy access and maneuverability, large storage capability, trust and professionalism, and lake-life and travel lifestyle appeal.</p>
-
-  <h3 class="subsection">Planned Shot List</h3>
-
-  <p class="shot-category">Ground Photography — Facility Overview</p>
-  <p class="shot-list">Wide-angle property overview from the entrance &nbsp;·&nbsp; Main entrance hero shot &nbsp;·&nbsp; Signage and branding shots &nbsp;·&nbsp; Front gate and access point &nbsp;·&nbsp; Security features including cameras and fencing &nbsp;·&nbsp; Gravel and paved drive lanes &nbsp;·&nbsp; Lighting visibility &nbsp;·&nbsp; Fence lines and perimeter visuals</p>
-
-  <p class="shot-category">Ground Photography — Storage Space Coverage</p>
-  <p class="shot-list">Boat storage examples &nbsp;·&nbsp; RV storage examples &nbsp;·&nbsp; Trailer storage examples &nbsp;·&nbsp; Covered and uncovered storage examples &nbsp;·&nbsp; Multiple angle variations of storage rows &nbsp;·&nbsp; Spacious turning radius visuals &nbsp;·&nbsp; Easy-access driving shots demonstrating how large vehicles navigate the property</p>
-
-  <p class="shot-category">Ground Photography — Lifestyle &amp; Branding Shots</p>
-  <p class="shot-list">Premium RV parked on-site &nbsp;·&nbsp; Boat prep and travel imagery &nbsp;·&nbsp; Golden hour lighting shots &nbsp;·&nbsp; Cinematic low-angle shots &nbsp;·&nbsp; Detail shots of locks, gates, signage, and security hardware &nbsp;·&nbsp; Owner/operator branding imagery if desired</p>
-
-  <p class="shot-category">Drone Photography</p>
-  <p class="shot-list">Full property overhead &nbsp;·&nbsp; Entrance and road access visibility &nbsp;·&nbsp; Property boundary overview &nbsp;·&nbsp; Surrounding area context &nbsp;·&nbsp; Lake proximity visuals where applicable &nbsp;·&nbsp; Aerial approach shots &nbsp;·&nbsp; Straight-down map-style shots &nbsp;·&nbsp; Cinematic orbit-style hero imagery</p>
-
-  <h3 class="subsection">Deliverables</h3>
-  <p>All final media will be delivered as website-ready images, advertising-ready images, social media content assets, high-resolution commercial files, and branded hero images formatted for website headers.</p>
-
-  <div class="callout">
-    <strong>A La Carte Investment:</strong> Starting at $500 — includes all ground and drone photography, full editing, and delivery in all formats listed above.
-  </div>
-</div>
-<div class="inner-footer"><span>Vista Venture Co. — Blue Door Group Proposal</span><span>Section 02 — Storage Media</span></div>
-
-<!-- ══════════════════════════════
-     SECTION 3 — EAGLE ROCK STORAGE WEBSITE
-══════════════════════════════ -->
-<div class="page-break"></div>
-<div class="inner-page">
-  <div class="section-header">
-    <span class="section-num">Section 03</span>
-    <span class="section-title">Eagle Rock Storage — Website</span>
-  </div>
-
-  <h3 class="subsection">Custom Storage Facility Website</h3>
-  <p>A premium website experience designed specifically for Eagle Rock Storage of MO. This website will focus on professional presentation, online reservations, payment functionality, a mobile-first user experience, high conversion rates, and long-term scalability.</p>
-
-  <h3 class="subsection">Core Website Features</h3>
-  <table>
-    <thead><tr><th>Feature Area</th><th>What's Included</th></tr></thead>
-    <tbody>
-      <tr><td><strong>Facility Information</strong></td><td>Descriptions of all 4 storage types, pricing display, size comparisons, feature highlights, FAQ section</td></tr>
-      <tr><td><strong>Booking &amp; Reservation System</strong></td><td>Online reservation capability, spot/unit holding during checkout, availability visibility, inquiry and contact workflow</td></tr>
-      <tr><td><strong>Payment Integration</strong></td><td>Monthly recurring payment capability, secure checkout, customer billing support</td></tr>
-      <tr><td><strong>Mobile Optimization</strong></td><td>Full responsive mobile experience, fast-loading performance, modern UI/UX design</td></tr>
-      <tr><td><strong>SEO Foundations</strong></td><td>Google indexing setup, meta optimization, local search optimization, business profile integration readiness</td></tr>
-    </tbody>
-  </table>
-
-  <h3 class="subsection">Storage Software Integration</h3>
-  <p>To provide secure and reliable booking, reservation, inventory, and recurring payment functionality, the website will require integration with a professional third-party storage management platform. These systems are purpose-built for self-storage operations and include reservation systems, inventory management, unit availability tracking, secure recurring payments, customer account portals, automated billing, and contract management.</p>
-
-  <table>
-    <thead><tr><th>Platform</th><th>Best For</th></tr></thead>
-    <tbody>
-      <tr><td><strong>Stora</strong></td><td>Modern, automated, strong API — ideal for a streamlined online-first operation (~$99/mo)</td></tr>
-      <tr><td><strong>SiteLink / Storable</strong></td><td>Industry heavyweight with 15,000+ facilities, deep feature set, proven API</td></tr>
-      <tr><td><strong>StorEDGE</strong></td><td>Clean UI, strong online rental flow, good for smaller operations</td></tr>
-      <tr><td><strong>Easy Storage Solutions</strong></td><td>Simple and affordable, good entry point for a single facility</td></tr>
-    </tbody>
-  </table>
-
-  <p>Vista Venture Co. will handle DNS configuration, hosting setup, domain routing, live launch, technical deployment, and SSL/security setup — ensuring a smooth, professional launch without requiring technical work on the client side.</p>
-
-  <div class="callout">
-    <strong>A La Carte Investment:</strong> Starting at $1,200 (website build) + $500 (platform integration setup).<br />
-    Final pricing depends on platform selected, integration complexity, and custom functionality requested.
-  </div>
-</div>
-<div class="inner-footer"><span>Vista Venture Co. — Blue Door Group Proposal</span><span>Section 03 — Storage Website</span></div>
-
-<!-- ══════════════════════════════
-     SECTION 4 — PARENT COMPANY WEBSITE
-══════════════════════════════ -->
-<div class="page-break"></div>
-<div class="inner-page">
-  <div class="section-header">
-    <span class="section-num">Section 04</span>
-    <span class="section-title">Blue Door Group — Parent Company Website</span>
-  </div>
-
-  <h3 class="subsection">Premium Corporate Brand Website</h3>
-  <p>A premium, brand-focused website representing the Blue Door Group umbrella company and its three divisions. This site will serve as a digital company profile, a credibility-building platform, an investor-facing brand presence, and a central hub connecting all business divisions. The visual direction will focus on modern corporate presentation, premium cinematic visuals, clean typography, architectural styling, a strong mobile experience, and long-term scalability.</p>
-
-  <h3 class="subsection">Division 1 — Rental &amp; Property Management</h3>
-  <p>Featured properties, leasing inquiry forms, property showcase pages, and rental portfolio organization. Active listings can be pulled and displayed directly on the site through Zillow's Rentals Feed API and Airbnb channel manager connections, keeping the page current without manual updates.</p>
-
-  <h3 class="subsection">Division 2 — Investment</h3>
-  <p>Investment philosophy, project categories, market positioning, portfolio highlights, and acquisition interest forms. Focus areas include mixed-use development, retail investment, storage investment, and light industrial projects — presented to attract partners and showcase the depth of the portfolio.</p>
-
-  <h3 class="subsection">Division 3 — Construction (Blue Door Group)</h3>
-  <p>Company history and legacy, project showcase gallery, service overview, construction capabilities, and brand storytelling that highlights the construction roots of the entire operation. This section positions Blue Door Group as a builder first — lending credibility to every other division.</p>
-
-  <table>
-    <thead><tr><th>Feature</th><th>Details</th></tr></thead>
-    <tbody>
-      <tr><td><strong>Zillow Integration</strong></td><td>Rentals Feed API to sync active rental listings directly onto the site</td></tr>
-      <tr><td><strong>Airbnb Integration</strong></td><td>Channel manager connection (e.g., Guesty, Hostaway) to display short-term rental listings</td></tr>
-      <tr><td><strong>Investment Portfolio Pages</strong></td><td>Mixed-use, retail, storage, light industrial — with inquiry forms</td></tr>
-      <tr><td><strong>Construction Gallery</strong></td><td>Project showcase with before/after and progress documentation</td></tr>
-      <tr><td><strong>Mobile Optimization</strong></td><td>Fully responsive, fast-loading, modern design</td></tr>
-      <tr><td><strong>SEO &amp; Launch</strong></td><td>Full DNS, hosting, SSL, and deployment handled by Vista Venture Co.</td></tr>
-    </tbody>
-  </table>
-
-  <div class="callout">
-    <strong>A La Carte Investment:</strong> Starting at $1,500 (website build) + $800 (Zillow/Airbnb API integrations).<br />
-    Final pricing depends on page count, portfolio size, API integrations, and custom functionality.
-  </div>
-</div>
-<div class="inner-footer"><span>Vista Venture Co. — Blue Door Group Proposal</span><span>Section 04 — Parent Website</span></div>
-
-<!-- ══════════════════════════════
-     SECTION 5 — MAINTENANCE + PACKAGE
-══════════════════════════════ -->
-<div class="page-break"></div>
-<div class="inner-page">
-  <div class="section-header">
-    <span class="section-num">Section 05</span>
-    <span class="section-title">Ongoing Management &amp; Maintenance</span>
-  </div>
-
-  <p>Two ongoing service tiers are available to keep both websites current, secure, and supported after launch.</p>
-
-  <div class="plan-grid">
-    <div class="plan-card featured">
-      <p class="plan-name">Complete Management</p>
-      <p class="plan-price">$145 <span>/ month</span></p>
-      <ul>
-        <li>Hosting setup &amp; site monitoring</li>
-        <li>Basic updates &amp; content changes</li>
-        <li>Security &amp; plugin maintenance</li>
-        <li>Technical support &amp; priority fixes</li>
-        <li><strong>3 full media shoots per year</strong></li>
-        <li>Photos, portraits, drone &amp; short video</li>
-        <li>$1,100+ annual media value included</li>
-      </ul>
-    </div>
-    <div class="plan-card">
-      <p class="plan-name">Basic Management</p>
-      <p class="plan-price">$95 <span>/ month</span></p>
-      <ul>
-        <li>Hosting setup &amp; site monitoring</li>
-        <li>Basic updates &amp; content changes</li>
-        <li>Security &amp; plugin maintenance</li>
-        <li>Technical support</li>
-        <li>Client provides all media for updates</li>
-      </ul>
-    </div>
-  </div>
-
-  <hr class="divider" />
-
-  <!-- PACKAGE DEAL -->
-  <div class="package-box no-break">
-    <h2>The Comprehensive Package Deal</h2>
-    <p class="pkg-sub">Best Value — All Services Bundled</p>
-
-    <p style="color:rgba(255,255,255,0.82); font-size:14px; margin-bottom:16px; line-height:1.75;">
-      By bundling all services, we ensure a cohesive visual and digital strategy across the entire Blue Door Group portfolio. The package locks in both full website builds with all integrations and includes the Eagle Rock Storage media shoot — all for a single upfront investment.
+    <p>
+      Enter the password provided with your proposal to view your custom project details,
+      pricing, timeline, and next steps.
     </p>
 
-    <div class="pkg-photography">
-      <strong style="color:#fff; display:block; margin-bottom:4px;">Photography Rate — Locked In</strong>
-      The Blue Door Group bulk partner rate of <strong style="color:#fff;">$175 per property</strong> is included as a permanent benefit of this partnership. All 31 current properties and any future acquisitions are covered at this rate, shot on-demand as each unit becomes vacant. No upfront commitment required.
+    <div class="form-box">
+      <label for="password">Proposal Password</label>
+      <input id="password" type="password" placeholder="Enter password" autocomplete="off" />
+      <button onclick="checkPassword()">View Proposal</button>
+      <div id="error" class="error">That password does not match a proposal. Please try again.</div>
     </div>
 
-    <table>
-      <thead><tr><th>Item</th><th>A La Carte Value</th><th>Package Price</th></tr></thead>
-      <tbody>
-        <tr><td>Eagle Rock Storage Glamour Shoot</td><td>$500</td><td>Included</td></tr>
-        <tr><td>Eagle Rock Storage Website Build</td><td>$1,200</td><td>Included</td></tr>
-        <tr><td>Storage Platform Integration Setup</td><td>$500</td><td>Included</td></tr>
-        <tr><td>Blue Door Group Parent Company Website</td><td>$1,500</td><td>Included</td></tr>
-        <tr><td>Zillow / Airbnb API Integrations</td><td>$800</td><td>Included</td></tr>
-        <tr class="highlight"><td><strong>Total</strong></td><td><strong>$4,500</strong></td><td><strong>$4,000</strong></td></tr>
-      </tbody>
-    </table>
+    <div class="hint">
+      Need help? Email info@vistaventureco.com
+    </div>
+  </main>
 
-    <p class="pkg-note">
-      <strong style="color:#fff;">Package savings: $500.</strong> Ongoing photography is billed separately at <strong style="color:#fff;">$175/property</strong>, only as properties are shot — no upfront commitment required. Optional ongoing maintenance plans available at $95 or $145/month.
-    </p>
-  </div>
+  <script>
+    const proposals = {
+      "bdg333ersofmo": "blue-door-group",
+      "school2026": "school-photo-day.html",
+      "blockstreet2026": "block-street-records.html"
+    };
 
-  <hr class="divider" />
+    function checkPassword() {
+      const input = document.getElementById("password").value.trim();
+      const error = document.getElementById("error");
 
-  <h3 class="subsection" style="margin-top:0;">Next Steps</h3>
-  <ol class="steps-list">
-    <li><span><strong>Review &amp; Approve</strong>Review this proposal and confirm the scope, or flag any adjustments needed before we move forward.</span></li>
-    <li><span><strong>Select the Storage Platform</strong>A quick call to evaluate Stora, SiteLink, StorEDGE, or Easy Storage Solutions will determine the best backend fit for Eagle Rock Storage before integration work begins.</span></li>
-    <li><span><strong>Schedule the Storage Shoot</strong>Once approved, we can schedule the Eagle Rock facility media shoot at your earliest convenience.</span></li>
-    <li><span><strong>Kickoff Web Design</strong>Design work on both websites begins immediately after approval and platform selection.</span></li>
-  </ol>
+      if (proposals[input]) {
+        window.location.href = proposals[input];
+      } else {
+        error.style.display = "block";
+      }
+    }
 
-  <div class="callout" style="margin-top:32px;">
-    <strong>Pricing Validity:</strong> All pricing in this proposal is valid for 30 days from the date of issue. A new proposal will be issued upon expiration — even if nothing changes.
-  </div>
-</div>
-<div class="inner-footer"><span>Vista Venture Co. — Blue Door Group Proposal</span><span>Section 05 — Package &amp; Next Steps</span></div>
+    document.getElementById("password").addEventListener("keydown", function(e) {
+      if (e.key === "Enter") {
+        checkPassword();
+      }
+    });
+  </script>
 
 </body>
 </html>
-
