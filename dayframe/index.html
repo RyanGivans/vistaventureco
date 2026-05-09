@@ -66,36 +66,18 @@
       color:var(--navy);
     }
 
-    .brand-mark {
-      width:48px;
-      height:48px;
-      border:3px solid var(--navy);
-      border-radius:50%;
-      display:grid;
-      place-items:center;
-      font-size:21px;
-      font-weight:900;
-      letter-spacing:-3px;
-      text-transform:lowercase;
-    }
+    .brand-logo {
+  width:230px;
+  max-width:100%;
+  height:auto;
+  display:block;
+}
 
-    .brand-name {
-      font-size:22px;
-      font-weight:900;
-      letter-spacing:5px;
-      text-transform:uppercase;
-      line-height:1;
-    }
-
-    .brand-sub {
-      display:block;
-      font-size:10px;
-      letter-spacing:2.5px;
-      color:var(--muted);
-      margin-top:6px;
-      font-weight:800;
-      text-transform:uppercase;
-    }
+@media (max-width:700px) {
+  .brand-logo {
+    width:180px;
+  }
+}
 
     .nav-links {
       display:flex;
@@ -918,13 +900,9 @@ url("https://cdn.prod.website-files.com/67017735bb003974499feb31/67ad892c1edce5b
 
   <nav class="nav">
     <div class="wrap nav-inner">
-      <a class="brand" href="../">
-        <span class="brand-mark">df</span>
-        <span>
-          <span class="brand-name">Dayframe</span>
-          <span class="brand-sub">A Vista Venture Company</span>
-        </span>
-      </a>
+     <a class="brand" href="../">
+  <img src="./assets/dayframe-logo/long.white.jpg" alt="Dayframe - A Vista Venture Company" class="brand-logo">
+</a>
 
       <div class="nav-links">
         <a href="#school">School Photos</a>
