@@ -930,6 +930,22 @@
   }
 
 }
+
+.about-photo-large{
+  margin-top:40px;
+  border-radius:36px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:var(--shadow);
+}
+
+.about-photo-large img{
+  width:100%;
+  height:auto;
+  display:block;
+  object-fit:contain;
+  background:#061b3d;
+}
     
   </style>
 </head>
@@ -1425,31 +1441,39 @@
   </section>
 
   <!-- SECTION PHOTO: ./assets/ad-4x4.jpg -->
-  <section class="about-band">
-    <div class="wrap about-grid">
-      <div>
-        <div class="eyebrow" style="color:var(--gold);">A Vista Venture Company</div>
-        <h2>Modern photos. Better systems.</h2>
+<section class="about-band">
+  <div class="wrap about-grid">
+    <div>
+      <div class="eyebrow" style="color:var(--gold);">
+        A Vista Venture Company
       </div>
 
-      <div>
-        <p>
-          Dayframe was created to modernize school photography and create a better
-          experience for both schools and families.
-        </p>
-        <p>
-          Based in Northwest Arkansas, we combine professional photography, streamlined
-          systems, and modern delivery methods to create a clean, stress-free experience.
-        </p>
-      </div>
+      <h2>
+        Modern photos.<br>
+        Better systems.
+      </h2>
     </div>
 
-    <div class="wrap">
-      <div class="photo-tile about-photo">
-        <img src="./assets/ad-4x4.jpg" alt="Dayframe brand image">
-      </div>
+    <div>
+      <p>
+        Dayframe was created to modernize school photography and create a better
+        experience for both schools and families.
+      </p>
+
+      <p>
+        Based in Northwest Arkansas, we combine professional photography,
+        streamlined systems, and modern delivery methods to create a clean,
+        stress-free experience.
+      </p>
     </div>
-  </section>
+  </div>
+
+  <div class="wrap">
+    <div class="about-photo-large">
+      <img src="./assets/ad-4x4.jpg" alt="Dayframe brand image">
+    </div>
+  </div>
+</section>
 
   <!-- SECTION PHOTO: ./assets/family-4-2.jpg -->
   <section id="contact" class="final">
