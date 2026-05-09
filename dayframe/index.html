@@ -305,7 +305,21 @@ url("./assets/students-9x9.jpg");
       font-size:20px;
       max-width:780px;
     }
+.why-top-right {
+  display:flex;
+  flex-direction:column;
+  gap:28px;
+}
 
+.why-photo {
+  width:100%;
+  border-radius:28px;
+  display:block;
+  object-fit:cover;
+  box-shadow:var(--shadow);
+  border:1px solid rgba(255,255,255,.7);
+  max-height:320px;
+}
     .cards {
       display:grid;
       grid-template-columns:repeat(3,1fr);
@@ -952,12 +966,20 @@ url("https://cdn.prod.website-files.com/67017735bb003974499feb31/67ad892c1edce5b
   <section>
     <div class="wrap">
       <div class="section-head">
-        <h2>Why schools choose Dayframe.</h2>
-        <p>
-          We built Dayframe to modernize school photography. No confusing order forms.
-          No overpriced print bundles. No stressful picture day process.
-        </p>
-      </div>
+  <h2>Why schools choose Dayframe.</h2>
+
+  <div class="why-top-right">
+    <p>
+      We built Dayframe to modernize school photography.
+      No confusing order forms. No overpriced print bundles.
+      No stressful picture day process.
+    </p>
+
+    <img src="./assets/setup-checkin.jpg"
+         alt="Dayframe setup and check-in"
+         class="why-photo">
+  </div>
+</div>
 
       <div class="cards">
         <div class="card">
