@@ -1,0 +1,11 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:Ryan Givans
+ORG:Vista Venture Co.
+TITLE:Founder
+TEL;TYPE=WORK,VOICE:(479) 326-8775
+TEL;TYPE=CELL,VOICE:(479) 409-4936
+EMAIL;TYPE=INTERNET:Ryan.givans@vistaventureco.com
+URL:https://www.vistaventureco.com
+ADR;TYPE=WORK:;;;Northwest Arkansas;;;
+END:VCARD
