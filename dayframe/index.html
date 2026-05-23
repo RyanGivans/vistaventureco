@@ -913,10 +913,12 @@
 
 .collage-small img{
   width:100%;
-  height:320px;
-  object-fit:cover;
+  height:340px;
+  object-fit:contain;
+  object-position:center top;
   display:block;
   border-radius:28px;
+  background:#dfe7ef;
 }
 
 @media (max-width:900px){
@@ -926,7 +928,9 @@
   }
 
   .collage-small img{
-    height:260px;
+    height:auto;
+    max-height:none;
+    object-fit:contain;
   }
 
 }
