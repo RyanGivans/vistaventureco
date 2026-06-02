@@ -64,6 +64,26 @@
       padding:9px 13px;
     }
 
+    .menu-toggle {
+      display:none;
+      width:44px;
+      height:44px;
+      padding:10px;
+      border:1px solid rgba(194,161,90,.5);
+      border-radius:12px;
+      background:rgba(5,5,5,.55);
+      cursor:pointer;
+    }
+
+    .menu-toggle span {
+      display:block;
+      width:100%;
+      height:2px;
+      margin:5px 0;
+      background:var(--gold);
+      transition:.3s ease;
+    }
+
     .hero {
       min-height:100vh;
       padding:140px 5vw 70px;
@@ -423,167 +443,137 @@
       line-height:.9;
       letter-spacing:-3px;
       text-transform:uppercase;
-      margin-bottom:14px;
     }
 
     .mid-cta p {
       color:rgba(245,245,243,.72);
-      font-size:18px;
-      line-height:1.6;
+      line-height:1.65;
+      margin-top:14px;
       max-width:760px;
     }
 
     .web-feature {
       background:var(--cream);
       color:#080808;
-      position:relative;
-      overflow:hidden;
-    }
-
-    .web-feature::before {
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(194,161,90,.3), transparent 28%),
-        radial-gradient(circle at 82% 80%, rgba(31,61,43,.26), transparent 32%);
-      pointer-events:none;
     }
 
     .web-inner {
-      position:relative;
       max-width:1220px;
       margin:0 auto;
       display:grid;
-      grid-template-columns:.9fr 1.1fr;
-      gap:40px;
+      grid-template-columns:1fr 1fr;
+      gap:50px;
       align-items:center;
     }
 
-    .web-inner h2 {
-      font-size:clamp(44px,7vw,90px);
-      line-height:.88;
+    .web-feature h2 {
+      color:var(--green);
+      font-size:clamp(42px,6vw,88px);
+      line-height:.9;
       letter-spacing:-4px;
       text-transform:uppercase;
-      margin-bottom:24px;
+      margin-bottom:20px;
     }
 
-    .web-inner p {
+    .web-feature p {
       color:#444;
       font-size:18px;
       line-height:1.65;
-      margin-bottom:26px;
+      margin-top:14px;
     }
 
     .browser {
-      background:#080808;
       border-radius:30px;
-      overflow:hidden;
-      box-shadow:0 40px 100px rgba(0,0,0,.28);
-      transform:rotate(-2deg);
+      background:#111;
+      padding:16px;
+      box-shadow:0 28px 90px rgba(0,0,0,.28);
     }
 
     .browser-top {
       display:flex;
       gap:8px;
-      padding:16px;
-      border-bottom:1px solid rgba(255,255,255,.1);
+      padding:0 0 14px 4px;
     }
 
     .dot {
-      width:11px;
-      height:11px;
+      width:10px;
+      height:10px;
       border-radius:50%;
-      background:var(--gold);
-      opacity:.85;
+      background:rgba(255,255,255,.34);
     }
 
     .browser-screen {
-      min-height:420px;
+      min-height:320px;
+      border-radius:20px;
+      display:grid;
+      place-items:center;
+      text-align:center;
+      padding:24px;
       background:
-        linear-gradient(rgba(0,0,0,.22), rgba(0,0,0,.88)),
-url("https://cdn.myportfolio.com/6548b179-e775-4fd6-82d3-1c416ff2f000/54bba57a-b0ed-4c2d-93e5-17ca8c7cc653_rw_1920.png?h=1ec7f602bd80a42cb3d0ad3dd6b7b1bf");      background-size:cover;
+        linear-gradient(145deg, rgba(0,0,0,.42), rgba(0,0,0,.72)),
+        url("https://cdn.myportfolio.com/6548b179-e775-4fd6-82d3-1c416ff2f000/f98c281a-0164-452b-81ec-6461348c9508_rw_1200.png?h=90b79eab1238ac0b62f0f35654a73534");
+      background-size:cover;
       background-position:center;
-      display:flex;
-      align-items:end;
-      padding:34px;
     }
 
     .browser-screen h3 {
       color:white;
-      font-size:48px;
-      line-height:.9;
-      letter-spacing:-2px;
+      font-size:clamp(32px,5vw,68px);
       text-transform:uppercase;
+      line-height:.92;
+      letter-spacing:-2px;
     }
 
     .case-preview {
-      background:#050505;
+      background:#080808;
     }
 
     .case-grid {
       max-width:1220px;
       margin:0 auto;
       display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:18px;
+      grid-template-columns:repeat(2,1fr);
+      gap:16px;
     }
 
     .case-card {
-      border:1px solid rgba(194,161,90,.22);
-      border-radius:30px;
+      border:1px solid rgba(194,161,90,.2);
+      border-radius:26px;
       overflow:hidden;
-      background:rgba(255,255,255,.035);
-      min-height:520px;
-      display:flex;
-      flex-direction:column;
+      background:#111;
       transition:.35s ease;
     }
 
     .case-card:hover {
-      transform:translateY(-7px);
+      transform:translateY(-6px);
       border-color:var(--gold);
-      box-shadow:0 30px 80px rgba(0,0,0,.42);
-    }
-
-    .case-image {
-      height:240px;
-      overflow:hidden;
-      position:relative;
     }
 
     .case-image img {
-      height:100%;
+      height:250px;
       object-fit:cover;
-      opacity:.82;
-      transition:.9s ease;
-    }
-
-    .case-card:hover img {
-      transform:scale(1.08);
-      opacity:1;
     }
 
     .case-body {
-      padding:28px;
+      padding:24px;
       display:flex;
-      flex-direction:column;
       justify-content:space-between;
-      flex:1;
-      gap:20px;
+      gap:18px;
+      align-items:flex-end;
     }
 
     .case-body h3 {
-      font-size:30px;
-      line-height:.95;
-      letter-spacing:-1.2px;
+      margin-top:7px;
       text-transform:uppercase;
-      margin-bottom:12px;
+      letter-spacing:-1px;
+      font-size:28px;
+      line-height:.98;
     }
 
     .case-body p {
-      color:rgba(245,245,243,.68);
-      line-height:1.6;
+      color:rgba(245,245,243,.66);
+      line-height:1.55;
+      margin-top:10px;
     }
 
     .case-link {
@@ -591,10 +581,10 @@ url("https://cdn.myportfolio.com/6548b179-e775-4fd6-82d3-1c416ff2f000/54bba57a-b
       font-size:12px;
       font-weight:900;
       text-transform:uppercase;
-      letter-spacing:1.4px;
+      white-space:nowrap;
     }
 
-    .mini-proof {
+    .proof-section {
       background:#0a0a0a;
     }
 
@@ -602,16 +592,15 @@ url("https://cdn.myportfolio.com/6548b179-e775-4fd6-82d3-1c416ff2f000/54bba57a-b
       max-width:1220px;
       margin:0 auto;
       display:grid;
-      grid-template-columns:repeat(4,1fr);
+      grid-template-columns:repeat(3,1fr);
       gap:16px;
     }
 
     .proof-card {
-      border:1px solid rgba(194,161,90,.18);
+      border:1px solid rgba(194,161,90,.22);
       border-radius:24px;
-      padding:26px;
-      min-height:220px;
-      background:rgba(255,255,255,.035);
+      padding:28px;
+      background:linear-gradient(145deg, rgba(31,61,43,.48), rgba(8,8,8,.94));
     }
 
     .proof-card strong {
@@ -684,7 +673,40 @@ url("https://cdn.myportfolio.com/6548b179-e775-4fd6-82d3-1c416ff2f000/54bba57a-b
     }
 
     @media (max-width:980px) {
-      .nav-links { display:none; }
+      .menu-toggle {
+        display:block;
+      }
+
+      .nav-links {
+        display:none;
+        position:absolute;
+        top:100%;
+        left:0;
+        width:100%;
+        padding:22px 5vw 26px;
+        flex-direction:column;
+        align-items:flex-start;
+        gap:18px;
+        background:rgba(5,5,5,.97);
+        border-bottom:1px solid rgba(255,255,255,.08);
+        backdrop-filter:blur(18px);
+      }
+
+      .nav-links.is-open {
+        display:flex;
+      }
+
+      .menu-toggle.is-open span:nth-child(1) {
+        transform:translateY(7px) rotate(45deg);
+      }
+
+      .menu-toggle.is-open span:nth-child(2) {
+        opacity:0;
+      }
+
+      .menu-toggle.is-open span:nth-child(3) {
+        transform:translateY(-7px) rotate(-45deg);
+      }
 
       .hero {
         min-height:auto;
