@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Services | Vista Venture Co.</title>
+  <link rel="stylesheet" href="/assets/css/mobile-nav.css">
 
   <style>
     :root {
@@ -427,72 +428,73 @@
     }
 
     .service-index {
-      background:#050505;
+      background:#0a0a0a;
     }
 
     .index-grid {
       max-width:1220px;
-      margin:auto;
+      margin:0 auto;
       display:grid;
       grid-template-columns:repeat(2,1fr);
       gap:16px;
     }
 
     .index-card {
-      border:1px solid rgba(194,161,90,.22);
-      border-radius:28px;
-      padding:28px;
+      border:1px solid rgba(194,161,90,.18);
+      border-radius:26px;
+      padding:26px;
       background:rgba(255,255,255,.035);
-      min-height:260px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
       transition:.35s ease;
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      align-items:flex-end;
     }
 
     .index-card:hover {
-      transform:translateY(-6px);
+      transform:translateY(-5px);
       border-color:var(--gold);
-      box-shadow:0 25px 70px rgba(0,0,0,.38);
+      background:rgba(194,161,90,.06);
     }
 
     .index-card strong {
       color:var(--gold);
-      font-size:13px;
+      font-size:12px;
+      letter-spacing:1.4px;
       text-transform:uppercase;
-      letter-spacing:1.7px;
     }
 
     .index-card h3 {
-      font-size:34px;
-      line-height:.95;
+      font-size:26px;
+      line-height:.98;
+      letter-spacing:-1px;
       text-transform:uppercase;
-      letter-spacing:-1.4px;
-      margin:18px 0 12px;
+      margin-top:8px;
     }
 
     .index-card p {
-      color:rgba(245,245,243,.68);
-      line-height:1.6;
-      margin-bottom:18px;
+      color:rgba(245,245,243,.66);
+      line-height:1.5;
+      margin-top:10px;
     }
 
     .index-card a {
       color:var(--gold);
-      font-size:12px;
       font-weight:900;
+      font-size:12px;
+      letter-spacing:1.3px;
       text-transform:uppercase;
-      letter-spacing:1.4px;
+      white-space:nowrap;
     }
 
     .cta {
-      min-height:78vh;
+      min-height:80vh;
       display:grid;
       place-items:center;
       text-align:center;
       background:
         linear-gradient(rgba(0,0,0,.68), rgba(0,0,0,.92)),
-        url("https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/2FE078A20D0C4561EDE113B33CCD5864_1777017079.jpg?width=2400&optimize=medium");
+        url("https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/dji_fly_20250110_114758_700_1736531724454_aeb-HDR_1777017055.jpg?width=2400&optimize=medium");
       background-size:cover;
       background-position:center;
     }
@@ -511,27 +513,6 @@
       max-width:760px;
       margin:0 auto 32px;
       line-height:1.55;
-    }
-
-    .vanish {
-      display:inline-block;
-    }
-
-    @keyframes serviceFlicker {
-      0%, 56% { opacity:1; filter:none; }
-      58% { opacity:.15; filter:blur(1px); }
-      60% { opacity:1; filter:none; }
-      62% { opacity:.08; filter:blur(2px); }
-      64% { opacity:1; filter:none; }
-      68%, 82% { opacity:0; filter:blur(4px); }
-      86% { opacity:.12; filter:blur(2px); }
-      88% { opacity:1; filter:none; }
-      90% { opacity:.2; filter:blur(1px); }
-      92%, 100% { opacity:1; filter:none; }
-    }
-
-    .service-easter .vanish {
-      animation:serviceFlicker 9s infinite;
     }
 
     footer {
@@ -613,7 +594,13 @@
   <nav class="nav">
     <a class="logo" href="../">Vista Venture Co.</a>
 
-    <div class="nav-links">
+    <button class="menu-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="nav-links" id="mobile-nav">
       <a href="../services/">Services</a>
       <a href="../gallery/">Gallery</a>
       <a href="../web-design/">Web Design</a>
@@ -661,19 +648,19 @@
 
   <section>
     <div class="section-head reveal">
-      <h2>Choose the service that fits the project.</h2>
+      <h2>Choose your direction.</h2>
       <p>
-        Explore the main services below. If you are not sure what you need, use the guided Start Here page and we can figure out the best approach.
+        Start with the kind of project you need help presenting. Each service can stand alone or be combined into a larger package.
       </p>
     </div>
 
     <div class="bento reveal">
       <a class="service-tile big" href="../real-estate/">
-        <img src="https://c9202c464af778ade582.cdn6.editmysite.com/uploads/b/c9202c464af778ade582ea40050b032f3b810f4615601ef05b617000811714b0/house%20front_1777017044.jpg?width=2400&optimize=medium" alt="Real estate media">
+        <img src="https://cdn.myportfolio.com/6548b179-e775-4fd6-82d3-1c416ff2f000/b9247f7c-8c58-4db4-a002-efa207f8ce8c_rw_1200.jpg?h=500eef52793d5cc920b92c4f6027cedd" alt="Real estate photography">
         <div class="tile-content">
           <div class="tile-label">Real Estate</div>
-          <h3>Listings that feel complete.</h3>
-          <p>HDR photos, drone, 360 walkthroughs, and full listing presentation.</p>
+          <h3>Listings that feel worth seeing.</h3>
+          <p>HDR interior and exterior photography, drone coverage, video, and 360 walkthroughs.</p>
         </div>
       </a>
 
@@ -741,7 +728,6 @@
 </a>
 
 
-      
       <a class="service-tile wide" href="../web-design/">
   <img src="https://cdn.myportfolio.com/6548b179-e775-4fd6-82d3-1c416ff2f000/f98c281a-0164-452b-81ec-6461348c9508_rw_1200.png?h=90b79eab1238ac0b62f0f35654a73534" alt="Web design service">
   <div class="tile-content">
@@ -762,23 +748,18 @@
 
       <div class="decision-list">
         <div>
-          <strong>If you need to sell something</strong>
-          <span>Real estate, land, vehicles, and product-based projects need clarity, trust, and enough visual information to reduce hesitation.</span>
+          <strong>I need to sell a property</strong>
+          <span>Start with HDR photography, then add drone, video, and 360 walkthrough coverage as needed.</span>
         </div>
 
         <div>
-          <strong>If you need to look more professional</strong>
-          <span>Business content, portraits, and web design help you show up stronger before someone ever reaches out.</span>
+          <strong>I need my business to look better</strong>
+          <span>Start with business photography or video, then build out website and social media content.</span>
         </div>
 
         <div>
-          <strong>If you need to document something</strong>
-          <span>Events and construction progress need coverage that preserves the moment, the timeline, or the project story.</span>
-        </div>
-
-        <div>
-          <strong>If you need everything to work together</strong>
-          <span>Photo, video, drone, 360, and websites can be combined so your online presence feels consistent.</span>
+          <strong>I need recurring content</strong>
+          <span>Ask about monthly media coverage for construction, properties, inventory, or businesses.</span>
         </div>
       </div>
     </div>
@@ -787,35 +768,29 @@
   <section class="pricing-note">
     <div class="note-wrap reveal">
       <div>
-        <div class="eyebrow">Transparent + Flexible</div>
-        <h2>Clear pricing, but real projects are not always one-size-fits-all.</h2>
+        <div class="eyebrow">Flexible Packages</div>
+        <h2>Built around what the project actually needs.</h2>
       </div>
 
       <div>
         <p>
-          I like transparent pricing because people should not feel confused before they even ask.
-          Most service pages include starting points or package pricing so you have a real idea of what to expect.
-        </p>
-
-        <p>
-          At the same time, every project is different. If you are serious about improving how your business, listing,
-          event, or project shows up, I am open to talking through the best way to make it work.
+          Every project is different. You can choose one service or combine multiple services into a more complete presentation package.
         </p>
 
         <div class="mini-cards">
           <div class="mini-card">
-            <strong>Clear</strong>
-            Starting prices where possible.
+            <strong>Photo</strong>
+            Clear, polished images that help people understand what they are looking at.
           </div>
 
           <div class="mini-card">
-            <strong>Flexible</strong>
-            Scoped around the real need.
+            <strong>Video</strong>
+            Motion, pacing, and atmosphere that help the project feel more complete.
           </div>
 
           <div class="mini-card">
-            <strong>Useful</strong>
-            Built to help you actually use the media.
+            <strong>Drone + 360</strong>
+            Scale, layout, context, and immersive views that standard images cannot always show.
           </div>
         </div>
       </div>
@@ -824,38 +799,36 @@
 
   <section class="service-index">
     <div class="section-head reveal">
-      <h2>Quick service guide.</h2>
-      <p>
-        A simple breakdown of what each service is best for.
-      </p>
+      <h2>Browse every service.</h2>
+      <p>Explore the individual service pages for details, examples, and the type of client each one is built for.</p>
     </div>
 
     <div class="index-grid reveal">
       <div class="index-card">
         <div>
           <strong>Real Estate</strong>
-          <h3>Homes, listings, rentals, and walkthroughs.</h3>
-          <p>Best for agents, sellers, builders, and property owners who need complete listing media.</p>
+          <h3>Listings that feel easier to understand.</h3>
+          <p>Best for agents, sellers, rental properties, and property marketing.</p>
         </div>
         <a href="../real-estate/">View Real Estate →</a>
       </div>
 
       <div class="index-card">
         <div>
-          <strong>Land + Acreage</strong>
-          <h3>Drone-first media for property scale.</h3>
-          <p>Best for land, acreage, farms, lots, recreational property, and boundary overlays.</p>
+          <strong>Business Content</strong>
+          <h3>Businesses that feel more established.</h3>
+          <p>Best for restaurants, shops, brands, service businesses, and local marketing.</p>
         </div>
-        <a href="../land-acreage/">View Land →</a>
+        <a href="../business-content/">View Business →</a>
       </div>
 
       <div class="index-card">
         <div>
-          <strong>Business Content</strong>
-          <h3>Food, brand, and marketing visuals.</h3>
-          <p>Best for restaurants, service businesses, local brands, websites, social media, and ads.</p>
+          <strong>Land + Acreage</strong>
+          <h3>Property scale and boundaries made clear.</h3>
+          <p>Best for land listings, development property, farms, and acreage.</p>
         </div>
-        <a href="../business-content/">View Business Content →</a>
+        <a href="../land-acreage/">View Land →</a>
       </div>
 
       <div class="index-card">
@@ -902,7 +875,7 @@
   </div>
   <a href="../dayframe/">View Dayframe →</a>
 </div>
-      
+
       <div class="index-card">
         <div>
           <strong>Web Design</strong>
@@ -947,6 +920,7 @@
 
     reveals.forEach(el => observer.observe(el));
   </script>
+  <script src="/assets/js/main.js"></script>
 
 </body>
 </html>
